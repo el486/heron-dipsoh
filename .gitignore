@@ -1,0 +1,10 @@
+# Build and Release Folders
+ux/
+resources/
+js/*
+!js/mod
+!js/lang
+images/
+css/*
+!css/m-style.css
+

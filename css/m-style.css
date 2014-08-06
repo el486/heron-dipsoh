@@ -1,0 +1,136 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#infoDIV {
+				padding:5px;
+				font:normal 12px arial,tahoma, helvetica, sans-serif;
+				height:99%;
+				overflow:auto;
+				
+			}
+			
+#infoMiniDIV {
+				padding:5px;
+				font:normal 12px arial,tahoma, helvetica, sans-serif;
+				overflow:auto;
+				background-color:#B8CFEE;		
+				
+			}
+
+#helpDIV {
+				padding:15px;
+				font:normal 11px arial,tahoma, helvetica, sans-serif;
+				height:90%;
+				overflow:auto;
+				
+			}			
+			
+table.ext {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#15428b;
+	border-width: 1px;
+	border-color: #bddddd;
+	border-collapse: collapse;
+	width:90%;
+}
+table.ext th {
+	background-color:#B8CFEE;
+	border-width: 1px;
+	padding: 3px;
+	border-style: solid;
+	border-color: #B8CFEE;
+}
+table.ext tr {
+	background-color:#d9e7f8;
+}
+table.ext td {
+	border-width: 1px;
+	padding: 1px;
+	border-style: solid;
+	border-color: #B8CFEE;
+}
+
+			
+ /* Button styling for your item: 16x16 transparent png. */
+.x-btn .icon-busqueda {
+    background-image: url(../resources/images/silk/zoom.png);
+}
+.x-btn .icon-addwms {
+    background-image: url(../resources/images/silk/server_add.png);
+}
+.x-btn .icon-addkml {
+    background-image: url(../ux/oleditor/ole/client/theme/geosilk/img/importFeature.png);
+}
+.bmenu {
+    background-image: url(menu-show.gif) !important;
+}
+.x-btn .icon-printscr {
+    background-image: url(../resources/images/silk/layers.png);
+}
+.x-btn .icon-help {
+    background-image: url(../resources/images/silk/help.png);
+}
+.multilineColumn .x-grid3-cell-inner {
+            white-space:  normal !important;
+}
+/*overview map*/
+.olControlOverviewMapMinimizeButton,
+.olControlOverviewMapMaximizeButton {
+    height: 1px;
+    width: 1px;
+    left: 0;
+    bottom: 80px;
+    cursor: pointer;
+}
+.olControlOverviewMapContainer {
+    position: absolute;
+    bottom: 60px;
+	left: 0px;
+	width:140px;
+}
+ .olControlOverviewMap {
+		left:0px;
+        padding:5px;
+		background:#FFFFFF;
+        width:100px;
+    }
+.olControlOverviewMapElement {
+		left:0px;
+		padding: 2px 2px 2px 2px;
+        background:#ffffff !important;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+		border: 1px solid;
+		border-color: #aaaaaa;
+		width:100px;
+    }
+.olControlOverviewMapExtentRectangle {
+    overflow: hidden;
+    background-image: url("img/blank.gif");
+    cursor: move;
+    border: 2px dotted red;
+}
+.olControlOverviewMapRectReplacement {
+    overflow: hidden;
+    cursor: move;
+    background-image: url("../js/img/overview_replacement.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
