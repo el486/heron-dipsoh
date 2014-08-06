@@ -7,4 +7,5 @@ js/*
 images/
 css/*
 !css/m-style.css
+php/include/
 
