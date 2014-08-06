@@ -20,6 +20,7 @@
  */
 
 //serverURL='http://www.mosp.gba.gov.ar/sig_hidraulica/ms';  //se define en index
+var apiKey = "ApjNQIT6SLCoD48dofLod3eQBSMsM933Yoe-GDn1uE3aVZjSCjgQxLWifL1Iic6_" //visor
 var wmsURL=serverURL+'/geoserver/dipsoh/wms?'; 
 Ext.namespace("Heron");
 Ext.namespace("Heron.globals");
@@ -72,7 +73,10 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Google Streets" },
 							{nodeType: "gx_layer", layer: "OpenStreetsMap" },
 							{nodeType: "gx_layer", layer: "ESRI Satelital" },
-							{nodeType: "gx_layer", layer: "ESRI Topografico"}
+							{nodeType: "gx_layer", layer: "ESRI Topografico"},
+							{nodeType: "gx_layer", layer: "Bing Aereo"},
+							{nodeType: "gx_layer", layer: "Bing Callejero"},
+							{nodeType: "gx_layer", layer: "Bing Hibrido"},
 						]
 				}
 			]
@@ -420,6 +424,27 @@ Heron.layout = {
 									"http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}",
 									{sphericalMercator: true, attribution: "<font color='white'>Base Map Tiles &copy; <a href='http://www.esri.com/'>Esri</a></font>", isBaseLayer: true} 
 							),
+							
+							/*
+							BING
+							*/
+													
+							 new OpenLayers.Layer.Bing({
+								name: "Bing Callejero",
+								key: apiKey,
+								type: "Road"
+							}),
+							new OpenLayers.Layer.Bing({
+								name: "Bing Hibrido",
+								key: apiKey,
+								type: "AerialWithLabels"
+							}),
+							new OpenLayers.Layer.Bing({
+								name: "Bing Aereo",
+								key: apiKey,
+								type: "Aerial"
+							}),
+							
 							/*
 							 * Basemap Cartas IGN
 							 */
