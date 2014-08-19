@@ -41,6 +41,11 @@
 	<link rel="stylesheet" type="text/css" href="./css/xtheme-gray.css"/>
 	<script type="text/javascript" src="./js/ext-base.js"></script>
 	<script type="text/javascript" src="./js/ext-all.js"></script>
+	
+	<!-- Script and css resources jsts (buffer)-->
+	<script type="text/javascript" src="./js/javascript.util.js"></script>
+    <script type="text/javascript" src="./js/jsts.js"></script>
+    <script type="text/javascript" src="./js/attache.array.min.js"></script>
 
 	<!-- External lib: Google Maps -->
 	<link rel="stylesheet" type="text/css" href="./css/style.css"/>
@@ -77,6 +82,7 @@
     <link rel="stylesheet" href="./ux/oleditor/ole/client/theme/geosilk/geosilk.css" type="text/css" />
 
 	<!-- Script and css resources for context menu info/search with buffer -->
+	<script type="text/javascript" src="./js/mod/FeaturePanel_mod.js"></script>
 	<script type="text/javascript" src="./js/mod/LayerNodeMenuItem_mod.js"></script>
 	<script type="text/javascript" src="./js/mod/SpatialSearchPanel_mod.js"></script>
 	<script type="text/javascript" src="./js/mod/SearchByFeaturePanel_mod.js"></script>
