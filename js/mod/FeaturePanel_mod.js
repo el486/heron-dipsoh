@@ -148,6 +148,12 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
      */
     showTopToolbar: true,
 
+    /** api: config[showBottomToolbar]
+     *  ``Boolean``
+     *  Should a bottom toolbar with buffer function be shown? Default ``true``.
+     */
+    showBottomToolbar: true,
+
     /** api: config[showGeometries]
      *  ``Boolean``
      *  Should the feature geometries be shown? Default ``true``.
@@ -403,6 +409,12 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
 
         if (this.showTopToolbar) {
             this.tbar = this.createTopToolbar();
+			//this.bbar = this.createBottomToolbar();
+        }
+		
+		if (this.showBottomToolbar) {
+            //this.tbar = this.createTopToolbar();
+			this.bbar = this.createBottomToolbar();
         }
 
         Heron.widgets.search.FeaturePanel.superclass.initComponent.call(this);
@@ -432,6 +444,7 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
             gridCellRenderers: this.gridCellRenderers,
             columns: this.columns,
             showTopToolbar: this.showTopToolbar,
+			showBottomToolbar: this.showBottomToolbar,
             exportFormats: this.exportFormats,
             hropts: {
                 zoomOnRowDoubleClick: true,
@@ -483,6 +496,7 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
                 gridCellRenderers: this.gridCellRenderers,
                 columns: this.columns,
                 showTopToolbar: this.showTopToolbar,
+				showBottomToolbar: this.showBottomToolbar,
                 exportFormats: this.exportFormats,
                 curRecordNr: 0,
                 hropts: {
@@ -586,36 +600,11 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
      * Create the top toolbar.
      */
     createTopToolbar: function () {
-		var bufferValue=0;
-        // Top toolbar text, keep var for updating
+		// Top toolbar text, keep var for updating
         var tbarItems = [this.tbarText = new Ext.Toolbar.TextItem({itemId: 'result',text: __(' ')})];
         //var blnArrows = false;
         tbarItems.push('->');
 		
-		//add buffer items
-		txtBuffer = {
-					xtype:'textfield',
-                    width:30,
-					value:0,
-					scope: this,
-					listeners : {
-						change : function (f,e){
-							bufferValue=e;
-						}
-					}
-                };
-		btnBuffer = {
-					text: __('buffer'),
-                    cls: 'x-btn',
-                    iconCls: 'icon-table-export',
-                    scope: this,
-                    handler: function (evt) {
-                        //alert(this.features+'\n'+bufferValue+'\n'+this.layer.name);
-						this.createBuffer(this.features,bufferValue,this.layer);
-                    }
-                };
-		tbarItems.push(['|Buffer:',txtBuffer,btnBuffer,'|']);
-
         if (this.downloadable) {
 
             // Multiple display types configured: add toolbar tabs
@@ -773,6 +762,46 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
             });
         }
         return new Ext.Toolbar({enableOverflow: true, items: tbarItems});
+    },
+	
+	/** api: method[createBottomToolbar]
+     * Create the bottom toolbar.
+     */
+    createBottomToolbar: function () {
+		//var bufferValue=0;
+		// Top toolbar text, keep var for updating
+        var bbarItems = [this.bbarText = new Ext.Toolbar.TextItem({itemId: 'result',text: __(' ')})];
+        //var blnArrows = false;
+        bbarItems.push('->');
+		
+		//add buffer items
+		txtBuffer = {
+					xtype:'textfield',
+                    width:30,
+					value:0,
+					scope: this,
+					listeners : {
+						change : function (f,e){
+							//bufferValue=e;
+							this.createBuffer(this.features,e,this.layer);
+						}.createDelegate(this)
+					}
+                };
+		/*
+		btnBuffer = {
+					text: __('buffer'),
+                    cls: 'x-btn',
+                    iconCls: 'icon-table-export',
+                    scope: this,
+                    handler: function (evt) {
+                        //alert(this.features+'\n'+bufferValue+'\n'+this.layer.name);
+						this.createBuffer(this.features,bufferValue,this.layer);
+                    }
+                };
+		*/
+		bbarItems.push(['Buffer:',txtBuffer/*,btnBuffer*/]);
+		
+        return new Ext.Toolbar({enableOverflow: true, items: bbarItems});
     },
 
     /** private: displayGrid ()
