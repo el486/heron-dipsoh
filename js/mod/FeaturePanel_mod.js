@@ -565,18 +565,33 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
 		  var parser = new jsts.io.OpenLayersParser();
 		  var sinProc=0;
 		  var errTxt="";
+		  var escala=Heron.App.map.getScale();
+		  var yOffset=distance*6000/escala
 		  for(var feat in features) {
 			geoString=features[feat].geometry;
 			/* Aca se agrega al layer*/
 			try{
 				input = reader.read(geoString.toString());
 				buffer = input.buffer(distance*1.25); //corrects distance error
-				//input = parser.write(input);
 				buffer = parser.write(buffer);
-				feature1 = new OpenLayers.Feature.Vector(buffer , null, { fillColor: 'blue', fillOpacity:0.25, label:distance+'m' ,labelAlign:'lt'});
-				feature1.attributes=features[feat].attributes;
-				for (var j in feature1.attributes) {
-						feature1.attributes[j]='Buffer:'+distance+'m '+feature1.attributes[j]; 
+				feature1 = new OpenLayers.Feature.Vector(buffer , null, { 
+						fillColor: 'blue'
+						,fillOpacity:0.25
+						, label:distance+'m' 
+						,labelAlign:'cm'
+						,labelYOffset:yOffset
+						, fontSize:'11px'
+						, fontFamily:'tahoma'
+						});
+				//feature1.attributes=features[feat].attributes;
+				var primero=true;
+				for (var j in features[feat].attributes) {
+						if(primero){
+						feature1.attributes[j]='Buffer:'+distance+'m '+features[feat].attributes[j]; 
+						primero=false;
+						}else{
+						feature1.attributes[j]=features[feat].attributes[j]; 
+						}
 					}				
 				layer.addFeatures([feature1]);	
 				//feature2 = new OpenLayers.Feature.Vector(input, null, { fillColor: 'red'});
@@ -594,6 +609,33 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
 				} 			
 		  }
 		  if(sinProc!=0){alert('Sin procesar: '+sinProc+'\n'+errTxt);}
+    },
+	
+	/** api: method[createBottomToolbar]
+     * Create the bottom toolbar.
+     */
+    createBottomToolbar: function () {
+		// Top toolbar text, keep var for updating
+        var bbarItems = [this.bbarText = new Ext.Toolbar.TextItem({itemId: 'result',text: __(' ')})];
+        //var blnArrows = false;
+        bbarItems.push('->');
+		
+		//add buffer items
+		txtBuffer = {
+					xtype:'textfield',
+                    width:50,
+					value:0,
+					scope: this,
+					listeners : {
+						change : function (f,e){
+							this.createBuffer(this.features,e,this.layer);
+						}.createDelegate(this) //arregla el scope del listener a this para usar createBuffer
+					}
+                };
+
+		bbarItems.push(['Buffer:',txtBuffer]);
+		
+        return new Ext.Toolbar({enableOverflow: true, items: bbarItems});
     },
 	
 	/** api: method[createTopToolbar]
@@ -762,46 +804,6 @@ Heron.widgets.search.FeaturePanel = Ext.extend(Ext.Panel, {
             });
         }
         return new Ext.Toolbar({enableOverflow: true, items: tbarItems});
-    },
-	
-	/** api: method[createBottomToolbar]
-     * Create the bottom toolbar.
-     */
-    createBottomToolbar: function () {
-		//var bufferValue=0;
-		// Top toolbar text, keep var for updating
-        var bbarItems = [this.bbarText = new Ext.Toolbar.TextItem({itemId: 'result',text: __(' ')})];
-        //var blnArrows = false;
-        bbarItems.push('->');
-		
-		//add buffer items
-		txtBuffer = {
-					xtype:'textfield',
-                    width:30,
-					value:0,
-					scope: this,
-					listeners : {
-						change : function (f,e){
-							//bufferValue=e;
-							this.createBuffer(this.features,e,this.layer);
-						}.createDelegate(this)
-					}
-                };
-		/*
-		btnBuffer = {
-					text: __('buffer'),
-                    cls: 'x-btn',
-                    iconCls: 'icon-table-export',
-                    scope: this,
-                    handler: function (evt) {
-                        //alert(this.features+'\n'+bufferValue+'\n'+this.layer.name);
-						this.createBuffer(this.features,bufferValue,this.layer);
-                    }
-                };
-		*/
-		bbarItems.push(['Buffer:',txtBuffer/*,btnBuffer*/]);
-		
-        return new Ext.Toolbar({enableOverflow: true, items: bbarItems});
     },
 
     /** private: displayGrid ()

@@ -44,21 +44,12 @@ var gridCellRenderers=[
    attrName: 'id_obra',
    renderer:{
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
-																				
+				if(value.substring(0,7)!='Buffer:'){															
 				   return '<a href="javascript:void(0)" onclick="popupObras(\''+value+'\');">' + value + '</a>';
+				}else return value;
 				},
 		   options : {}
 			}
-},
-{
-   featureType: 'obras_y_trazas',
-   attrName: 'id_obra',
-   renderer:{
-		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
-				   return '<a href="javascript:void(0)" onclick="popupObras(\''+value+'\');">' + value + '</a>';
-		   },
-		   options : {}
-   }
 },
 {
    featureType: 'obras_dipsoh_por_etapa',
@@ -75,7 +66,9 @@ var gridCellRenderers=[
    attrName: 'CODIGO',
    renderer: {
 			fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if(value.substring(0,7)!='Buffer:'){
 				   return '<a href="./php/descargaIGN.php?codigo='+value+'&faja='+record.data.Faja+'" target="_blank">'+ value +'</a>';
+				   }else return value;
 		   },
 		   options : {}
    }
