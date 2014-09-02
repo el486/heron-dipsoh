@@ -135,8 +135,8 @@ var gridCellRenderers=[
 }];
 							
 var resultPanel={
-					xtype: 'hr_featuregridpanel',
-					id: 'hr-featuregridpanel',
+					xtype: 'hr_featurepanel',
+					id: 'hr-featurepanel',
 					header: false,
 					border: false,
 					autoConfig: true,
@@ -506,7 +506,7 @@ var toolBarItems=[
 											version: "1.1.0"
 											,srsName: "EPSG:900913"
 											,url: serverURL+"/geoserver/dipsoh/wfs"
-											,featureType: "parcelas_arba"
+											,featureType: "parcelas_vista"
 											,featurePrefix: "dipsoh"
 											,featureNS :  serverURL+"/geoserver/dipsoh_postgis"
 										}),

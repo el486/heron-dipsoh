@@ -164,42 +164,42 @@ Ext.onReady(function() {
 });
 
 function fnclick(e){
-var lonlat = Heron.App.map.getLonLatFromViewPortPx(e.xy);
-//alert(lonlat.lon+' - '+lonlat.lat);
-//alert(lonlat.lon);
-var point = new OpenLayers.Geometry.Point(lonlat.lon,lonlat.lat);
+	var lonlat = Heron.App.map.getLonLatFromViewPortPx(e.xy);
+	//alert(lonlat.lon+' - '+lonlat.lat);
+	//alert(lonlat.lon);
+	var point = new OpenLayers.Geometry.Point(lonlat.lon,lonlat.lat);
 
-if(!layerOculto){
-				// layer Oculto 
-				layerOculto = new OpenLayers.Layer.Vector("layerOculto", {
-					projection: new OpenLayers.Projection("EPSG:900913"),
-					displayInLayerSwitcher:false,
-					styleMap: new OpenLayers.StyleMap({
-						"point": new OpenLayers.Style(OpenLayers.Util.applyDefaults({
-							fillColor: "#ffff00",
-							strokeColor: "#660000"
-						}, OpenLayers.Feature.Vector.style["point"]))
-					})
-				});
-				Heron.App.map.addLayer(layerOculto);
-			};
+	if(!layerOculto){
+					// layer Oculto, se usa solo en esta funcion
+					layerOculto = new OpenLayers.Layer.Vector("layerOculto", {
+						projection: new OpenLayers.Projection("EPSG:900913"),
+						displayInLayerSwitcher:false,
+						styleMap: new OpenLayers.StyleMap({
+							"point": new OpenLayers.Style(OpenLayers.Util.applyDefaults({
+								fillColor: "#ffff00",
+								strokeColor: "#660000"
+							}, OpenLayers.Feature.Vector.style["point"]))
+						})
+					});
+					Heron.App.map.addLayer(layerOculto);
+				};
 
-var pointFeature = new OpenLayers.Feature.Vector(point,null,null);
-pointFeature.style = OpenLayers.Util.applyDefaults({fillColor: "#ff0000",strokeColor:"#000000"}, OpenLayers.Feature.Vector.style["default"]); 
-layerOculto.removeFeatures(layerOculto.features);
-layerOculto.addFeatures([pointFeature]);
-proj22195=new OpenLayers.Projection("EPSG:22195");
-lonlat22195 = lonlat.transform(Heron.App.map.projection,proj22195);
+	var pointFeature = new OpenLayers.Feature.Vector(point,null,null);
+	pointFeature.style = OpenLayers.Util.applyDefaults({fillColor: "#ff0000",strokeColor:"#000000"}, OpenLayers.Feature.Vector.style["default"]); 
+	layerOculto.removeFeatures(layerOculto.features);
+	layerOculto.addFeatures([pointFeature]);
+	proj22195=new OpenLayers.Projection("EPSG:22195");
+	lonlat22195 = lonlat.transform(Heron.App.map.projection,proj22195);
 
-	params = 'x='+lonlat22195.lon+'&y='+lonlat22195.lat;
-	//alert(params);
-	getAjax('./php/buscarPuntosGeoba.php',params,'infoDIV');
+		params = 'x='+lonlat22195.lon+'&y='+lonlat22195.lat;
+		//alert(params);
+		getAjax('./php/buscarPuntosGeoba.php',params,'infoDIV');
 
-//alert(lonlat22195.lon + " E, "+lonlat22195.lat + " N");
-//map.events.unregister("click", map, fnclick );
+	//alert(lonlat22195.lon + " E, "+lonlat22195.lat + " N");
+	//map.events.unregister("click", map, fnclick );
 }
 
-/*FUNCIONES DE LAYER OCULTO*/
+/*FUNCIONES DE LAYER OCULTO - Ver si se usan fuera de buscarPuntosGeoba.php*/
 
 function centrar (x,y){
 

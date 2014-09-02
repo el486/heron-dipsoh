@@ -146,7 +146,7 @@ Heron.layout = {
 					region: 'north',
 					layout: 'border',
 					width: '100%',
-					height: 40,
+					height: 65,
 					bodyBorder: false,
 					border: true,
 					items : [
@@ -364,7 +364,7 @@ Heron.layout = {
 			layout: 'border',
 			region: 'center',
 			width: '100%',
-			collapsible: true,
+			collapsible: false,
 			split	: true,
 			border: false,
 			items: [
@@ -491,7 +491,7 @@ Heron.layout = {
 							),
 							
 							layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",wmsURL,
-								{layers: 'dipsoh:parcelas_arba',transparent: true, format:'image/png', singleTile: true },layerOptions
+								{layers: 'dipsoh:parcelas_vista',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							
 							layerPartidos_descarga = new OpenLayers.Layer.WMS("Descarga_Partidos_DWG",wmsURL,
