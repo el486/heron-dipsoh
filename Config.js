@@ -88,10 +88,17 @@ var treeTheme = [
 					text:'Provincia', expanded: true, children:
 						[
 							{nodeType: "gx_layer", layer: "Partidos" },
-							{nodeType: "gx_layer", layer: "Parcelas" },
 							{nodeType: "gx_layer", layer: "Hidrografia" },
 							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
 							{nodeType: "gx_layer", layer: "Rutas" ,legend:true }
+						]
+				},
+				{
+					text:'Parcelario Arba', nodeType: 'hr_cascader', expanded: true, children:
+						[
+							{nodeType: "gx_layer", layer: "Partidos y Circunscripciones" },
+							{nodeType: "gx_layer", layer: "Macizos" },
+							{nodeType: "gx_layer", layer: "Parcelas" }
 						]
 				},
 				{
@@ -493,7 +500,12 @@ Heron.layout = {
 							layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",wmsURL,
 								{layers: 'dipsoh:parcelas_vista',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
-							
+							layerMacizosArba = new OpenLayers.Layer.WMS("Macizos",wmsURL,
+								{layers: 'dipsoh:macizos_vista',transparent: true, format:'image/png', singleTile: true },layerOptions
+							),
+							layerCircunscripcionesArba = new OpenLayers.Layer.WMS("Partidos y Circunscripciones",wmsURL,
+								{layers: ['dipsoh:secciones_vista','dipsoh:circunscripciones_vista','dipsoh:partidos_vista'],transparent: true, format:'image/png', singleTile: true },layerOptions
+							),							
 							layerPartidos_descarga = new OpenLayers.Layer.WMS("Descarga_Partidos_DWG",wmsURL,
 								{layers: 'dipsoh:departamentos_descarga',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
