@@ -1,4 +1,4 @@
-﻿var convert=[
+var convert=[
 			["Pt:",0,3],[" Circ:",3,5],[" Secc:",5,7],
 			[" Ch:",7,11],["",11,14],[" Qt:",14,18],["",18,21],
 			[" Fr:",21,25],["",25,28],[" Mz:",28,32],["",32,35],
@@ -140,6 +140,8 @@ var resultPanel={
 					header: false,
 					border: false,
 					autoConfig: true,
+					showBottomToolbar:true,
+					showTopToolbar:true,
 					exportFormats: ['CSV','XLS',
 					{
 						name: 'Esri Shapefile (WGS84 EPSG:4326)',
@@ -208,6 +210,7 @@ var toolBarItems=[
             height: 200,
             featureInfoPanel: {
 				showTopToolbar: true,
+				showBottomToolbar: true,
                 //displayPanels: ['Table'],
 				displayPanels: ['Table','Detail'],
                 //exportFormats: ['CSV', 'XLS', 'GMLv2', 'Shapefile', 'GeoJSON', 'WellKnownText'],
@@ -359,7 +362,14 @@ var toolBarItems=[
 												xtype: "textfield",
 												name: "nomcat__like",
 												value: 'Part:',
-												fieldLabel: "  Nomcat"
+												fieldLabel: "  Nomcat",
+												listeners: { 'change': function(e){ 
+														var str=(e.getValue());    
+														str=str.split(' ').join('%');
+														//console.log(str);
+														e.setValue(str);
+														}  
+													}
 											},
 											{
 												xtype: "textfield",
@@ -498,8 +508,8 @@ var toolBarItems=[
 								{
 									searchPanel: {
 										xtype: 'hr_formsearchpanel',
-										name: 'Busqueda parcelas arba por partido y partida',
-										description: 'Busqueda de parcelas arba por partido y partida inmobiliaria',
+										name: 'Busqueda parcelas Arba por partido y partida',
+										description: 'Busqueda de parcelas Arba por partido y partida inmobiliaria',
 										header: false,
 										border: false,
 										protocol: new OpenLayers.Protocol.WFS({
@@ -528,6 +538,79 @@ var toolBarItems=[
 												xtype: "label",
 												id: "helplabel",
 												html: 'Ingrese partido y partida inmobiliaria.<br/>La busqueda puede tardar 10-20 segundos. <br/>Si demora mas es posible que los datos ingresados sean incorrectos',
+												style: {
+													fontSize: '10px',
+													color: '#AAAAAA'
+												}
+											}
+										],
+										hropts: {
+											onSearchCompleteZoom: 9,
+											autoWildCardAttach: true,
+											caseInsensitiveMatch: true,
+											logicalOperator: OpenLayers.Filter.Logical.AND,
+											statusPanelOpts: {
+												html: '&nbsp;',
+												height: 'auto',
+												preventBodyReset: true,
+												bodyCfg: {
+													style: {
+														padding: '6px',
+														border: '0px'
+													}
+												},
+												style: {
+													marginTop: '2px',
+													paddingTop: '2px',
+													fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
+													fontSize: '11px',
+													color: '#0000C0'
+												}
+											}
+										}
+									},
+									resultPanel: resultPanel
+								},
+								{
+									searchPanel: {
+										xtype: 'hr_formsearchpanel',
+										name: 'Busqueda de parcelas Arba por nomenclatura',
+										description: 'Busqueda de parcelas Arba por nomenclatura',
+										header: false,
+										border: false,
+										protocol: new OpenLayers.Protocol.WFS({
+											version: "1.1.0"
+											,srsName: "EPSG:900913"
+											,url: serverURL+"/geoserver/dipsoh/wfs"
+											,featureType: "parcelas"
+											,featurePrefix: "dipsoh"
+											,featureNS : serverURL+"/geoserver/dipsoh_postgis"
+										}),
+										downloadFormats: [],
+										items: [
+											{
+												xtype: "textfield",
+												name: "partido",
+												value: '55',
+												fieldLabel: "  Partido"
+											},
+											{
+												xtype: "textfield",
+												name: "nomencla__like",
+												value: '',
+												fieldLabel: "  Nom. Cat:",
+												listeners: { 'change': function(e){ 
+														var str=(e.getValue());    
+														str=str.split(' ').join('%');
+														//console.log(str);
+														e.setValue(str);
+														}  
+													}
+											},
+											{
+												xtype: "label",
+												id: "helplabel",
+												html: 'Escriba los datos de la nomenclatura en orden, separados por espacios',
 												style: {
 													fontSize: '10px',
 													color: '#AAAAAA'
