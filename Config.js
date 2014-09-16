@@ -26,10 +26,10 @@ Ext.namespace("Heron");
 Ext.namespace("Heron.globals");
 Heron.globals.serviceUrl=serverURL+'/cgi-bin/heron.cgi';
 OpenLayers.ProxyHost = serverURL+'/cgi-bin/proxy.cgi?url=';
-var layerKML;
-var layerParcelas;
-var layerObras;
-var layerBuffer;
+//var layerKML;
+//var layerParcelas;
+//var layerObras;
+//var layerBuffer;
 var layerOculto;
 var mapPanel;
 var textoDIV;
@@ -88,10 +88,17 @@ var treeTheme = [
 					text:'Provincia', expanded: true, children:
 						[
 							{nodeType: "gx_layer", layer: "Partidos" },
-							{nodeType: "gx_layer", layer: "Parcelas" },
 							{nodeType: "gx_layer", layer: "Hidrografia" },
 							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
 							{nodeType: "gx_layer", layer: "Rutas" ,legend:true }
+						]
+				},
+				{
+					text:'Parcelario Arba', nodeType: 'hr_cascader', expanded: true, children:
+						[
+							{nodeType: "gx_layer", layer: "Partidos y Circunscripciones" },
+							{nodeType: "gx_layer", layer: "Macizos" },
+							{nodeType: "gx_layer", layer: "Parcelas" }
 						]
 				},
 				{
@@ -493,7 +500,12 @@ Heron.layout = {
 							layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",wmsURL,
 								{layers: 'dipsoh:parcelas_vista',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
-							
+							layerMacizosArba = new OpenLayers.Layer.WMS("Macizos",wmsURL,
+								{layers: 'dipsoh:macizos_vista',transparent: true, format:'image/png', singleTile: true },layerOptions
+							),
+							layerCircunscripcionesArba = new OpenLayers.Layer.WMS("Partidos y Circunscripciones",wmsURL,
+								{layers: ['dipsoh:secciones_vista','dipsoh:circunscripciones_vista','dipsoh:partidos_vista'],transparent: true, format:'image/png', singleTile: true },layerOptions
+							),							
 							layerPartidos_descarga = new OpenLayers.Layer.WMS("Descarga_Partidos_DWG",wmsURL,
 								{layers: 'dipsoh:departamentos_descarga',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
@@ -519,7 +531,7 @@ Heron.layout = {
 							),
 							
 							new OpenLayers.Layer.WMS("Hidrografia",wmsURL,
-								{layers: 'dipsoh:hidro',transparent: true, format:'image/png', singleTile: true },layerOptions
+								{layers: 'dipsoh:hidro_view',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							
 							new OpenLayers.Layer.WMS("Lagos_y_lagunas",wmsURL,
