@@ -152,10 +152,19 @@ Ext.onReady(function() {
 						layerOculto.removeFeatures(layerOculto.features);
 						document.getElementById('infoDIV').innerHTML='info';
 						 }
+<<<<<<< HEAD
 					/*if (evt.layer.name =='Parcelas' && evt.layer.visibility == true && Heron.App.map.getScale()>100000){
 						alert('La capa de parcelas ARBA solo es visible por debajo del zoom 1:100.000');
 						//layerParcelas.visibility=false;
 						}*/
+=======
+					/*
+					if (evt.layer.name =='Parcelas' && evt.layer.visibility == true && Heron.App.map.getScale()>100000){
+						alert('La capa de parcelas ARBA solo es visible por debajo del zoom 1:100.000');
+						//layerParcelas.visibility=false;
+						}
+						*/
+>>>>>>> origin/master
 					
 				   }
 			   }
