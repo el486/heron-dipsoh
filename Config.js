@@ -89,6 +89,7 @@ var treeTheme = [
 						[
 							{nodeType: "gx_layer", layer: "Partidos" },
 							{nodeType: "gx_layer", layer: "Hidrografia" },
+							{nodeType: "gx_layer", layer: "Cuencas" },
 							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
 							{nodeType: "gx_layer", layer: "Rutas" ,legend:true }
 						]
@@ -528,6 +529,10 @@ Heron.layout = {
 							
 							new OpenLayers.Layer.WMS("Puntos_acotados_IGN",wmsURL,
 								{layers: 'dipsoh:puntosacotados_22195',transparent: true, format:'image/png', singleTile: true },layerOptions
+							),
+							
+							new OpenLayers.Layer.WMS("Cuencas",wmsURL,
+								{layers: 'dipsoh:cuencas',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							
 							new OpenLayers.Layer.WMS("Hidrografia",wmsURL,
