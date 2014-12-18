@@ -7,7 +7,7 @@ $file = $path.$codigo.'.tif';
 $file2 = $path.$codigo.'.tfw';
 $man = 'E:/DatosGis/imagenes/manual.rar';
 
-$zipname = 'c:/ms4w/tmp/descarga.zip';
+$zipname = 'c:/ms4w/tmp/'.$codigo.'.zip';
 if (file_exists($zipname)) {
 unlink($zipname);
 }

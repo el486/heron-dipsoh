@@ -116,6 +116,7 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Red_Geoba",legend:true },
 							{nodeType: "gx_layer", layer: "Parcelas_RT",text:"Planos en Rel. Territorial " },
 							{nodeType: "gx_layer", layer: "Puntos_acotados_IGN",legend:true  },
+							{nodeType: "gx_layer", layer: "Curvas_de_nivel",legend:true  },
 							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  },
 							{nodeType: "gx_layer", layer: "Geo5000_Faja5",text:"Geodesia 1:5000 Faja5"},
 							{nodeType: "gx_layer", layer: "Geo5000_Faja6",text:"Geodesia 1:5000 Faja6"}
@@ -529,6 +530,10 @@ Heron.layout = {
 							
 							new OpenLayers.Layer.WMS("Puntos_acotados_IGN",wmsURL,
 								{layers: 'dipsoh:puntosacotados_22195',transparent: true, format:'image/png', singleTile: true },layerOptions
+							),
+							
+							new OpenLayers.Layer.WMS("Curvas_de_nivel",wmsURL,
+								{layers: 'dipsoh:curvas_area_metropolitana_22195',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							
 							new OpenLayers.Layer.WMS("Cuencas",wmsURL,
