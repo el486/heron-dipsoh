@@ -352,7 +352,7 @@ var toolBarItems=[
 											version: "1.1.0"
 											,srsName: "EPSG:900913"
 											,url: serverURL+"/geoserver/dipsoh/wfs"
-											,featureType: "parcelas_rt"
+											,featureType: "parcelas_rt_22185"
 											,featurePrefix: "dipsoh"
 											,featureNS : serverURL+"/geoserver/dipsoh_postgis"
 										}),

@@ -67,11 +67,11 @@ var treeTheme = [
 			[
 				{nodeType: "gx_layer", layer: "Cartas IGN" },
 				{nodeType: "gx_layer", layer: "Google Hybrid" },
-				{nodeType: "gx_layer", layer: "toner", text:"Stamen Toner" },
+				{nodeType: "gx_layer", layer: "OpenStreetsMap" },
 				{text:'Mas...', children:
 						[
 							{nodeType: "gx_layer", layer: "Google Streets" },
-							{nodeType: "gx_layer", layer: "OpenStreetsMap" },
+							{nodeType: "gx_layer", layer: "toner", text:"Stamen Toner" },
 							{nodeType: "gx_layer", layer: "ESRI Satelital" },
 							{nodeType: "gx_layer", layer: "ESRI Topografico"},
 							{nodeType: "gx_layer", layer: "Bing Aereo"},
@@ -409,6 +409,8 @@ Heron.layout = {
 							 */
 							new OpenLayers.Layer.Stamen("toner"),
 							new OpenLayers.Layer.OSM("OpenStreetsMap"),
+							
+							
 							/*
 							 * Google Maps
 							 */
@@ -521,7 +523,7 @@ Heron.layout = {
 							), 
 							
 							layerParcelasRT = new OpenLayers.Layer.WMS("Parcelas_RT",wmsURL,
-								{layers: 'dipsoh:parcelas_rt',transparent: true, format:'image/png', singleTile: true },layerOptions
+								{layers: 'dipsoh:parcelas_rt_22185',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							
 							new OpenLayers.Layer.WMS("Red_Geoba",wmsURL,
@@ -560,7 +562,7 @@ Heron.layout = {
 								{layers: 'dipsoh:dipsoh_obras_ref',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							new OpenLayers.Layer.WMS("Trazas por Etapa",wmsURL,
-								{layers: 'dipsoh:obras_dipsoh_por_etapa',transparent: true, format:'image/png', singleTile: true },layerOptions
+								{layers: 'dipsoh:trazas_por_etapa_4326',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							new OpenLayers.Layer.WMS("Parcelario_Geodesia",
 								"http://www.mosp.gba.gov.ar/geoserver/wms?",
