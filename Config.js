@@ -398,7 +398,7 @@ Heron.layout = {
 							restrictedExtent: new OpenLayers.Bounds(-7822279.086949371,-5021408.575019243,-5346607.805595686,-3837573.972371518),
 							center: '-6500000, -4500000',
 							//maxResolution: 'auto',
-							xy_precision: 5,
+							xy_precision: 2,
 							zoom: 7,
 							theme: null
 						},

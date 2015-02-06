@@ -7,7 +7,7 @@
 				
 var gridCellRenderers=[
 {
-   featureType: 'parcelas_rt',
+   featureType: 'parcelas_rt_22185',
    attrName: 'num_plano',
    renderer: {
 		   fn : Heron.widgets.GridCellRenderer.directLink,
@@ -516,7 +516,7 @@ var toolBarItems=[
 											version: "1.1.0"
 											,srsName: "EPSG:900913"
 											,url: serverURL+"/geoserver/dipsoh/wfs"
-											,featureType: "parcelas_vista"
+											,featureType: "parcelas"
 											,featurePrefix: "dipsoh"
 											,featureNS :  serverURL+"/geoserver/dipsoh_postgis"
 										}),
@@ -610,7 +610,7 @@ var toolBarItems=[
 											{
 												xtype: "label",
 												id: "helplabel",
-												html: 'Escriba los datos de la nomenclatura en orden, separados por espacios',
+												html: 'Escriba los datos de la nomenclatura en orden, separados por espacios <br> Por ejemplo para buscar <br>"Part:65 Circ:4 Secc: Ch: Qt: Fr: Mz: Pc:1191" <br>ingrese "65 4 1191" <br> Se listaran todos las coincidencias.',
 												style: {
 													fontSize: '10px',
 													color: '#AAAAAA'
@@ -775,6 +775,13 @@ var toolBarItems=[
 					}
 			}
          },
+		{type: "-"},
+		{type: "mapopen"},
+		{type: "mapsave", options : {
+			mime: 'text/xml',
+			fileName: 'sig_dipsoh',
+			fileExt: '.cml'
+		}},
 		{type: "-"},
 		{type: "help", options: {tooltip: 'Ayuda', contentUrl: 'help.html'}}//,
 	]

@@ -28,7 +28,7 @@ Ext.namespace("Heron.widgets.LayerNodeMenuItem");
 Heron.widgets.LayerNodeMenuItem = Ext.extend(Ext.menu.Item, {
 
     /** Is this menu item applicable for this node/layer? */
-    isApplicable: function(node) {
+    isApplicable: function (node) {
         return true;
     }
 });
@@ -130,7 +130,7 @@ Heron.widgets.LayerNodeMenuItem.Style = Ext.extend(Heron.widgets.LayerNodeMenuIt
     },
 
     /** Is this menu item applicable for this node/layer? Only for Vector layers.*/
-    isApplicable: function(node) {
+    isApplicable: function (node) {
         return node.layer.CLASS_NAME == 'OpenLayers.Layer.Vector';
     }
 });
@@ -168,7 +168,9 @@ Ext.reg('hr_layernodemenustyle', Heron.widgets.LayerNodeMenuItem.Style);
 /** api: constructor
  *  .. class:: LayerNodeMenuItem.ZoomExtent(items)
  *
- *  A context menu item to zoom to data extent of Layer.
+ *  A context menu item to zoom to data or max extent of Layer.  For Vector Layers the extent
+ *  is the data extent. For raster layers the 'maxExtent' Layer property needs to be explicitly set.
+ *
  */
 Heron.widgets.LayerNodeMenuItem.ZoomExtent = Ext.extend(Heron.widgets.LayerNodeMenuItem, {
 
@@ -185,22 +187,30 @@ Heron.widgets.LayerNodeMenuItem.ZoomExtent = Ext.extend(Heron.widgets.LayerNodeM
             return;
         }
         var layer = node.layer;
-        var map = layer.map;
-        var dataExtent = layer.getDataExtent();
+        var zoomExtent;
 
-        if (!dataExtent) {
+        // If the Layer has a set maxExtent, this prevails, otherwise
+        // try to get data extent (Vector Layers mostly).
+        if (this.hasMaxExtent) {
+            zoomExtent = layer.maxExtent;
+        } else {
+            zoomExtent = layer.getDataExtent();
+        }
+
+        if (!zoomExtent) {
             // TODO: find an elegant way to disable menu
             Ext.Msg.alert(__('Warning'), __('Sorry, no data-extent is available for this Layer'));
             return;
         }
 
-        map.zoomToExtent(dataExtent);
-
+        layer.map.zoomToExtent(zoomExtent);
     },
 
     /** Is this menu item applicable for this node/layer? */
-    isApplicable: function(node) {
-        return node.layer.getDataExtent();
+    isApplicable: function (node) {
+        // Layer: assume fixed maxExtent when set AND different from Map maxExtent
+        this.hasMaxExtent = node.layer.maxExtent && !node.layer.maxExtent.equals(node.layer.map.maxExtent);
+        return node.layer.getDataExtent() || this.hasMaxExtent;
     }
 });
 
@@ -262,12 +272,18 @@ Heron.widgets.LayerNodeMenuItem.LayerInfo = Ext.extend(Heron.widgets.LayerNodeMe
         var tiled = layer.singleTile || isVector ? 'No' : 'Yes';
         var hasWFS = layer.metadata.wfs || isWFS ? 'Yes' : 'No';
         var hasFeatureInfo = isVector || layer.featureInfoFormat ? 'Yes' : 'No';
-		var infoWms = Ext.getCmp('capasGrid').store;
+
+var infoWms = Ext.getCmp('capasGrid').store;
 		infoWms.filter('name',layer.params.LAYERS);
 		
 		if(infoWms.data.items.length>0){
 			Ext.MessageBox.show({
 				title: String.format('Info for Layer "{0}"', layer.name),
+
+
+
+
+
 				msg: String.format("<br><b>Nombre: </b>{0}" +
 						"<br><b>Tipo: </b>{1}" +
 						"<br><b>Mosaico: </b>{2}" +
@@ -296,10 +312,13 @@ Heron.widgets.LayerNodeMenuItem.LayerInfo = Ext.extend(Heron.widgets.LayerNodeMe
 				buttons: Ext.Msg.OK,
 				fn: function (btn) {
 					if (btn == 'ok') {
+
+
 					}
 				},
 				icon: Ext.MessageBox.INFO,
 				maxWidth: 300
+
 				})
 			}
     }

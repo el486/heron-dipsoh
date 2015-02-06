@@ -81,11 +81,13 @@
     <script type="text/javascript" src="./js/lang/editor-es.js"></script>
     <link rel="stylesheet" href="./ux/oleditor/ole/client/theme/geosilk/geosilk.css" type="text/css" />
 
-	<!-- Script and css resources for context menu info/search with buffer -->
-	<script type="text/javascript" src="./js/mod/FeaturePanel_mod.js"></script>
-	<script type="text/javascript" src="./js/mod/LayerNodeMenuItem_mod.js"></script>
+	<!-- Script and css resources for context menu info/search with buffer (old)
 	<script type="text/javascript" src="./js/mod/SpatialSearchPanel_mod.js"></script>
 	<script type="text/javascript" src="./js/mod/SearchByFeaturePanel_mod.js"></script>
+	-->
+	
+	<script type="text/javascript" src="./js/mod/LayerNodeMenuItem_mod.js"></script> <!-- Mas info en context menu -->
+	<script type="text/javascript" src="./js/mod/FeaturePanel_mod.js"></script> <!-- buffer en info panel -->
 	
 	<!-- Script and css resources for main app -->
 	<link rel="stylesheet" type="text/css" href="./css/m-style.css"/>
