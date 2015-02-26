@@ -1,4 +1,14 @@
-﻿var convert=[
+﻿function armarNomencla(){
+	var part = Ext.getCmp('form_part').getValue();
+	var circ = Ext.getCmp('form_circ').getValue();
+	var secc = Ext.getCmp('form_secc').getValue();
+	var otro = Ext.getCmp('form_otro').getValue();
+	var pnum = Ext.getCmp('form_pnum').getValue();
+	var plet = Ext.getCmp('form_plet').getValue();
+	Ext.getCmp('form_nomencla').setValue(part+circ+secc+"%"+otro+"%"+pnum+plet);
+}
+
+var convert=[
 			["Pt:",0,3],[" Circ:",3,5],[" Secc:",5,7],
 			[" Ch:",7,11],["",11,14],[" Qt:",14,18],["",18,21],
 			[" Fr:",21,25],["",25,28],[" Mz:",28,32],["",32,35],
@@ -591,31 +601,110 @@ var toolBarItems=[
 											{
 												xtype: "textfield",
 												name: "partido",
-												value: '55',
-												fieldLabel: "  Partido"
+												value: '',
+												id:'form_part',
+												fieldLabel: "  Partido",
+												listeners: { 'change': function(e){ 
+														var str=(e.getValue());
+														str="00"+str;
+														str=str.substr(str.length - 3);
+														str=str.split(' ').join('%');
+														e.setValue(str);
+														armarNomencla();
+														}}
+											},
+											{
+												xtype: "textfield",
+												name: "rural__ne",
+												value: '',
+												id:'form_circ',
+												fieldLabel: "  Circunscripcion",
+												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val="00"+val;
+														val=val.substr(val.length - 2);
+														val=val.split(' ').join('%');
+														e.setValue(val);
+														armarNomencla();
+														}}
+											},
+											{
+												xtype: "textfield",
+												name: "rural__ne",
+												value: '',
+												id:'form_secc',
+												fieldLabel: "  Seccion",
+												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val="00"+val;
+														val=val.substr(val.length - 2);
+														val=val.split(' ').join('%');
+														e.setValue(val);
+														armarNomencla();
+														}}
+											},
+											{
+												xtype: "textfield",
+												name: "rural__ne",
+												value: '',
+												id:'form_otro',
+												fieldLabel: "  Ch/Qt/Fr/Mz",
+												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val=val.split(' ').join('%');
+														e.setValue(val);
+														armarNomencla();
+														}}
+											},
+											{
+												xtype: "label",
+												id: "helplabel",
+												html: 'Escriba los datos de Chacra / Quinta o Fracción en ese orden, separando por espacios numeros y letras. Ej: 3 A 1 B',
+												style: {
+													fontSize: '10px',
+													color: '#AAAAAA'
+												}
+											},
+											{
+												xtype: "textfield",
+												name: "rural__ne",
+												value: '',
+												id:'form_pnum',
+												fieldLabel: "  Parcela Numero",
+												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val="000"+val;
+														val=val.substr(val.length - 4);
+														val=val.split(' ').join('%');
+														e.setValue(val);
+														armarNomencla();
+														}}
+											},
+											{
+												xtype: "textfield",
+												name: "rural__ne",
+												value: '',
+												id:'form_plet',
+												fieldLabel: "  Parcela Letra",
+												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val="00"+val;
+														val=val.substr(val.length - 3);
+														val=val.split(' ').join('%');
+														e.setValue(val);
+														armarNomencla();
+														}}
 											},
 											{
 												xtype: "textfield",
 												name: "nomencla__like",
 												value: '',
-												fieldLabel: "  Nom. Cat:",
-												listeners: { 'change': function(e){ 
-														var str=(e.getValue());    
-														str=str.split(' ').join('%');
-														//console.log(str);
-														e.setValue(str);
-														}  
-													}
-											},
-											{
-												xtype: "label",
-												id: "helplabel",
-												html: 'Escriba los datos de la nomenclatura en orden, separados por espacios <br> Por ejemplo para buscar <br>"Part:65 Circ:4 Secc: Ch: Qt: Fr: Mz: Pc:1191" <br>ingrese "65 4 1191" <br> Se listaran todos las coincidencias.',
-												style: {
-													fontSize: '10px',
-													color: '#AAAAAA'
-												}
+												id:'form_nomencla',
+												hidden:true,
+												fieldLabel: "  Nomenclatura:",
+												listeners: { 'specialkey': function(e){ armarNomencla();}}
 											}
+											
 										],
 										hropts: {
 											onSearchCompleteZoom: 9,
