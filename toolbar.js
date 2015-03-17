@@ -84,6 +84,18 @@ var gridCellRenderers=[
    }
 },
 {
+   featureType: 'cartas100igm',
+   attrName: 'codigo_0',
+   renderer: {
+			fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if(value.substring(0,7)!='Buffer:'){
+				   return '<a href="http://ramsac.ign.gob.ar/posgar07_pg_web/modelo_100000_descarga.php?p=1&c='+value+'" target="_blank">'+ value +'</a>';
+				   }else return value;
+		   },
+		   options : {}
+   }
+},
+{
    featureType: 'departamentos_descarga',
    attrName: 'nomencla',
    renderer: {

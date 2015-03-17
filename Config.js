@@ -21,7 +21,8 @@
 
 //serverURL='http://www.mosp.gba.gov.ar/sig_hidraulica/ms';  //se define en index
 var apiKey = "ApjNQIT6SLCoD48dofLod3eQBSMsM933Yoe-GDn1uE3aVZjSCjgQxLWifL1Iic6_" //visor
-var wmsURL=serverURL+'/geoserver/dipsoh/wms?'; 
+var wmsURL=serverURL+'/geoserver/dipsoh/wms?'; //gwc/service/wms
+var gwcURL=serverURL+'/geoserver/dipsoh/gwc/service/wms?'; //gwc/service/wms
 Ext.namespace("Heron");
 Ext.namespace("Heron.globals");
 Heron.globals.serviceUrl=serverURL+'/cgi-bin/heron.cgi';
@@ -68,6 +69,7 @@ var treeTheme = [
 				{nodeType: "gx_layer", layer: "Cartas IGN" },
 				{nodeType: "gx_layer", layer: "Google Hybrid" },
 				{nodeType: "gx_layer", layer: "OpenStreetsMap" },
+				{nodeType: "gx_layer", layer: "mdt_ign" , text:"Modelo digital IGN" },
 				{text:'Mas...', children:
 						[
 							{nodeType: "gx_layer", layer: "Google Streets" },
@@ -126,7 +128,8 @@ var treeTheme = [
 					text:'Descargas',expanded:true, children:
 						[
 							{nodeType: "gx_layer", layer: "Descarga_Cartas_IGN50000" ,text:"Descarga cartas IGN 1:50K",legend:true },
-							{nodeType: "gx_layer", layer: "Descarga_Partidos_DWG" ,text:"Descarga de partidos en DWG",legend:true }
+							{nodeType: "gx_layer", layer: "Descarga_Partidos_DWG" ,text:"Descarga de partidos en DWG",legend:true },
+							{nodeType: "gx_layer", layer: "Descarga_MDT_IGN" ,text:"Descarga MDT IGN 1:50K",legend:true }
 						]
 				}
 
@@ -265,6 +268,12 @@ Heron.layout = {
 					// layer sources
 					defaultSourceType: "gxp_wmssource",
 					sources: {
+						ignwms: {
+							url: "http://wms.ign.gob.ar/geoserver/wfs",
+							version: "2.0.0",
+							title: "IGN",
+							group: 'ign'
+						},
 						arbawms: {
 							url: "http://cartoservices.arba.gov.ar/geoserver/cartoservice/wms",
 							version: "1.3.0",
@@ -457,8 +466,13 @@ Heron.layout = {
 							}),
 							
 							/*
-							 * Basemap Cartas IGN
+							 * Basemap IGN
 							 */
+							new OpenLayers.Layer.WMS("mdt_ign",gwcURL,
+								{layers: 'dipsoh:mdt',transparent: true, format:'image/png', tiled: true }, 
+								{isBaseLayer:true, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml'}								 
+							), 
+							
 							new OpenLayers.Layer.WMS( "Cartas IGN", 
 								serverURL+"/tilecache/tilecache.cgi", 
 								{
@@ -517,7 +531,9 @@ Heron.layout = {
 							new OpenLayers.Layer.WMS("Descarga_Cartas_IGN50000",wmsURL,
 								{layers: 'dipsoh:cartas050igm',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
-
+							new OpenLayers.Layer.WMS("Descarga_MDT_IGN",wmsURL,
+								{layers: 'dipsoh:cartas100igm',transparent: true, format:'image/png', singleTile: true },layerOptions
+							),
 							new OpenLayers.Layer.WMS("Cartas_Geodesia_1:5000",wmsURL,
 								{layers: 'dipsoh:cartas_geodesia_5000',transparent: true, format:'image/png', singleTile: true },layerOptions
 							), 
