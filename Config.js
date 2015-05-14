@@ -21,12 +21,14 @@
 
 //serverURL='http://www.mosp.gba.gov.ar/sig_hidraulica/ms';  //se define en index
 var apiKey = "ApjNQIT6SLCoD48dofLod3eQBSMsM933Yoe-GDn1uE3aVZjSCjgQxLWifL1Iic6_" //visor
+var mBpos="/${z}/${x}/${y}.png?access_token=pk.eyJ1IjoiNDg2IiwiYSI6IkNadnAwUk0ifQ.BIKNGrVqVAilUH7g0dsmxg";
 var wmsURL=serverURL+'/geoserver/dipsoh/wms?'; //gwc/service/wms
 var gwcURL=serverURL+'/geoserver/dipsoh/gwc/service/wms?'; //gwc/service/wms
 Ext.namespace("Heron");
 Ext.namespace("Heron.globals");
 Heron.globals.serviceUrl=serverURL+'/cgi-bin/heron.cgi';
 OpenLayers.ProxyHost = serverURL+'/cgi-bin/proxy.cgi?url=';
+//console.log(OpenLayers);
 //var layerKML;
 //var layerParcelas;
 //var layerObras;
@@ -79,6 +81,9 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Bing Aereo"},
 							{nodeType: "gx_layer", layer: "Bing Callejero"},
 							{nodeType: "gx_layer", layer: "Bing Hibrido"},
+							{nodeType: "gx_layer", layer: "Mapbox - High Contrast"},
+							{nodeType: "gx_layer", layer: "Mapbox - Dark"},
+							{nodeType: "gx_layer", layer: "Mapbox - Streets/Satellite"},
 						]
 				}
 			]
@@ -414,6 +419,42 @@ Heron.layout = {
 
 						layers : [
 							/*
+							 * Basemaps MapBox
+							 */
+							new OpenLayers.Layer.XYZ( "Mapbox - High Contrast",
+								[
+									"http://a.tiles.mapbox.com/v4/mapbox.high-contrast"+mBpos,
+									"http://b.tiles.mapbox.com/v4/mapbox.high-contrast"+mBpos,
+									"http://c.tiles.mapbox.com/v4/mapbox.high-contrast"+mBpos,
+									"http://d.tiles.mapbox.com/v4/mapbox.high-contrast"+mBpos
+								], {
+									attribution: "Tiles &copy; <a href='http://mapbox.com/'>MapBox</a>",
+									sphericalMercator: true,
+									wrapDateLine: true
+							}),
+							new OpenLayers.Layer.XYZ( "Mapbox - Streets/Satellite",
+								[
+									"http://a.tiles.mapbox.com/v4/mapbox.streets-satellite"+mBpos,
+									"http://b.tiles.mapbox.com/v4/mapbox.streets-satellite"+mBpos,
+									"http://c.tiles.mapbox.com/v4/mapbox.streets-satellite"+mBpos,
+									"http://d.tiles.mapbox.com/v4/mapbox.streets-satellite"+mBpos
+								], {
+									attribution: "Tiles &copy; <a href='http://mapbox.com/'>MapBox</a>",
+									sphericalMercator: true,
+									wrapDateLine: true
+							}),
+							new OpenLayers.Layer.XYZ( "Mapbox - Dark",
+								[
+									"http://a.tiles.mapbox.com/v4/mapbox.dark"+mBpos,
+									"http://b.tiles.mapbox.com/v4/mapbox.dark"+mBpos,
+									"http://c.tiles.mapbox.com/v4/mapbox.dark"+mBpos,
+									"http://d.tiles.mapbox.com/v4/mapbox.dark"+mBpos
+								], {
+									attribution: "Tiles &copy; <a href='http://mapbox.com/'>MapBox</a>",
+									sphericalMercator: true,
+									wrapDateLine: true
+							}),
+							/*
 							 * Basemaps OpenStreetMap
 							 */
 							new OpenLayers.Layer.Stamen("toner"),
@@ -515,13 +556,13 @@ Heron.layout = {
 								 
 							),
 							
-							layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",wmsURL,
+							layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",gwcURL,
 								{layers: 'dipsoh:parcelas_vista',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
-							layerMacizosArba = new OpenLayers.Layer.WMS("Macizos",wmsURL,
+							layerMacizosArba = new OpenLayers.Layer.WMS("Macizos",gwcURL,
 								{layers: 'dipsoh:macizos_vista',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
-							layerCircunscripcionesArba = new OpenLayers.Layer.WMS("Partidos y Circunscripciones",wmsURL,
+							layerCircunscripcionesArba = new OpenLayers.Layer.WMS("Partidos y Circunscripciones",gwcURL,
 								{layers: ['dipsoh:secciones_vista','dipsoh:circunscripciones_vista','dipsoh:partidos_vista'],transparent: true, format:'image/png', singleTile: true },layerOptions
 							),							
 							layerPartidos_descarga = new OpenLayers.Layer.WMS("Descarga_Partidos_DWG",wmsURL,

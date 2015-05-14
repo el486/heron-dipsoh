@@ -131,6 +131,10 @@ table.ext td {
     background-repeat: no-repeat;
     background-position: center;
 }
-
+.olImageLoadError {
+    background-color: orange;
+    opacity: 0.1;
+    filter: alpha(opacity=10); /* IE */
+}
 
 

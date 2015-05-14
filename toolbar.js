@@ -235,7 +235,16 @@ var toolBarItems=[
 				showBottomToolbar: true,
                 //displayPanels: ['Table'],
 				displayPanels: ['Table','Detail'],
-                //exportFormats: ['CSV', 'XLS', 'GMLv2', 'Shapefile', 'GeoJSON', 'WellKnownText'],
+                exportFormats: ['CSV', 'XLS', 'WellKnownText',{
+						name: 'KML (Google Earth)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'KML',
+						targetSrs: 'EPSG:4326',
+						//sourceSrs: 'EPSG:900913',
+						fileExt: '.kml',
+						mimeType: 'application/kml'
+					}],
                 hideColumns: ['objectid', 'gid'],
                 maxFeatures: 10,
                 autoConfigMaxSniff: 10,

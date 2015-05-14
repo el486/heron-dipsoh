@@ -48,11 +48,11 @@
     <script type="text/javascript" src="./js/attache.array.min.js"></script>
 
 	<!-- External lib: Google Maps -->
-	<link rel="stylesheet" type="text/css" href="./css/style.css"/>
- 	<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+	<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
 	
 	<!-- External lib: OpenLayers -->
 	<script type="text/javascript" src="./js/OpenLayers.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/style.css"/>
 	
 	<!-- External lib: Stamen Maps (cargar despues de openlayers)-->	
 	<script type="text/javascript" src="./js/tile.stamen.js?v1.2.4"></script>
