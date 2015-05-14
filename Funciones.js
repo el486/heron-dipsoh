@@ -1,7 +1,8 @@
 /*FUNCIONES GENERALES*/
 
+/*
 function getAjax(url,pars,idSucess){
-                /**/
+                
                 var ajax = new Ajax.Updater(
                 {
                     success: idSucess
@@ -14,13 +15,12 @@ function getAjax(url,pars,idSucess){
                     onLoading: document.getElementById(idSucess).innerHTML = 'Cargando...<br>' + document.getElementById(idSucess).innerHTML,
                     onFailure: errorAjax
                 });
-                /**/
-            }
+}
 
             function errorAjax(){
                 alert('Se produjo un error al cargar, intente nuevamente.');
             }
-
+*/
 function popupObras(value){
     
 	Ext.Ajax.request({
@@ -90,11 +90,31 @@ Ext.onReady(function() {
 	
 	if (planoUrl!=""){	
 		params='numpla='+planoUrl;
-		getAjax('./php/buscarPlanoId.php',params,'infoDIV');
+		//getAjax('./php/buscarPlanoId.php',params,'infoDIV');
+		Ext.Ajax.request({ 
+			url: './php/buscarPlanoId.php?'+params,
+			success: function(response){
+			//console.log(response.responseText)
+			var scripts, scriptsFinder=/<script[^>]*>([\s\S]+)<\/script>/gi;
+                        while(scripts=scriptsFinder.exec(response.responseText)) {
+                            eval(scripts[1]);
+                       }
+			}
+		});
 		}
 	if (obraUrl!=""){	
 		params='idobra='+obraUrl;
-		getAjax('./php/buscarObraId.php',params,'infoDIV');
+		//getAjax('./php/buscarObraId.php',params,'infoDIV');
+		Ext.Ajax.request({ 
+			url: './php/buscarObraId.php?'+params,
+			success: function(response){
+			//console.log(response.responseText)
+			var scripts, scriptsFinder=/<script[^>]*>([\s\S]+)<\/script>/gi;
+                        while(scripts=scriptsFinder.exec(response.responseText)) {
+                            eval(scripts[1]);
+                       }
+			}
+		})
 		}
 	
 	Ext.Ajax.on('beforerequest', function(conn,opts){
@@ -193,7 +213,17 @@ function fnclick(e){
 
 		params = 'x='+lonlat22195.lon+'&y='+lonlat22195.lat;
 		//alert(params);
-		getAjax('./php/buscarPuntosGeoba.php',params,'infoDIV');
+		//getAjax('./php/buscarPuntosGeoba.php',params,'infoDIV');
+		Ext.Ajax.request({ 
+			url: './php/buscarPuntosGeoba.php?'+params,
+			success: function(response){
+			//console.log(response.responseText)
+			var scripts, scriptsFinder=/<script[^>]*>([\s\S]+)<\/script>/gi;
+                        while(scripts=scriptsFinder.exec(response.responseText)) {
+                            eval(scripts[1]);
+                       }
+			}
+		});
 
 	//alert(lonlat22195.lon + " E, "+lonlat22195.lat + " N");
 	//map.events.unregister("click", map, fnclick );

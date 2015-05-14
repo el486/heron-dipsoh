@@ -94,11 +94,17 @@ selectCtrl.activate();
 var layers= Heron.App.map.getLayersByName('Plano Relevamiento');
 layerVector=layers[0];
 layerVector.events.register('loadend', layerVector, function(evt){
-             Heron.App.map.zoomToExtent(layerVector.getDataExtent());
+             if(layerVector.features.length>0){
+			 Heron.App.map.zoomToExtent(layerVector.getDataExtent());
 			 Heron.App.map.zoomOut();
     		 selectCtrl.select(layerVector.features[0]);
 			 //alert(layerVector.getDataExtent());
-            }); 
+			 }
+			 else
+			{
+			 alert('No se encontraron elementos que coincidan con la búsqueda');
+			}
+ }); 
 			
 
 </script>

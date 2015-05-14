@@ -110,11 +110,12 @@ var treeTheme = [
 						]
 				},
 				{
-					text:'SIGOS Hidraulica',expanded:true, children:
+					text:'Obras Hidraulica',expanded:true, children:
 						[
 							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  },
 							{nodeType: "gx_layer", layer: "Trazas+Obras_SIGOS" ,text:"Obras Sigos - Trazas",legend:true },
-							{nodeType: "gx_layer", layer: "Trazas por Etapa" ,legend:true }
+							{nodeType: "gx_layer", layer: "Trazas por Etapa" ,legend:true },
+							{nodeType: "gx_layer", layer: "Limpiezas Cooperativas"},
 						]
 				},
 				{
@@ -620,6 +621,9 @@ Heron.layout = {
 							),
 							new OpenLayers.Layer.WMS("Trazas por Etapa",wmsURL,
 								{layers: 'dipsoh:trazas_por_etapa_4326',transparent: true, format:'image/png', singleTile: true },layerOptions
+							),
+							new OpenLayers.Layer.WMS("Limpiezas Cooperativas",wmsURL,
+								{layers: 'dipsoh:LimpiezaCooperativas2015',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							new OpenLayers.Layer.WMS("Parcelario_Geodesia",
 								"http://www.mosp.gba.gov.ar/geoserver/wms?",

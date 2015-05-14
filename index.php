@@ -33,8 +33,8 @@
 	serverURL='http://www.mosp.gba.gov.ar/sig_hidraulica/ms'; 
 	</script>
 
-	<!-- utilizado para el ajax -->
-    <script type="text/javascript" src="./js/prototype.js"></script>
+	<!-- utilizado para el ajax - deprecated-->
+    <!--script type="text/javascript" src="./js/prototype.js"></script-->
 
 	<!-- Script and css resources for ExtJS-->
 	<link rel="stylesheet" type="text/css" href="./css/ext-all.css"/>
