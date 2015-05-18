@@ -272,12 +272,12 @@ var toolBarItems=[
 			// Optional options, see NominatimSearchCombo.js
 			options : {
 				zoom: 8,
-				url: 'http://open.mapquestapi.com/nominatim/v1/search.php?countrycodes=AR&addressdetails=1&format=json&limit=3',
+				url: 'http://open.mapquestapi.com/nominatim/v1/search.php?countrycodes=AR&addressdetails=1&format=json&limit=5',
 				xtype : 'hr_nominatimsearchcombo',
 				tooltip: __('Search Nominatim'),
-				id: "nominatimsearchcombo"//,
-				//tpl: '<tpl for="."><tpl for="address"><div class="x-combo-list-item">{road} {city} {state} {postcode} {country}</div></tpl></tpl>',
-                //displayTpl: '<tpl for="."><tpl for="address">{road} {city} {state} {country}</tpl></tpl>'
+				id: "nominatimsearchcombo",
+				tpl: '<tpl for="."><tpl for="address"><div class="x-combo-list-item">{road} {city} {state} {postcode} {country}</div></tpl></tpl>',
+                displayTpl: '<tpl for="."><tpl for="address">{road} {city} {state} {country}</tpl></tpl>'
 			}
 		},
 		{type: "coordinatesearch", options: {
@@ -885,13 +885,6 @@ var toolBarItems=[
 					}
 			}
          },
-		{type: "-"},
-		{type: "mapopen"},
-		{type: "mapsave", options : {
-			mime: 'text/xml',
-			fileName: 'sig_dipsoh',
-			fileExt: '.cml'
-		}},
 		{type: "-"},
 		{type: "help", options: {tooltip: 'Ayuda', contentUrl: 'help.html'}}//,
 	]

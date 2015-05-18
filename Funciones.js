@@ -180,6 +180,13 @@ Ext.onReady(function() {
 				   }
 			   }
 			);
+			
+			var files = ["./js/javascript.util.js","./js/jsts.js","./js/attache.array.min.js","./js/mod/FeaturePanel_mod.js"];
+			var onload = function () {   
+			// do something onload
+			}
+			var scope = this;
+			Ext.Loader.load(files, onload, scope, true);
 	
 });
 

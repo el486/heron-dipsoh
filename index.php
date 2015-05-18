@@ -42,10 +42,10 @@
 	<script type="text/javascript" src="./js/ext-base.js"></script>
 	<script type="text/javascript" src="./js/ext-all.js"></script>
 	
-	<!-- Script and css resources jsts (buffer)-->
+	<!-- Script and css resources jsts (buffer) - cargado con ajax en ext.onready
 	<script type="text/javascript" src="./js/javascript.util.js"></script>
     <script type="text/javascript" src="./js/jsts.js"></script>
-    <script type="text/javascript" src="./js/attache.array.min.js"></script>
+    <script type="text/javascript" src="./js/attache.array.min.js"></script> -->
 
 	<!-- External lib: Google Maps -->
 	<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
@@ -68,7 +68,7 @@
 	<script type="text/javascript" src="./js/proj4js-compressed.js"></script>
 	<script type="text/javascript" src="./js/proj4js-22195.js"></script>
 	
-	<!-- Script and css resources for printpreview ux -->
+	<!-- Lang and css resources for printpreview ux -->
 	<script type="text/javascript" src="./js/lang/PrintPreview-es.js"></script>
 	<link rel="stylesheet" type="text/css" href="./ux/printpreview/resources/css/printpreview.css" />
 
@@ -87,7 +87,7 @@
 	-->
 	
 	<script type="text/javascript" src="./js/mod/LayerNodeMenuItem_mod.js"></script> <!-- Mas info en context menu -->
-	<script type="text/javascript" src="./js/mod/FeaturePanel_mod.js"></script> <!-- buffer en info panel -->
+	<!--script type="text/javascript" src="./js/mod/FeaturePanel_mod.js"></script--> <!-- buffer en info panel - cargado con ajax despues de jsts -->
 	
 	<!-- Script and css resources for main app -->
 	<link rel="stylesheet" type="text/css" href="./css/m-style.css"/>
@@ -97,7 +97,7 @@
 
 </head>
 <body>
-
+Cargando interfaz y capas de Google...
 </body>
 
 </html>
