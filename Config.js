@@ -28,6 +28,11 @@ Ext.namespace("Heron");
 Ext.namespace("Heron.globals");
 Heron.globals.serviceUrl=serverURL+'/cgi-bin/heron.cgi';
 OpenLayers.ProxyHost = serverURL+'/cgi-bin/proxy.cgi?url=';
+
+// Evita le mattonelle rosa
+OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
+OpenLayers.Util.onImageLoadErrorColor = "transparent";
+
 //console.log(OpenLayers);
 //var layerKML;
 //var layerParcelas;
