@@ -101,7 +101,7 @@ var treeTheme = [
 						[
 							{nodeType: "gx_layer", layer: "Partidos" },
 							{nodeType: "gx_layer", layer: "Hidrografia" },
-							{nodeType: "gx_layer", layer: "Cuencas" },
+							//{nodeType: "gx_layer", layer: "Cuencas" },
 							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
 							{nodeType: "gx_layer", layer: "Rutas" ,legend:true }
 						]
@@ -586,7 +586,7 @@ Heron.layout = {
 							), 
 							
 							layerParcelasRT = new OpenLayers.Layer.WMS("Parcelas_RT",wmsURL,
-								{layers: 'dipsoh:parcelas_rt_22185',transparent: true, format:'image/png', singleTile: true },layerOptions
+								{layers: 'dipsoh:parcelas_rt_geom',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							
 							new OpenLayers.Layer.WMS("Red_Geoba",wmsURL,
@@ -600,11 +600,11 @@ Heron.layout = {
 							new OpenLayers.Layer.WMS("Curvas_de_nivel",wmsURL,
 								{layers: 'dipsoh:curvas_area_metropolitana_22195',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
-							
+							/*
 							new OpenLayers.Layer.WMS("Cuencas",wmsURL,
 								{layers: 'dipsoh:cuencas',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
-							
+							*/
 							new OpenLayers.Layer.WMS("Hidrografia",wmsURL,
 								{layers: 'dipsoh:hidro_view',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
@@ -625,7 +625,7 @@ Heron.layout = {
 								{layers: 'dipsoh:dipsoh_obras_ref',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							new OpenLayers.Layer.WMS("Trazas por Etapa",wmsURL,
-								{layers: 'dipsoh:trazas_por_etapa_4326',transparent: true, format:'image/png', singleTile: true },layerOptions
+								{layers: 'dipsoh:obras_dipsoh_por_etapa',transparent: true, format:'image/png', singleTile: true },layerOptions
 							),
 							new OpenLayers.Layer.WMS("Limpiezas Cooperativas",wmsURL,
 								{layers: 'dipsoh:LimpiezaCooperativas2015',transparent: true, format:'image/png', singleTile: true },layerOptions
@@ -633,6 +633,10 @@ Heron.layout = {
 							new OpenLayers.Layer.WMS("Parcelario_Geodesia",
 								"http://www.mosp.gba.gov.ar/geoserver/wms?",
 								{layers: 'Parcelario_Transparente',transparent: true, format:'image/png', singleTile: true },layerOptions
+							),
+							new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
+								"http://www.mosp.gba.gov.ar/geoserver/wms?",
+								{layers: 'Geodesia:parcelas',transparent: true, format:'image/png', singleTile: true },layerOptions
 							)
 						],
 						toolbar: toolBarItems

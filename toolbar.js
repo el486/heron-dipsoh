@@ -17,14 +17,23 @@ var convert=[
 				
 var gridCellRenderers=[
 {
-   featureType: 'parcelas_rt_22185',
-   attrName: 'num_plano',
+   featureType: 'parcelas_rt_geom',
+   attrName: 'plano_rt',
    renderer: {
 		   fn : Heron.widgets.GridCellRenderer.directLink,
 		   options : {
 				   url: 'http://www.mosp.gba.gov.ar/sig_hidraulica/planos/planos.asp?partido=0&todos=s&numpla={num_plano}',
 				   target: '_new'
 		   }
+   }
+},
+{
+   featureType: 'parcelas_rt_geom',
+   attrName: 'ultimo_plano',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				   return '<a href="http://www.mosp.gba.gov.ar/sistemas/geodesia/ugeodesia/Geodesia/'+value+'(PA).dwf" target="_blank">'+ value +'</a>';
+		   },
    }
 },
 {
@@ -105,6 +114,7 @@ var gridCellRenderers=[
 		   options : {}
    }
 },
+/*
 {
    featureType: 'parcelas_rt',
    attrName: 'NOMENCLA',
@@ -125,6 +135,7 @@ var gridCellRenderers=[
 		   options : {}
    }
 },
+*/
 {
    featureType: 'parcelas',
    attrName: 'plano',

@@ -5,6 +5,7 @@ $id2=explode('-',$id);
 ?>
 
 <script>
+console.log('planos');
 
 defPlano = new OpenLayers.Style({},
 				{
