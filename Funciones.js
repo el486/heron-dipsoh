@@ -129,10 +129,16 @@ Ext.onReady(function() {
 			opts.jsonData.layers[0].extension='png';
 			opts.jsonData.layers[0].customParams={"access_token":"pk.eyJ1IjoiNDg2IiwiYSI6IkNadnAwUk0ifQ.BIKNGrVqVAilUH7g0dsmxg"};
 			}
+			
+			if(opts.jsonData.layers[0].extension=='$%7Bx%7D'){
+			opts.jsonData.layers[0].extension='png';
+			opts.jsonData.layers[0].path_format='${z}/${y}/${x}';
+			}
+			
 			//opts.jsonData.replace('extension: "BIKNGrVqVAilUH7g0dsmxg"','"extension":"png","customParams":{"access_token":"pk.eyJ1IjoiNDg2IiwiYSI6IkNadnAwUk0ifQ.BIKNGrVqVAilUH7g0dsmxg"}');
-			console.log(opts.jsonData);
+			//console.log(opts.jsonData.layers[0].baseURL.substring(7,10));
 			//opts.params={spec:rawString}
-			if(opts.jsonData.layers[0].baseURL==wmsURL || opts.jsonData.layers[0].baseURL=='http://ecn.t0.tiles.virtualearth.net/tiles/r') {
+			if(opts.jsonData.layers[0].baseURL==wmsURL || opts.jsonData.layers[0].baseURL.substring(7,10)=='ecn') {
 				Ext.MessageBox.show({
 					title: String.format('Advertencia'),
 					msg: String.format('Por cuestiones de copyright las capas de Google y Bing no pueden usarse en la salida impresa. Elija OpenStreetMap, MapBox o capas IGN para imprimir con capa base, o intente con la impresion de pantalla.'),

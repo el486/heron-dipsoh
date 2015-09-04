@@ -790,6 +790,21 @@ var toolBarItems=[
 								},
 								{
 									searchPanel: {
+										xtype: 'hr_searchbybuffer',
+										name: __('Busqueda por buffer'),
+										description: 'Seleccione objetos espaciales de una capa y realize una busqueda espacial basada en un buffer.',
+										header: false,
+										border: false,
+										bodyStyle: 'padding: 6px',
+										style: {
+											fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
+											fontSize: '12px'
+										}
+									},
+									resultPanel: resultPanel
+								},
+								{
+									searchPanel: {
 										xtype: 'hr_gxpquerypanel',
 										name: __('Build your own searches'),
 										description: 'Busqueda por recuadro y por atributos',
