@@ -16,7 +16,7 @@ Ext.namespace("Heron.widgets.search");
 
 /** api: (define)
  *  module = Heron.widgets.search
- *  class = SearchByFeaturePanel
+ *  class = SearchByBuffer
  *  base_link = `Heron.widgets.search.SpatialSearchPanel <SpatialSearchPanel.html>`_
  */
 
@@ -32,8 +32,8 @@ Ext.namespace("Heron.widgets.search");
  xtype: 'hr_searchcenterpanel',
  hropts: {
      searchPanel: {
-     xtype: 'hr_searchbyfeaturepanel',
-         id: 'hr-searchbyfeaturepanel',
+     xtype: 'hr_searchbybuffer',
+         id: 'hr-searchbybuffer',
          header: false,
          border: false,
          style: {
@@ -85,7 +85,7 @@ Ext.namespace("Heron.widgets.search");
  */
 
 /** api: constructor
- *  .. class:: SearchByFeaturePanel(config)
+ *  .. class:: SearchByBuffer(config)
  *
  *  A Panel to hold a spatial search by selecting features (via drawing) from another layer.
  *
@@ -122,6 +122,8 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
     spatialDistanceUnits: 'meter',
 
     spatialFilterDistance: 0,
+	
+	vectorLayer: '',
 
     /** api: config[targetLayerFilter]
      *  ``Function``
@@ -158,10 +160,34 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
             }
 
         });
+		
+		this.bufferButton = new Ext.Button({
+            anchor: "20%",
+            text: 'Buffer',
+            tooltip: __('Buffer'),
+            listeners: {
+                click: function () {
+					if (this.sourceLayer && this.sourceLayer.metadata) {
+						this.sourceLayer.metadata.isSourceLayer = false;
+					}
+					this.sourceLayer = this.vectorLayer;
+					if (this.sourceLayer && this.sourceLayer.metadata) {
+						this.sourceLayer.metadata.isSourceLayer = true;
+					}
+					this.searchButton.enable();
+					this.cancelButton.disable();
+					this.searchVector();
+                },
+                scope: this
+            }
+
+        });
 
         this.items = [
             this.createSourceLayerCombo(),
-            this.createSearchDistField(),
+			this.createCheckGroup(),
+			this.createSearchDistField(),
+			this.bufferButton,
 			this.createDrawFieldSet(),
             this.createTargetLayerCombo({selectFirst: true}),
             this.createSearchTypeCombo(),
@@ -170,7 +196,7 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
             this.resetButton
         ];
 
-        Heron.widgets.search.SearchByFeaturePanel.superclass.initComponent.call(this);
+        Heron.widgets.search.SearchByBuffer.superclass.initComponent.call(this);
     },
 
     activateSearchByFeature: function () {
@@ -193,6 +219,9 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
     resetForm: function () {
         this.selectionLayer.removeAllFeatures();
         this.searchButton.disable();
+		this.sourceLayerCombo.show();
+		this.checkGroup.show();
+		this.checkGroup.reset();
         this.sourceLayerCombo.reset();
         this.targetLayerCombo.reset();
         this.spatialFilterType = OpenLayers.Filter.Spatial.INTERSECTS;
@@ -204,6 +233,7 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         this.searchDistField.setValue(0);
         this.spatialFilterDistance = 0;
         this.searchDistField.hide();
+		this.bufferButton.hide();
         this.actionButtons.hide();
         this.updateStatusPanel(__('Select a source Layer and then draw to select objects from that layer. <br/>Then select a target Layer to search in using the geometries of the selected objects.'));
         this.fireEvent('searchreset');
@@ -287,8 +317,8 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
             fieldLabel: __('Distance of Search'),
             name: 'basic',
             value: 0,
-            minValue: -9999,
-            maxValue: 9999,
+            minValue: -99999,
+            maxValue: 99999,
             // all of your config options
             enableKeyEvents: true,
             listeners: {
@@ -299,6 +329,44 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
             }
         });
     },
+	
+	createCheckGroup: function () {
+        return this.checkGroup = new Ext.form.CheckboxGroup({
+			id:'myGroup',
+			xtype: 'checkboxgroup',
+			fieldLabel: 'Vectoriales',
+			itemCls: 'x-check-group-alt',
+			// Put all controls in a single column with width 100%
+			columns: 1,
+			items: [
+				{boxLabel: 'Usar Editor', name: 'editor'},
+				{boxLabel: 'Usar Capa Agregada KML/SHP', name: 'agregada'}
+			],
+
+            // all of your config options
+            listeners: {
+                change: function (ev) {
+					if(ev.items.items[0].checked || ev.items.items[1].checked){	
+						if(ev.items.items[0].checked){Ext.getCmp('myGroup').setValue({agregada: false});
+						this.vectorLayer=Heron.App.map.getLayersByName('Editor')[0];
+						}else{
+						Ext.getCmp('myGroup').setValue({editor: false});
+						this.vectorLayer=Heron.App.map.getLayersByName('Capa Agregada')[0];
+						}
+					this.sourceLayerCombo.hide();
+					this.searchDistField.show();
+					this.bufferButton.show();
+					}else{
+					this.sourceLayerCombo.show();
+					this.searchDistField.hide();
+					this.bufferButton.hide();
+					}
+                },
+                scope: this
+            }
+        });
+    },
+	
 
     createSearchTypeCombo: function () {
         var store = new Ext.data.ArrayStore({
@@ -389,6 +457,7 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         this.drawFieldSet.show();
         this.activateDrawControl();
 		this.searchDistField.show();
+		this.checkGroup.hide(),
 
         this.selectionStatusField.show();
         this.updateStatusPanel();
@@ -423,7 +492,7 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         this.cancelButton.disable();
 
         this.doLayout();
-        this.updateStatusPanel(__('Select the spatial operator (optional) and use the Search button to start your search.'));
+        this.updateStatusPanel(__('Press the Search button to start your Search.'));
     },
 
     /** api: method[onPanelRendered]
@@ -469,9 +538,25 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
      *  Function called when search is canceled.
      */
     onSearchCanceled: function (searchPanel) {
-        Heron.widgets.search.SearchByFeaturePanel.superclass.onSearchCanceled.call(this);
+        Heron.widgets.search.SearchByBuffer.superclass.onSearchCanceled.call(this);
         this.resetForm();
     },
+	
+	bufferFeatures: function (features){
+		var input,buffer,distance;
+		var buffered=[];
+		var reader = new jsts.io.WKTReader();
+		var parser = new jsts.io.OpenLayersParser();
+		var distance=this.spatialFilterDistance;
+		for (var i = 0; i < features.length; i++) {
+				input = reader.read(features[i].geometry.toString());
+				buffer = input.buffer(distance*1.25); //corrects distance error (caused maybe because of projection issues)
+				buffer = parser.write(buffer);
+				var newfeat=new OpenLayers.Feature.Vector(buffer,null,null);
+				buffered.push(newfeat);
+        }
+		return buffered;
+	},
 
     /** api: method[onSearchSuccess]
      *  Function called when search is complete and succesful.
@@ -480,23 +565,11 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
     onSearchSuccess: function (searchPanel, result) {
         // All ok display result and notify listeners
         var features = this.features = this.filterFeatures = result.olResponse.features;
-        var input,buffer,distance,buffered;
-		var reader = new jsts.io.WKTReader();
-		var parser = new jsts.io.OpenLayersParser();
-		distance=this.spatialFilterDistance;
-		this.searchButton.enable();
+        this.searchButton.enable();
         this.cancelButton.disable();
         if (this.searchSelect) {
             this.selectionLayer.removeAllFeatures();
-				
-		for (var i = 0; i < features.length; i++) {
-				input = reader.read(features[i].geometry.toString());
-				buffer = input.buffer(distance*1.25); //corrects distance error
-				buffer = parser.write(buffer);
-				features[i].geometry=buffer;
-        }
-			
-            this.selectionLayer.addFeatures(features);
+		    this.selectionLayer.addFeatures(this.bufferFeatures(features));
             this.targetLayerCombo.hide();
             this.updateStatusPanel();
             if (this.selectionLayer.features.length == 0) {
@@ -518,8 +591,35 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
             this.updateStatusPanel(__('Select a target layer to search using the geometries of the selected objects'));
         } else {
             // Usually regular search
-            Heron.widgets.search.SearchByFeaturePanel.superclass.onSearchSuccess.call(this, searchPanel, result);
+            Heron.widgets.search.SearchByBuffer.superclass.onSearchSuccess.call(this, searchPanel, result);
         }
+    },
+	
+    searchVector: function () { //modified onSearchSuccess without the wfs search in source layer
+        // All ok display result and notify listeners
+		features=this.sourceLayer.features;
+		this.searchButton.enable();
+        this.cancelButton.disable();
+        this.selectionLayer.addFeatures(this.bufferFeatures(features));
+		this.targetLayerCombo.hide();
+		this.updateStatusPanel();
+		if (this.selectionLayer.features.length == 0) {
+			this.updateStatusPanel(__('No objects selected.'));
+			return;
+		}
+		if (this.selectionLayer.features.length > this.maxFilterGeometries) {
+			this.updateStatusPanel(__('Too many geometries for spatial filter: ') + this.selectionLayer.features.length + ' ' + 'max: ' + this.maxFilterGeometries);
+			return;
+		}
+		this.searchSelect = false;
+		
+		// Replace the initial layers with all but the source layer
+		this.targetLayerCombo.setLayers(this.targetLayerFilter(this.map));
+
+		this.targetLayerCombo.show();
+		var text = this.selectionLayer.features.length + ' ' + __('objects selected from "') + (this.sourceLayer ? this.sourceLayer.name : '') + '". '+ __('Select a target layer to search using the geometries of the selected objects');
+		this.updateStatusPanel(text); //using Status Panel because SelectionStatusField isn´t visible.
+		//this.updateStatusPanel(__('Select a target layer to search using the geometries of the selected objects'));
     },
 	
 	/** api: method[searchFromFeatures]

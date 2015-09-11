@@ -125,6 +125,7 @@ Heron.i18n.dict = {
     // 0.73
     'Spatial Search': 'Búsqueda espacial',
     'Search by Drawing': 'Búsqueda por dibujo',
+	'objects selected from "' : 'objetos seleccionados de la capa "',
     'Select the Layer to query': 'Elegir la capa para buscar',
     'Choose a geometry tool and draw with it to search for objects that touch it.': 'Elija una herramienta y dibuje para buscar objetos que toquen la geometría.',
     'Seconds': 'Segundos',
@@ -155,6 +156,8 @@ Heron.i18n.dict = {
     'Sketch is saved for use in Search by Selected Features': 'El borrador fue guardado para su uso en la búsqueda por cruce de capas',
     'Select a search...': 'Seleccione una búsqueda...',
     'Clear': 'Limpiar',
+	'Press the Search button to start your Search.':'Presione el botón de Busqueda para iniciar.',
+	'Search in target layer using the feature-geometries from the selection':'Buscar en la capa usando los objetos de la seleccion',
 	
     // 0.74
     'Project bookmarks': 'Marcadores del proyecto',
@@ -271,5 +274,14 @@ Heron.i18n.dict = {
 	'Error in ajax request': 'Error de requerimiento ajax',
     'Add layers': 'Agregar capas',
     'Remove layer': 'Remover capa',
-    'Loading map context from:': 'Cargando contexto del mapa desde:'
+    'Loading map context from:': 'Cargando contexto del mapa desde:',
+	
+	// 1.0.3 (nothing added)
+
+    // 1.0.4
+    'INTERSECTS (default)': 'INTERSECTA (por defecto)',
+    'WITHIN': 'TOCA',
+    'WITHIN DISTANCE': 'ESTA A UNA DISTANCIA (BUFFER)',
+    'CONTAINS': 'CONTIENE',
+    'Simple Time Slider': 'Control Deslizante de Fecha'
 };
