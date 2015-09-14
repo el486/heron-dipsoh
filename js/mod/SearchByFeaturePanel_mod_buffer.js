@@ -144,7 +144,15 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
             }
         )
     },
-
+	
+	vectorLayerFilter: function (map) {
+        /* Select only those (WMS) layers that have a WFS attached
+         * Note: WMS-layers should have the 'metadata.wfs' property configured,
+         * either with a full OL WFS protocol object or the string 'fromWMSLayer'.
+         * The latter means that a WMS has a related WFS (GeoServer usually).
+         */
+        return map.getLayersByClass("OpenLayers.Layer.Vector"); 
+    },
 // See also: http://ian01.geog.psu.edu/geoserver_docs/apps/gaz/search.html
     initComponent: function () {
 
@@ -185,12 +193,12 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
 
         this.items = [
             this.createSourceLayerCombo(),
-			this.createCheckGroup(),
+			this.createVectorLayerCombo(),
 			this.createSearchDistField(),
 			this.bufferButton,
 			this.createDrawFieldSet(),
             this.createTargetLayerCombo({selectFirst: true}),
-            this.createSearchTypeCombo(),
+            //this.createSearchTypeCombo(),
             this.createActionButtons(),
             this.createStatusPanel(),
             this.resetButton
@@ -202,6 +210,7 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
     activateSearchByFeature: function () {
         this.deactivateSearchByFeature();
         this.sourceLayerCombo.addListener('selectlayer', this.onSourceLayerSelect, this);
+		this.vectorLayerCombo.addListener('selectlayer', this.onVectorLayerSelect, this);
         this.selectionLayer.events.register('featureadded', this, this.onSelectionLayerUpdate);
         this.selectionLayer.events.register('featuresadded', this, this.onSelectionLayerUpdate);
         this.selectionLayer.events.register('featureremoved', this, this.onSelectionLayerUpdate);
@@ -210,6 +219,7 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
 
     deactivateSearchByFeature: function () {
         this.sourceLayerCombo.removeListener('selectlayer', this.onSourceLayerSelect, this);
+		this.vectorLayerCombo.removeListener('selectlayer', this.onVectorLayerSelect, this);
         this.selectionLayer.events.unregister('featureadded', this, this.onSelectionLayerUpdate);
         this.selectionLayer.events.unregister('featuresadded', this, this.onSelectionLayerUpdate);
         this.selectionLayer.events.unregister('featureremoved', this, this.onSelectionLayerUpdate);
@@ -220,16 +230,16 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         this.selectionLayer.removeAllFeatures();
         this.searchButton.disable();
 		this.sourceLayerCombo.show();
-		this.checkGroup.show();
-		this.checkGroup.reset();
-        this.sourceLayerCombo.reset();
-        this.targetLayerCombo.reset();
+		this.sourceLayerCombo.reset();
+        this.vectorLayerCombo.show();
+		this.vectorLayerCombo.reset();
+		this.targetLayerCombo.reset();
         this.spatialFilterType = OpenLayers.Filter.Spatial.INTERSECTS;
         this.drawFieldSet.hide();
         this.deactivateDrawControl();
         this.selectionStatusField.hide();
         this.targetLayerCombo.hide();
-        this.searchTypeCombo.hide();
+        //this.searchTypeCombo.hide();
         this.searchDistField.setValue(0);
         this.spatialFilterDistance = 0;
         this.searchDistField.hide();
@@ -330,44 +340,7 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         });
     },
 	
-	createCheckGroup: function () {
-        return this.checkGroup = new Ext.form.CheckboxGroup({
-			id:'myGroup',
-			xtype: 'checkboxgroup',
-			fieldLabel: 'Vectoriales',
-			itemCls: 'x-check-group-alt',
-			// Put all controls in a single column with width 100%
-			columns: 1,
-			items: [
-				{boxLabel: 'Usar Editor', name: 'editor'},
-				{boxLabel: 'Usar Capa Agregada KML/SHP', name: 'agregada'}
-			],
-
-            // all of your config options
-            listeners: {
-                change: function (ev) {
-					if(ev.items.items[0].checked || ev.items.items[1].checked){	
-						if(ev.items.items[0].checked){Ext.getCmp('myGroup').setValue({agregada: false});
-						this.vectorLayer=Heron.App.map.getLayersByName('Editor')[0];
-						}else{
-						Ext.getCmp('myGroup').setValue({editor: false});
-						this.vectorLayer=Heron.App.map.getLayersByName('Capa Agregada')[0];
-						}
-					this.sourceLayerCombo.hide();
-					this.searchDistField.show();
-					this.bufferButton.show();
-					}else{
-					this.sourceLayerCombo.show();
-					this.searchDistField.hide();
-					this.bufferButton.hide();
-					}
-                },
-                scope: this
-            }
-        });
-    },
-	
-
+/*
     createSearchTypeCombo: function () {
         var store = new Ext.data.ArrayStore({
             fields: ['name', 'value'],
@@ -404,8 +377,19 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
             }
         });
     },
-
-    createSourceLayerCombo: function () {
+*/
+    createVectorLayerCombo: function () {
+        return this.vectorLayerCombo = new Heron.widgets.LayerCombo(
+            {
+//                     anchor: "100%",
+                fieldLabel: __('Vector Layers'),
+                sortOrder: this.layerSortOrder,
+                layerFilter: this.vectorLayerFilter
+            }
+        );
+    },
+	
+	createSourceLayerCombo: function () {
         return this.sourceLayerCombo = new Heron.widgets.LayerCombo(
             {
 //                     anchor: "100%",
@@ -457,11 +441,24 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         this.drawFieldSet.show();
         this.activateDrawControl();
 		this.searchDistField.show();
-		this.checkGroup.hide(),
+		this.VectorLayerCombo.hide();
 
         this.selectionStatusField.show();
         this.updateStatusPanel();
         this.updateSelectionStatusField(__('Select a draw tool and draw to select objects from') + (this.sourceLayer ? '<br/>"' + this.sourceLayer.name + '"' : ''));
+    },
+	
+	    onVectorLayerSelect: function (layer) {
+        if (this.sourceLayer && this.sourceLayer.metadata) {
+            this.sourceLayer.metadata.isSourceLayer = false;
+        }
+        this.vectorLayer = layer;
+        if (this.sourceLayer && this.sourceLayer.metadata) {
+            this.sourceLayer.metadata.isSourceLayer = true;
+        }
+		this.sourceLayerCombo.hide();
+		this.searchDistField.show();
+		this.bufferButton.show();
     },
 
     /** api: method[onLayerSelect]
