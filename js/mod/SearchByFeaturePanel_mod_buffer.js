@@ -121,7 +121,7 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
      */
     spatialDistanceUnits: 'meter',
 
-    spatialFilterDistance: 0,
+    spatialFilterDistance: 1,
 	
 	vectorLayer: '',
 
@@ -240,8 +240,8 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         this.selectionStatusField.hide();
         this.targetLayerCombo.hide();
         //this.searchTypeCombo.hide();
-        this.searchDistField.setValue(0);
-        this.spatialFilterDistance = 0;
+        this.searchDistField.setValue(1);
+        this.spatialFilterDistance = 1;
         this.searchDistField.hide();
 		this.bufferButton.hide();
         this.actionButtons.hide();
@@ -323,10 +323,11 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         );
     },
     createSearchDistField: function () {
+		this.spatialFilterDistance = 1;
         return this.searchDistField = new Ext.form.NumberField({
             fieldLabel: __('Distance of Search'),
             name: 'basic',
-            value: 0,
+            value: 1,
             minValue: -99999,
             maxValue: 99999,
             // all of your config options

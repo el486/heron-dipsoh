@@ -92,6 +92,7 @@
 	
 	<!-- Script and css resources for main app -->
 	<link rel="stylesheet" type="text/css" href="./css/m-style.css"/>
+	<script type="text/javascript" src="layers.js"></script>
 	<script type="text/javascript" src="toolbar.js"></script>
 	<script type="text/javascript" src="Config.js"></script>
 	<script type="text/javascript" src="Funciones.js"></script>
