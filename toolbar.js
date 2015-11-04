@@ -37,6 +37,35 @@ var gridCellRenderers=[
    }
 },
 {
+   featureType: 'parcelas_con_plano_geom',
+   attrName: 'plano',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				   return '<a href="http://www.mosp.gba.gov.ar/sistemas/geodesia/ugeodesia/Geodesia/'+value+'(PA).dwf" target="_blank">'+ value +'</a>';
+		   },
+   }
+},
+{
+   featureType: 'parcelas_con_plano_geom',
+   attrName: 'nomencla',
+   renderer: {
+			fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				var nomencla='';
+				for (var i=0; i<13; i++) {
+					var k=convert[i][2];
+					for (var j=convert[i][1]; j<k;j++){
+						if(value.substring(j,j+1)!='0'){
+						nomencla+=convert[i][0]+value.substring(j,k);
+						j=k;
+						}
+					}
+				}
+			   return nomencla;
+		   },
+		   options : {}
+   }
+},
+{
    featureType: 'departamentos',
    attrName: 'PARTIDO',
    renderer: {

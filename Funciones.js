@@ -67,6 +67,7 @@ document.getElementById('infoMiniDIV').innerHTML='';
 
 Ext.onReady(function() {
 	var mapa = Heron.App.map;
+	/*
 	Heron.App.map.addControl(new OpenLayers.Control.ScaleLine());
 	//url='/wms_hidraulica/cgi-bin/heron.cgi';
 	//Ext.getCmp('map_editor').olEditorOptions.UploadFeature.url='/wms_hidraulica/cgi-bin/heron.cgi';
@@ -86,7 +87,7 @@ Ext.onReady(function() {
 	    };
 	
     Heron.App.map.addControl(new OpenLayers.Control.OverviewMap({maximized: true, size: new OpenLayers.Size(100,100) , mapOptions:overviewOptions}));
-	
+	*/
 	
 	if (planoUrl!=""){	
 		params='numpla='+planoUrl;

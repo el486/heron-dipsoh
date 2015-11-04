@@ -322,6 +322,25 @@ Heron.layout = {
 							//maxResolution: 'auto',
 							xy_precision: 2,
 							zoom: 7,
+							controls: [
+							new OpenLayers.Control.PanPanel(),
+                       		new OpenLayers.Control.ZoomPanel(),
+							new OpenLayers.Control.ScaleLine(),
+							new OpenLayers.Control.Attribution(),
+                       		new OpenLayers.Control.OverviewMap({
+								mapOptions:{
+									numZoomLevels:2,
+									projection: "EPSG:900913",
+									units: 'm',
+									maxExtent: new OpenLayers.Bounds(-7196781, -5036226, -6200364, -3906201),
+									restrictedExtent: new OpenLayers.Bounds(-7196781, -5036226, -6200364, -3906201)								
+									},								
+								maximized: false,
+								layers: [new OpenLayers.Layer.WMS("Partidos",wmsURL,
+								{layers: 'dipsoh:departamentos',transparent: true, format:'image/png', singleTile: true }, 
+								{visibility: true, displayInLayerSwitcher:true,isBaseLayer:true})]
+								})
+							],
 							theme: null
 						},
 

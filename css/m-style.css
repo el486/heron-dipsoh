@@ -89,47 +89,18 @@ table.ext td {
 /*overview map*/
 .olControlOverviewMapMinimizeButton,
 .olControlOverviewMapMaximizeButton {
-    height: 1px;
-    width: 1px;
-    left: 0;
-    bottom: 80px;
-    cursor: pointer;
+    height: 41px !important;
+    width: 20px !important;
+	bottom: 30px !important;
+	background-image: url('../resources/images/openlayers/overviewbutton_min_gray.png') !important;
 }
-.olControlOverviewMapContainer {
-    position: absolute;
-    bottom: 60px;
-	left: 0px;
-	width:140px;
-}
- .olControlOverviewMap {
-		left:0px;
-        padding:5px;
-		background:#FFFFFF;
-        width:100px;
-    }
 .olControlOverviewMapElement {
-		left:0px;
-		padding: 2px 2px 2px 2px;
-        background:#ffffff !important;
-		-moz-border-radius: 10px;
-		-webkit-border-radius: 10px;
-		border-radius: 10px;
-		border: 1px solid;
-		border-color: #aaaaaa;
-		width:100px;
+		padding: 2px 2px 2px 2px !important;
+        background:#dddddd !important;
+		
     }
-.olControlOverviewMapExtentRectangle {
-    overflow: hidden;
-    background-image: url("img/blank.gif");
-    cursor: move;
-    border: 2px dotted red;
-}
-.olControlOverviewMapRectReplacement {
-    overflow: hidden;
-    cursor: move;
-    background-image: url("../js/img/overview_replacement.gif");
-    background-repeat: no-repeat;
-    background-position: center;
+.olControlAttribution{
+	bottom:4px !important;
 }
 .olImageLoadError {
     background-color: orange;

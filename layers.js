@@ -71,7 +71,7 @@ var treeTheme = [
 						[
 							{nodeType: "gx_layer", layer: "Partidos y Circunscripciones" },
 							{nodeType: "gx_layer", layer: "Macizos" },
-							{nodeType: "gx_layer", layer: "Parcelas" }
+							{nodeType: "gx_layer", layer: "Parcelas" },
 						]
 				},
 				{
@@ -87,7 +87,8 @@ var treeTheme = [
 					text:'Relevamiento',expanded:true, children:
 						[
 							{nodeType: "gx_layer", layer: "Red_Geoba",legend:true },
-							{nodeType: "gx_layer", layer: "Parcelas_RT",text:"Planos en Rel. Territorial " },
+							{nodeType: "gx_layer", layer: "Parcelas_RT",text:"Planos en Rel. Territorial" },
+							{nodeType: "gx_layer", layer: "Parcelas_con_plano",text:"Planos en Geodesia" },
 							{nodeType: "gx_layer", layer: "Puntos_acotados_IGN",legend:true  },
 							{nodeType: "gx_layer", layer: "Curvas_de_nivel",legend:true  },
 							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  },
@@ -468,18 +469,18 @@ var layerItems=[
 					}
 			}
 		),
-		new OpenLayers.Layer.WMS("Parcelario_Geodesia",
-			"http://www.mosp.gba.gov.ar/geoserver/wms?",
-			{layers: 'Parcelario_Transparente',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Parcelas_con_plano",gwcURL,
+			{layers: 'dipsoh:parcelas_con_plano_geom',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
 						}
 					}
 			}
-		),
+		),//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente
 		new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
-			"http://www.mosp.gba.gov.ar/geoserver/wms?",
+			"http://www.geobasig.com.ar:8080/geoserver/Geodesia/wfs?",
 			{layers: 'Geodesia:parcelas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
