@@ -343,7 +343,7 @@ var layerItems=[
 		),
 		
 		new OpenLayers.Layer.WMS("Estaciones de medicion",wmsURL,
-			{layers: 'dipsoh:Estaciones_medicion',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:estaciones_medicion',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats

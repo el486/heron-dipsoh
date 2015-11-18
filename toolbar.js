@@ -396,6 +396,7 @@ var toolBarItems=[
 		// ====================================
 
 	}},
+	GObec.streetview.toolbar,
 	{
         type: "searchcenter",
         // Options for SearchPanel window
@@ -412,6 +413,130 @@ var toolBarItems=[
 						xtype: 'hr_multisearchcenterpanel',
 						height: 600,
 						hropts: [
+								{
+									searchPanel: {
+										xtype: 'hr_formsearchpanel',
+										name: 'Busqueda de mediciones',
+										description: 'Busqueda de mediciones por fecha',
+										header: false,
+										border: false,
+										protocol: new OpenLayers.Protocol.WFS({
+											version: "1.1.0"
+											,srsName: "EPSG:900913"
+											,url: serverURL+"/geoserver/dipsoh/wfs"
+											,featureType: "mediciones_geom"
+											,featurePrefix: "dipsoh"
+											,featureNS : serverURL+"/geoserver/dipsoh_postgis"
+										}),
+										downloadFormats: [],
+										items: [
+											{	
+												xtype:'combo',
+												fieldLabel: '  Estacion',
+												name: "estacion",
+												typeAhead: true,
+												width: 150,
+												triggerAction: 'all',
+												lazyRender:true,
+												mode: 'local',
+												store: new Ext.data.ArrayStore({
+													id: 0,
+													fields: [
+														'myId',
+														'displayText'
+													],
+													data: [['311','311'],['312','312'], ['314','314'], ['315','315'], ['316', '316'], ['317','317']]
+
+												}),
+												valueField: 'myId',
+												displayField: 'displayText'
+											},
+											/*{
+												xtype: "textfield", //ver http://dev.sencha.com/deploy/ext-3.4.0/examples/form/adv-vtypes.html
+												name: "fecha__ge",
+												value: '2015-06-11T00:00:00',
+												fieldLabel: "  Fecha desde"
+											},*/
+											{
+												xtype: 'datefield'
+												, name: "fecha__ge"
+												, width: 150
+												, format: 'Y-m-d\\TH:i:s'   // the format of date with time.
+												, value: new Date()
+												, fieldLabel: "  Fecha desde"
+											},
+											/*{
+												xtype: "textfield",
+												name: "fecha__le",
+												value: '2015-06-11T23:59:59',
+												fieldLabel: "  Fecha hasta"
+											},*/
+											{
+												xtype: 'datefield'
+												, name: "fecha__le"
+												, width: 150
+												, format: 'Y-m-d\\TH:i:s'   // the format of date with time.
+												, value: new Date()
+												, fieldLabel: "  Fecha hasta"
+											},
+											{	
+												xtype:'combo',
+												fieldLabel: '  Variable',
+												name: "variable__like",
+												typeAhead: true,
+												width: 150,
+												triggerAction: 'all',
+												lazyRender:true,
+												mode: 'local',
+												store: new Ext.data.ArrayStore({
+													id: 0,
+													fields: [
+														'myId',
+														'displayText'
+													],
+													data: [['temp','Temp'],['pres', 'Pres'], ['nivel', 'Nivel'], ['lluvia', 'Lluvia']]
+
+												}),
+												valueField: 'myId',
+												displayField: 'displayText'
+											},
+											{
+												xtype: "label",
+												id: "helplabel",
+												html: 'Formato de fecha: AAAA-MM-DD<br>Formato de hora: HH:MM:SS',
+												style: {
+													fontSize: '10px',
+													color: '#AAAAAA'
+												}
+											}
+										],
+										hropts: {
+											onSearchCompleteZoom: 9,
+											autoWildCardAttach: true,
+											caseInsensitiveMatch: true,
+											logicalOperator: OpenLayers.Filter.Logical.AND,
+											statusPanelOpts: {
+												html: '&nbsp;',
+												height: 'auto',
+												preventBodyReset: true,
+												bodyCfg: {
+													style: {
+														padding: '6px',
+														border: '0px'
+													}
+												},
+												style: {
+													marginTop: '2px',
+													paddingTop: '2px',
+													fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
+													fontSize: '11px',
+													color: '#0000C0'
+												}
+											}
+										}
+									},
+									resultPanel: resultPanel
+								},								
 								{
 									searchPanel: {
 										xtype: 'hr_formsearchpanel',
