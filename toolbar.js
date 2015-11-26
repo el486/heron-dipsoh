@@ -439,24 +439,30 @@ var toolBarItems=[
 												triggerAction: 'all',
 												lazyRender:true,
 												mode: 'local',
+												tpl: '<tpl for="."><div ext:qtip="{tip}" class="x-combo-list-item">{display}</div></tpl>',
 												store: new Ext.data.ArrayStore({
 													id: 0,
 													fields: [
-														'myId',
-														'displayText'
+														'display',
+														'tip'
 													],
-													data: [['311','311'],['312','312'], ['314','314'], ['315','315'], ['316', '316'], ['317','317']]
+													data: [
+													['232','Mar del Tuyu1 - limnigrafo'],
+													['240','Mar del Tuyu2 - pluviografo'],
+													['287','Briales La Plata - pluviografo'],
+													['288','Briales La Plata1 - pluviografo'],
+													['311','DiPSOH2 - pluviografo'],
+													['312','DiPSOH1 - pluviografo'], 
+													['314','LIMNI01 Berisso - limnigrafo'], 
+													['315','LIMNI02 Berisso - limnigrafo'], 
+													['316','LIMNI03 Berisso - limnigrafo'], 
+													['317','LIMNI04 Berisso - limnigrafo']
+													]
 
 												}),
-												valueField: 'myId',
-												displayField: 'displayText'
+												//valueField: 'myId',
+												displayField: 'display'
 											},
-											/*{
-												xtype: "textfield", //ver http://dev.sencha.com/deploy/ext-3.4.0/examples/form/adv-vtypes.html
-												name: "fecha__ge",
-												value: '2015-06-11T00:00:00',
-												fieldLabel: "  Fecha desde"
-											},*/
 											{
 												xtype: 'datefield'
 												, name: "fecha__ge"
@@ -465,12 +471,6 @@ var toolBarItems=[
 												, value: new Date()
 												, fieldLabel: "  Fecha desde"
 											},
-											/*{
-												xtype: "textfield",
-												name: "fecha__le",
-												value: '2015-06-11T23:59:59',
-												fieldLabel: "  Fecha hasta"
-											},*/
 											{
 												xtype: 'datefield'
 												, name: "fecha__le"
@@ -488,17 +488,22 @@ var toolBarItems=[
 												triggerAction: 'all',
 												lazyRender:true,
 												mode: 'local',
+												tpl: '<tpl for="."><div ext:qtip="{tip}" class="x-combo-list-item">{display}</div></tpl>',
 												store: new Ext.data.ArrayStore({
 													id: 0,
 													fields: [
-														'myId',
-														'displayText'
+														'display',
+														'tip'
 													],
-													data: [['temp','Temp'],['pres', 'Pres'], ['nivel', 'Nivel'], ['lluvia', 'Lluvia']]
+													data: [['Temp','Temperatura Ambiente Interior (°C)'],
+															['Pres','Presión Atmosférica (hPa)'], 
+															['Nivel','Nivel de Agua (cm)'], 
+															['Lluvia','Lluvia Caída (mm)']
+															]
 
 												}),
-												valueField: 'myId',
-												displayField: 'displayText'
+												//valueField: 'myId',
+												displayField: 'display'
 											},
 											{
 												xtype: "label",
