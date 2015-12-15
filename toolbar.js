@@ -456,7 +456,10 @@ var toolBarItems=[
 													['314','LIMNI01 Berisso - limnigrafo'], 
 													['315','LIMNI02 Berisso - limnigrafo'], 
 													['316','LIMNI03 Berisso - limnigrafo'], 
-													['317','LIMNI04 Berisso - limnigrafo']
+													['317','LIMNI04 Berisso - limnigrafo'],
+													['San_Antonio_de_Areco','San_Antonio_de_Areco'],
+													['Carmen_de_Areco','Carmen_de_Areco'],
+													['Rawson','Rawson']
 													]
 
 												}),
@@ -498,7 +501,9 @@ var toolBarItems=[
 													data: [['Temp','Temperatura Ambiente Interior (°C)'],
 															['Pres','Presión Atmosférica (hPa)'], 
 															['Nivel','Nivel de Agua (cm)'], 
-															['Lluvia','Lluvia Caída (mm)']
+															['Lluvia','Lluvia Caída (mm)'],
+															['Precip','Lluvia Acumulada (mm) (Areco)'],
+															['Diff','Lluvia Caída (mm) (Areco)']
 															]
 
 												}),
@@ -512,6 +517,43 @@ var toolBarItems=[
 												style: {
 													fontSize: '10px',
 													color: '#AAAAAA'
+												}
+											},
+											{
+												xtype:"button",
+												//anchor: "20%",
+												text: 'Actualizar datos',
+												//tooltip: __('Start a new search'),
+												listeners: {
+													click: function () {
+															Ext.Ajax.request({
+																url: './php/actualizaDatosMinPlan.php?',
+																disableCaching:false,
+																success: function(response){
+																var data = response.responseText;	   
+																	
+																		var win;
+																		if(!win){
+																			win = new Ext.Window({
+																				title:'Data',
+																				width: 900,
+																				height: 500,
+																				closeAction :'hide',
+																				modal: true, 
+																				html: data,
+																				autoScroll:'true',
+																				buttons: [{
+																					text     : 'Close',
+																					handler  : function(){
+																						win.hide();
+																					}
+																				}]
+																			});
+																			win.show();
+																		} 
+																  }
+																})
+													}
 												}
 											}
 										],
