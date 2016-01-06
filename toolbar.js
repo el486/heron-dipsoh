@@ -17,14 +17,23 @@ var convert=[
 				
 var gridCellRenderers=[
 {
+   featureType: 'LimpiezaCooperativas2015',
+   attrName: 'expediente',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				  var val2=value.replace('/','-').replace(' Alc:','-').replace(' Cpo:','-').replace(' ','');
+				  var array=val2.split('-');
+				  return '<a href="http://sistemas.gba.gov.ar/consulta/expedientes/movimientos.php?caract='+array[0]+'&nroexp='+array[1]+'&anioexp='+array[2]+'&alcance=0&nrocuerpo=1" target="_blank">'+value+'</a>';
+		   }
+	}
+},
+{
    featureType: 'parcelas_rt_geom',
    attrName: 'plano_rt',
-   renderer: {
-		   fn : Heron.widgets.GridCellRenderer.directLink,
-		   options : {
-				   url: 'http://www.mosp.gba.gov.ar/sig_hidraulica/planos/planos.asp?partido=0&todos=s&numpla={num_plano}',
-				   target: '_new'
-		   }
+    renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				   return '<a href="http://www.mosp.gba.gov.ar/sig_hidraulica/planos/planos.asp?partido=0&todos=s&numpla='+value+'" target="_new">'+ value +'</a>';
+			}
    }
 },
 {
@@ -42,7 +51,7 @@ var gridCellRenderers=[
    renderer: {
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
 				   return '<a href="http://www.mosp.gba.gov.ar/sistemas/geodesia/ugeodesia/Geodesia/'+value+'(PA).dwf" target="_blank">'+ value +'</a>';
-		   },
+		   }
    }
 },
 {
