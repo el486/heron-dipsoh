@@ -14,6 +14,20 @@ var convert=[
 			[" Fr:",21,25],["",25,28],[" Mz:",28,32],["",32,35],
 			[" Pc:",35,39],["",39,42]
 			];
+			
+var partidos=[
+["25 DE MAYO",109],["9 DE JULIO",77],["ADOLFO ALSINA",1],["ALBERTI",2],["ALMIRANTE BROWN",3],["AMEGHINO",128],
+["AVELLANEDA",4],["AYACUCHO",5],["AZUL",6],["BAHIA BLANCA",7],["BERAZATEGUI",120],["BERISSO",114],["BOLIVAR",11],
+["BRAGADO",12],["CARLOS CASARES",16],["CARLOS PELLEGRINI",81],["CARLOS TEJEDOR",17],["CASTELLI",20],["CHASCOMÚS",27],
+["CHIVILCOY",28],["CORONEL SUAREZ",24],["DAIREAX",19],["DOLORES",29],["ENSENADA",115],["ESTEBAN ECHEVERRIA",30],["EZEIZA",130],
+["FLORENCIO VARELA",32],["GENERAL ALVEAR",34],["GENERAL ARENALES",35],["GENERAL BELGRANO",36],["GENERAL GUIDO",37],["GENERAL LAMADRID",40],
+["GENERAL LAVALLE",42],["GENERAL MADARIAGA",39],["GENERAL PINTO",44],["GENERAL RODRIGUEZ",46],["GENERAL VIAMONTE",49],["GENERAL VILLEGAS",50],
+["GUAMINI",52],["HIPÓLITO YRIGOYEN",119],["HURLINGHAM",135],["JUNIN",54],["LA MATANZA",70],["LA PLATA",55],["LAPRIDA",56],["LAS FLORES",58],
+["LEANDRO N. ALEM",59],["LINCOLN",60],["LOBOS",62],["LOMAS DE ZAMORA",63],["LUJAN",64],["MAIPÚ",66],["MARCOS PAZ",68],["MERLO",72],
+["MONTE",73],["MORENO",74],["PEHUAJO",80],["PERGAMINO",82],["PILA",83],["PILAR",84],["PUAN",85],["QUILMES",86],["RIVADAVIA",89],
+["ROQUE PEREZ",91],["SALADILLO",93],["SAN FERNANDO",96],["SAN MIGUEL",131],["SAN NICOLÁS",98],["TANDIL",103],["TAPALQUE",104],
+["TIGRE",57],["TORDILLO",105],["TRENQUE LAUQUEN",107]
+];
 				
 var gridCellRenderers=[
 {
@@ -444,7 +458,7 @@ var toolBarItems=[
 												fieldLabel: '  Estacion',
 												name: "estacion",
 												typeAhead: true,
-												width: 150,
+												width: 200,
 												triggerAction: 'all',
 												lazyRender:true,
 												mode: 'local',
@@ -455,30 +469,33 @@ var toolBarItems=[
 														'display',
 														'tip'
 													],
-													data: [
-													['232','Mar del Tuyu1 - limnigrafo'],
-													['240','Mar del Tuyu2 - pluviografo'],
-													['287','Briales La Plata - pluviografo'],
-													['288','Briales La Plata1 - pluviografo'],
-													['311','DiPSOH2 - pluviografo'],
-													['312','DiPSOH1 - pluviografo'], 
-													['314','LIMNI01 Berisso - limnigrafo'], 
-													['315','LIMNI02 Berisso - limnigrafo'], 
-													['316','LIMNI03 Berisso - limnigrafo'], 
-													['317','LIMNI04 Berisso - limnigrafo'],
+													data: [['Mar del Tuyu1 - limnigrafo','232'],
+													['Mar del Tuyu2 - pluviografo','240'],
+													['Briales La Plata - pluviografo','287'],
+													['Briales La Plata1 - pluviografo','288'],
+													['DiPSOH2 - pluviografo','311'],
+													['DiPSOH1 - pluviografo','312'], 
+													['LIMNI01 Berisso - limnigrafo','314'], 
+													['LIMNI02 Berisso - limnigrafo','315'], 
+													['LIMNI03 Berisso - limnigrafo','316'], 
+													['LIMNI04 Berisso - limnigrafo','317'],
 													['San_Antonio_de_Areco','San_Antonio_de_Areco'],
 													['Carmen_de_Areco','Carmen_de_Areco'],
-													['Rawson','Rawson']
-													]
+													['Rawson','Rawson']]
 
 												}),
-												//valueField: 'myId',
-												displayField: 'display'
+												//valueField: 'display',
+												//displayField: 'tip',
+												listeners: { 'select': function(combo, record, index){ 
+														//console.log(record.data['display']);
+														combo.setValue(record.data['tip']);
+														}  
+													}
 											},
 											{
 												xtype: 'datefield'
 												, name: "fecha__ge"
-												, width: 150
+												, width: 200
 												, format: 'Y-m-d\\TH:i:s'   // the format of date with time.
 												, value: new Date()
 												, fieldLabel: "  Fecha desde"
@@ -486,7 +503,7 @@ var toolBarItems=[
 											{
 												xtype: 'datefield'
 												, name: "fecha__le"
-												, width: 150
+												, width: 200
 												, format: 'Y-m-d\\TH:i:s'   // the format of date with time.
 												, value: new Date()
 												, fieldLabel: "  Fecha hasta"
@@ -496,7 +513,7 @@ var toolBarItems=[
 												fieldLabel: '  Variable',
 												name: "variable__like",
 												typeAhead: true,
-												width: 150,
+												width: 200,
 												triggerAction: 'all',
 												lazyRender:true,
 												mode: 'local',
@@ -507,17 +524,22 @@ var toolBarItems=[
 														'display',
 														'tip'
 													],
-													data: [['Temp','Temperatura Ambiente Interior (°C)'],
-															['Pres','Presión Atmosférica (hPa)'], 
-															['Nivel','Nivel de Agua (cm)'], 
-															['Lluvia','Lluvia Caída (mm)'],
-															['Precip','Lluvia Acumulada (mm) (Areco)'],
-															['Diff','Lluvia Caída (mm) (Areco)']
+													data: [['Temperatura Ambiente Interior (°C)','Temp'],
+															['Presión Atmosférica (hPa)','Pres'], 
+															['Nivel de Agua (cm)','Nivel'], 
+															['Lluvia Caída (mm)','Lluvia'],
+															['Lluvia Acumulada (mm) (Areco)','Precip'],
+															['Lluvia Caída (mm) (Areco)','Diff']
 															]
 
 												}),
 												//valueField: 'myId',
-												displayField: 'display'
+												//displayField: 'display'
+												listeners: { 'select': function(combo, record, index){ 
+														//console.log(record.data['display']);
+														combo.setValue(record.data['tip']);
+														}  
+													}
 											},
 											{
 												xtype: "label",
@@ -592,7 +614,7 @@ var toolBarItems=[
 										}
 									},
 									resultPanel: resultPanel
-								},								
+								},
 								{
 									searchPanel: {
 										xtype: 'hr_formsearchpanel',
@@ -774,12 +796,32 @@ var toolBarItems=[
 										}),
 										downloadFormats: [],
 										items: [
-											{
+											/*{
 												xtype: "textfield",
 												name: "partido",
 												value: '55',
 												fieldLabel: "  Partido"//,
 												//listeners: { 'change': function(){      alert('you changed the text of this input field');    }  }
+											},*/
+											{	
+												xtype:'combo',
+												fieldLabel: '  Partido',
+												name: "partido",
+												typeAhead: true,
+												width: 150,
+												triggerAction: 'all',
+												lazyRender:true,
+												mode: 'local',
+												tpl: '<tpl for="."><div ext:qtip="{tip}" class="x-combo-list-item">{display}</div></tpl>',
+												store: new Ext.data.ArrayStore({
+													id: 0,
+													fields: ['display',	'tip'],
+													data: partidos
+												}),
+												listeners: { 'select': function(combo, record, index){ 
+														combo.setValue(record.data['tip']);
+														}  
+												}
 											},
 											{
 												 xtype: "textfield",
