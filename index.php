@@ -38,7 +38,7 @@
 
 	<!-- Script and css resources for ExtJS-->
 	<link rel="stylesheet" type="text/css" href="./css/ext-all.css"/>
-	<link rel="stylesheet" type="text/css" href="./css/xtheme-gray.css"/>
+	<link rel="stylesheet" type="text/css" href="./css/xtheme-gray-flat.css"/>
 	<script type="text/javascript" src="./js/ext-base.js"></script>
 	<script type="text/javascript" src="./js/ext-all.js"></script>
 	

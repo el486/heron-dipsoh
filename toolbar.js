@@ -1102,7 +1102,7 @@ var toolBarItems=[
 		{type: "-"},
 		{type: "printdialog", options: {url: serverURL+'/print/pdf' , windowWidth: 360, id:'prevImpresion'
 			// , showTitle: true
-			 , mapTitle: 'Visor Sig'
+			 , mapTitle: 'Sig DiPSOH'
 			// , mapTitleYAML: "mapTitle"		// MapFish - field name in config.yaml - default is: 'mapTitle'
 			// , showComment: true
 			 , mapComment: 'Provincia de Buenos Aires'
