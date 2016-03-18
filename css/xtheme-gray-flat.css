@@ -1801,7 +1801,8 @@ body.x-body-masked .x-window-plain .x-window-mc {
 }
 
 .ext-mb-text {
-    color: #ffffff;
+    /*color: #ffffff;*/
+	color: #000000;
 }
 
 .x-tab-strip-top .x-tab-right {

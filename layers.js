@@ -58,7 +58,8 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Partidos" },
 							{nodeType: "gx_layer", layer: "Hidrografia",text:"Hidrografia escala 1:250.000" },
 							{nodeType: "gx_layer", layer: "Hidrografia_detalle" },
-							{nodeType: "gx_layer", layer: "Cuencas",text:"Cuencas (provisorio)" },
+							{nodeType: "gx_layer", layer: "Hidrografia_detalle_OSM" },
+							{nodeType: "gx_layer", layer: "Cuencas",text:"Cuencas (actualizado el 4-3-2016)" },
 							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
 							{nodeType: "gx_layer", layer: "Rutas" ,legend:true },
 							{nodeType: "gx_layer", layer: "Censo_2010",text:"Censo 2010 INDEC" },
@@ -77,10 +78,10 @@ var treeTheme = [
 				{
 					text:'Obras Hidraulica',expanded:true, children:
 						[
-							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  },
-							{nodeType: "gx_layer", layer: "Trazas+Obras_SIGOS" ,text:"Obras Sigos - Trazas",legend:true },
-							{nodeType: "gx_layer", layer: "Trazas por Etapa" ,legend:true },
+							{nodeType: "gx_layer", layer: "Trazas DiPSOH" ,legend:true },
 							{nodeType: "gx_layer", layer: "Limpiezas Cooperativas"},
+							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  },
+							{nodeType: "gx_layer", layer: "Trazas+Obras_SIGOS" ,text:"Obras Sigos - Trazas",legend:true }
 						]
 				},
 				{
@@ -373,7 +374,7 @@ var layerItems=[
 		),
 		
 		new OpenLayers.Layer.WMS("Cuencas",wmsURL,
-			{layers: 'dipsoh:cuencas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:cuencas',transparent: true, format:'image/png', singleTile: true },{opacity: 0.75,visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -404,6 +405,16 @@ var layerItems=[
 		
 		new OpenLayers.Layer.WMS("Hidrografia_detalle",wmsURL,
 			{layers: 'dipsoh:hidro_detalle',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		
+		new OpenLayers.Layer.WMS("Hidrografia_detalle_OSM",wmsURL,
+			{layers: 'dipsoh:hidro_detalle_OSM',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -451,8 +462,8 @@ var layerItems=[
 					}
 			}
 		),
-		new OpenLayers.Layer.WMS("Trazas por Etapa",wmsURL,
-			{layers: 'dipsoh:obras_dipsoh_por_etapa',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Trazas DiPSOH",wmsURL,
+			{layers: 'dipsoh:obras_sigos_line',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -480,8 +491,8 @@ var layerItems=[
 			}
 		),//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente
 		new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
-			"http://www.geobasig.com.ar:8080/geoserver/Geodesia/wfs?",
-			{layers: 'Geodesia:parcelas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			"http://geobasig.com.ar/geoserver/Geodesia/wms?",
+			{layers: 'Geodesia:ParcelarioCompleto',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats

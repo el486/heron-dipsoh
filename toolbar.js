@@ -14,21 +14,30 @@ var convert=[
 			[" Fr:",21,25],["",25,28],[" Mz:",28,32],["",32,35],
 			[" Pc:",35,39],["",39,42]
 			];
-			
+
 var partidos=[
-["25 DE MAYO",109],["9 DE JULIO",77],["ADOLFO ALSINA",1],["ALBERTI",2],["ALMIRANTE BROWN",3],["AMEGHINO",128],
-["AVELLANEDA",4],["AYACUCHO",5],["AZUL",6],["BAHIA BLANCA",7],["BERAZATEGUI",120],["BERISSO",114],["BOLIVAR",11],
-["BRAGADO",12],["CARLOS CASARES",16],["CARLOS PELLEGRINI",81],["CARLOS TEJEDOR",17],["CASTELLI",20],["CHASCOMÚS",27],
-["CHIVILCOY",28],["CORONEL SUAREZ",24],["DAIREAX",19],["DOLORES",29],["ENSENADA",115],["ESTEBAN ECHEVERRIA",30],["EZEIZA",130],
-["FLORENCIO VARELA",32],["GENERAL ALVEAR",34],["GENERAL ARENALES",35],["GENERAL BELGRANO",36],["GENERAL GUIDO",37],["GENERAL LAMADRID",40],
-["GENERAL LAVALLE",42],["GENERAL MADARIAGA",39],["GENERAL PINTO",44],["GENERAL RODRIGUEZ",46],["GENERAL VIAMONTE",49],["GENERAL VILLEGAS",50],
-["GUAMINI",52],["HIPÓLITO YRIGOYEN",119],["HURLINGHAM",135],["JUNIN",54],["LA MATANZA",70],["LA PLATA",55],["LAPRIDA",56],["LAS FLORES",58],
-["LEANDRO N. ALEM",59],["LINCOLN",60],["LOBOS",62],["LOMAS DE ZAMORA",63],["LUJAN",64],["MAIPÚ",66],["MARCOS PAZ",68],["MERLO",72],
-["MONTE",73],["MORENO",74],["PEHUAJO",80],["PERGAMINO",82],["PILA",83],["PILAR",84],["PUAN",85],["QUILMES",86],["RIVADAVIA",89],
-["ROQUE PEREZ",91],["SALADILLO",93],["SAN FERNANDO",96],["SAN MIGUEL",131],["SAN NICOLÁS",98],["TANDIL",103],["TAPALQUE",104],
-["TIGRE",57],["TORDILLO",105],["TRENQUE LAUQUEN",107]
+["Adolfo Alsina","1"],["Alberti","2"],["Almirante Brown","3"],["Ameghino","128"],["Arrecifes","10"],["Avellaneda","4"],["Ayacucho","5"],["Azul","6"],
+["Bahia Blanca","7"],["Balcarce","8"],["Baradero","9"],["Berazategui","120"],["Berisso","114"],["Bolivar","11"],["Bragado","12"],
+["Brandsen","13"],["CaÃ±uelas","15"],["Campana","14"],["Capitan Sarmiento","121"],["Carlos Casares","16"],["Carlos Tejedor","17"],
+["Carmen de Areco","18"],["Castelli","20"],["Chacabuco","26"],["Chascomus","27"],["Chivilcoy","28"],["Colon","21"],["Coronel Dorrego","22"],
+["Coronel Pringles","23"],["Coronel Rosales","113"],["Coronel Suarez","24"],["Daireaux","19"],["Dolores","29"],["Ensenada","115"],
+["Escobar","118"],["Esteban Echeverria","30"],["Exaltacion de la Cruz","31"],["Ezeiza","130"],["Florencio Varela","32"],["General Alvarado","33"],
+["General Alvear","34"],["General Arenales","35"],["General Belgrano","36"],["General Guido","37"],["General Lamadrid","40"],
+["General Las Heras","41"],["General Lavalle","42"],["General Madariaga","39"],["General Paz","43"],["General Pinto","44"],["General Pueyrredon","45"],
+["General Rodriguez","46"],["General San Martin","47"],["General Viamonte","49"],["General Villegas","50"],["Gonzalez Chavez","51"],["Guamini","52"],
+["Hipolito Yrigoyen","119"],["Hurlingham","135"],["Islas Baradero","309"],["Islas Campana","314"],["Islas Ramallo","387"],["Islas San Fernando","396"],
+["Islas San Nicolas","398"],["Islas San Pedro","399"],["Islas Tigre","357"],["Islas Zarate","338"],["Ituzaingo","136"],["Jose C. Paz","132"],["Juarez","53"],
+["Junin","54"],["La Costa","123"],["La Plata","55"],["Lanus","25"],["Laprida","56"],["Las Flores","58"],["Leandro N. Alem","59"],["Lezama","137"],["Lincoln","60"],
+["Loberia","61"],["Lobos","62"],["Lomas de Zamora","63"],["Lujan","64"],["Magdalena","65"],["Maipu","66"],["Malvinas Argentinas","133"],["Mar Chiquita","69"],
+["Marcos Paz","68"],["Matanza","70"],["Mercedes","71"],["Merlo","72"],["Monte","73"],["Monte Hermoso","126"],["Moreno","74"],["Moron","101"],["Navarro","75"],
+["Necochea","76"],["Nueve de Julio","77"],["Olavarria","78"],["Patagones","79"],["Pehuajo","80"],["Pellegrini","81"],["Pergamino","82"],["Pila","83"],["Pilar","84"],
+["Pinamar","124"],["Pte. Peron","129"],["Puan","85"],["Punta Indio","134"],["Quilmes","86"],["Ramallo","87"],["Rauch","88"],["Rivadavia","89"],["Rojas","90"],["Roque Perez","91"],
+["Saavedra","92"],["Saladillo","93"],["Salliquelo","122"],["Salto","67"],["San Andres de Giles","94"],["San Antonio de Areco","95"],["San Cayetano","116"],["San Fernando","96"],
+["San Isidro","97"],["San Miguel","131"],["San Nicolas","98"],["San Pedro","99"],["San Vicente","100"],["Suipacha","102"],["Tandil","103"],["Tapalque","104"],["Tigre","57"],
+["Tordillo","105"],["Tornquist","106"],["Trenque Lauquen","107"],["Tres Arroyos","108"],["Tres de Febrero","117"],["Tres Lomas","127"],["Veinticinco de Mayo","109"],
+["Vicente Lopez","110"],["Villa Gesell","125"],["Villarino","111"],["Zarate","38"]
 ];
-				
+	
 var gridCellRenderers=[
 {
    featureType: 'LimpiezaCooperativas2015',
@@ -111,6 +120,17 @@ var gridCellRenderers=[
    }
 },
 {
+   featureType: 'obras_sigos_line',
+   attrName: 'id_obra',
+   renderer:{
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+																				
+				   return '<a href="javascript:void(0)" onclick="popupObras(\''+value+'\');">' + value + '</a>';
+		   },
+		   options : {}
+   }
+},
+{
    featureType: 'dipsoh_obras_sigos_total',
    attrName: 'id_obra',
    renderer:{
@@ -166,28 +186,6 @@ var gridCellRenderers=[
 		   options : {}
    }
 },
-/*
-{
-   featureType: 'parcelas_rt',
-   attrName: 'NOMENCLA',
-   renderer: {
-			fn : function(value, metaData, record, rowIndex, colIndex, store) {
-				var nomencla='';
-				for (var i=0; i<13; i++) {
-					var k=convert[i][2];
-					for (var j=convert[i][1]; j<k;j++){
-						if(value.substring(j,j+1)!='0'){
-						nomencla+=convert[i][0]+value.substring(j,k);
-						j=k;
-						}
-					}
-				}
-				return nomencla
-		   },
-		   options : {}
-   }
-},
-*/
 {
    featureType: 'parcelas',
    attrName: 'plano',
@@ -219,21 +217,31 @@ var gridCellRenderers=[
    }
 }];
 							
-var resultPanel={
-					xtype: 'hr_featurepanel',
-					id: 'hr-featurepanel',
-					header: false,
-					border: false,
-					autoConfig: true,
-					showBottomToolbar:true,
-					showTopToolbar:true,
-					exportFormats: ['CSV','XLS',
+var downloadFormats=['CSV',
+					 'XLS',
 					{
-						name: 'Esri Shapefile (WGS84 EPSG:4326)',
+						name: 'Esri Shapefile (Campo Inchauspe faja 4 - EPSG:22194)',
 						formatter: 'OpenLayersFormatter',
 						format: 'OpenLayers.Format.GeoJSON',
 						targetFormat: 'ESRI Shapefile',
-						targetSrs: 'EPSG:4326',
+						targetSrs: 'EPSG:22194',
+						fileExt: '.zip',
+						mimeType: 'application/zip'
+					},
+					{
+						name: 'Esri Shapefile (Campo Inchauspe faja 5 - EPSG:22195)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'ESRI Shapefile',
+						targetSrs: 'EPSG:22195',
+						fileExt: '.zip',
+						mimeType: 'application/zip'
+					},{
+						name: 'Esri Shapefile (Campo Inchauspe faja 6 - EPSG:22196)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'ESRI Shapefile',
+						targetSrs: 'EPSG:22196',
 						fileExt: '.zip',
 						mimeType: 'application/zip'
 					},
@@ -243,7 +251,6 @@ var resultPanel={
 						format: 'OpenLayers.Format.GeoJSON',
 						targetFormat: 'DXF',
 						targetSrs: 'EPSG:22194',
-						//sourceSrs: 'EPSG:900913',
 						fileExt: '.dxf',
 						mimeType: 'application/dxf'
 					},
@@ -253,7 +260,6 @@ var resultPanel={
 						format: 'OpenLayers.Format.GeoJSON',
 						targetFormat: 'DXF',
 						targetSrs: 'EPSG:22195',
-						//sourceSrs: 'EPSG:900913',
 						fileExt: '.dxf',
 						mimeType: 'application/dxf'
 					},
@@ -263,7 +269,6 @@ var resultPanel={
 						format: 'OpenLayers.Format.GeoJSON',
 						targetFormat: 'DXF',
 						targetSrs: 'EPSG:22196',
-						//sourceSrs: 'EPSG:900913',
 						fileExt: '.dxf',
 						mimeType: 'application/dxf'
 					},
@@ -273,11 +278,20 @@ var resultPanel={
 						format: 'OpenLayers.Format.GeoJSON',
 						targetFormat: 'KML',
 						targetSrs: 'EPSG:4326',
-						//sourceSrs: 'EPSG:900913',
 						fileExt: '.kml',
 						mimeType: 'application/kml'
 					}
-					],
+					];
+							
+var resultPanel={
+					xtype: 'hr_featurepanel',
+					id: 'hr-featurepanel',
+					header: false,
+					border: false,
+					autoConfig: true,
+					showBottomToolbar:true,
+					showTopToolbar:true,
+					exportFormats: downloadFormats,
 					gridCellRenderers: gridCellRenderers,
 					hropts: {
 						zoomOnRowDoubleClick: true,
@@ -298,16 +312,7 @@ var toolBarItems=[
 				showBottomToolbar: true,
                 //displayPanels: ['Table'],
 				displayPanels: ['Table','Detail'],
-                exportFormats: ['CSV', 'XLS', 'WellKnownText',{
-						name: 'KML (Google Earth)',
-						formatter: 'OpenLayersFormatter',
-						format: 'OpenLayers.Format.GeoJSON',
-						targetFormat: 'KML',
-						targetSrs: 'EPSG:4326',
-						//sourceSrs: 'EPSG:900913',
-						fileExt: '.kml',
-						mimeType: 'application/kml'
-					}],
+                exportFormats: downloadFormats,
                 hideColumns: ['objectid', 'gid'],
                 maxFeatures: 10,
                 autoConfigMaxSniff: 10,

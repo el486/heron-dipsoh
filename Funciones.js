@@ -36,7 +36,7 @@ function popupObras(value){
 					//applyTo     : 'hello-win',
 					//layout      : 'fit',
 					title:'Informacion de la Obra',
-					width: 900,
+					width: 300,
 					height: 500,
 					closeAction :'hide',
 					//plain: true,

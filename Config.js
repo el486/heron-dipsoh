@@ -193,6 +193,19 @@ Heron.layout = {
 							title: "Arba",
 							group: 'ideba'
 						},
+						escuelaswms: {
+							url: "http://190.210.101.129/cgi-bin/mapaescolar",
+							version: "1.3.0",
+							title: "Mapa Escolar",
+							group: 'ideba'
+						},
+						geodesiawms: {
+							url: "http://geobasig.com.ar/geoserver/Geodesia/wms",
+							version: "1.1.1",
+							title: "Direccion de Geodesia pcia. de Bs.As.",
+							group: 'ideba'
+						},
+						/*
 						cdiwms: {
 							url: "http://sig.gobierno.gba.gov.ar:8080/geoserver/cdi/wms",
 							version: "1.3.0",
@@ -203,18 +216,6 @@ Heron.layout = {
 							url: "http://sig.gobierno.gba.gov.ar:8080/geoserver/cdi/wms",
 							version: "1.3.0",
 							title: "Defensa Civil",
-							group: 'ideba'
-						},
-						geodesiawms: {
-							url: "http://www.mosp.gba.gov.ar/geoserver/wms",
-							version: "1.1.1",
-							title: "Direccion de Geodesia pcia. de Bs.As.",
-							group: 'ideba'
-						},
-						escuelaswms: {
-							url: "http://190.210.101.129/cgi-bin/mapaescolar",
-							version: "1.3.0",
-							title: "Mapa Escolar",
 							group: 'ideba'
 						},
 						opdswms: {
@@ -241,6 +242,7 @@ Heron.layout = {
 							title: "UrbaSig",
 							group: 'ideba'
 						},
+						*/
 						opengeotms: {
 							ptype: "gxp_tmssource",
 							url: "http://maps.opengeo.org/geowebcache/service/tms",

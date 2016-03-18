@@ -7,5 +7,4 @@ js/*
 images/
 css/*
 !css/m-style.css
-!css/xtheme-gray-flat.css
 php/include/
