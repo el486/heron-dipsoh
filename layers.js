@@ -62,13 +62,13 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Cuencas",text:"Cuencas (actualizado el 4-3-2016)" },
 							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
 							{nodeType: "gx_layer", layer: "Rutas" ,legend:true },
-							{nodeType: "gx_layer", layer: "Censo_2010",text:"Censo 2010 INDEC" },
+							{nodeType: "gx_layer", layer: "Censo_2010",text:"Censo 2010 INDEC",legend:true },
 							{nodeType: "gx_layer", layer: "Estaciones de medicion"}
 							
 						]
 				},
 				{
-					text:'Parcelario Arba', nodeType: 'hr_cascader', expanded: true, children:
+					text:'Parcelario Arba 2016', nodeType: 'hr_cascader', expanded: true, children:
 						[
 							{nodeType: "gx_layer", layer: "Partidos y Circunscripciones" },
 							{nodeType: "gx_layer", layer: "Macizos" },
@@ -245,7 +245,7 @@ var layerItems=[
 				{isBaseLayer: true, visibility: false, displayInLayerSwitcher: true, transitionEffect: 'resize',numZoomLevels: 18}
 		),
 		
-		layerPartidos = new OpenLayers.Layer.WMS("Partidos",wmsURL,
+		layerPartidos = new OpenLayers.Layer.WMS("Partidos",gwcURL,
 			{layers: 'dipsoh:departamentos',transparent: true, format:'image/png', singleTile: true }, 
 			{visibility: true, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
@@ -258,7 +258,7 @@ var layerItems=[
 		),
 		
 		layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",gwcURL,
-			{layers: 'dipsoh:parcelas_vista',transparent: true, format:'image/png', singleTile: true },
+			{layers: 'dipsoh:parcelas_vista_2016',transparent: true, format:'image/png', singleTile: true },
 			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
@@ -268,7 +268,7 @@ var layerItems=[
 			}
 		),
 		layerMacizosArba = new OpenLayers.Layer.WMS("Macizos",gwcURL,
-			{layers: 'dipsoh:macizos_vista',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:macizos_vista_2016',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -277,7 +277,7 @@ var layerItems=[
 			}
 		),
 		layerCircunscripcionesArba = new OpenLayers.Layer.WMS("Partidos y Circunscripciones",gwcURL,
-			{layers: ['dipsoh:secciones_vista','dipsoh:circunscripciones_vista','dipsoh:partidos_vista'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: ['dipsoh:secciones_vista_2016','dipsoh:circunscripciones_vista_2016','dipsoh:partidos_vista_2016'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -492,7 +492,7 @@ var layerItems=[
 		),//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente
 		new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
 			"http://geobasig.com.ar/geoserver/Geodesia/wms?",
-			{layers: 'Geodesia:ParcelarioCompleto',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'Geodesia:parcelas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
