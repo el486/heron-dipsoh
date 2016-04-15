@@ -1,4 +1,4 @@
-﻿function armarNomencla(){
+﻿function armarNomencla(){ //arma la nomenclatura para la busqueda por nomencla
 	var part = Ext.getCmp('form_part').getValue();
 	var circ = Ext.getCmp('form_circ').getValue();
 	var secc = Ext.getCmp('form_secc').getValue();
@@ -7,15 +7,28 @@
 	var plet = Ext.getCmp('form_plet').getValue();
 	Ext.getCmp('form_nomencla').setValue(part+circ+secc+"%"+otro+"%"+pnum+plet);
 }
+			
+function convertNomencla(value){ //funcion para convertir la nomenclatura en un formato legible
+				var nomencla='';
+				var convert=[
+					["Pt:",0,3],[" Circ:",3,5],[" Secc:",5,7],
+					[" Ch:",7,11],["",11,14],[" Qt:",14,18],["",18,21],
+					[" Fr:",21,25],["",25,28],[" Mz:",28,32],["",32,35],
+					[" Pc:",35,39],["",39,42]
+					];
+				for (var i=0; i<13; i++) {
+					var k=convert[i][2];
+					for (var j=convert[i][1]; j<k;j++){
+						if(value.substring(j,j+1)!='0'){
+						nomencla+=convert[i][0]+value.substring(j,k);
+						j=k;
+						}
+					}
+				}
+			   return nomencla;
+}
 
-var convert=[
-			["Pt:",0,3],[" Circ:",3,5],[" Secc:",5,7],
-			[" Ch:",7,11],["",11,14],[" Qt:",14,18],["",18,21],
-			[" Fr:",21,25],["",25,28],[" Mz:",28,32],["",32,35],
-			[" Pc:",35,39],["",39,42]
-			];
-
-var partidos=[
+var partidos=[  
 ["Adolfo Alsina","1"],["Alberti","2"],["Almirante Brown","3"],["Ameghino","128"],["Arrecifes","10"],["Avellaneda","4"],["Ayacucho","5"],["Azul","6"],
 ["Bahia Blanca","7"],["Balcarce","8"],["Baradero","9"],["Berazategui","120"],["Berisso","114"],["Bolivar","11"],["Bragado","12"],
 ["Brandsen","13"],["CaÃ±uelas","15"],["Campana","14"],["Capitan Sarmiento","121"],["Carlos Casares","16"],["Carlos Tejedor","17"],
@@ -40,7 +53,7 @@ var partidos=[
 	
 var gridCellRenderers=[
 {
-   featureType: 'LimpiezaCooperativas2015',
+   featureType: 'LimpiezaCooperativas2015', 
    attrName: 'expediente',
    renderer: {
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
@@ -81,18 +94,8 @@ var gridCellRenderers=[
    featureType: 'parcelas_con_plano_geom',
    attrName: 'nomencla',
    renderer: {
-			fn : function(value, metaData, record, rowIndex, colIndex, store) {
-				var nomencla='';
-				for (var i=0; i<13; i++) {
-					var k=convert[i][2];
-					for (var j=convert[i][1]; j<k;j++){
-						if(value.substring(j,j+1)!='0'){
-						nomencla+=convert[i][0]+value.substring(j,k);
-						j=k;
-						}
-					}
-				}
-			   return nomencla;
+			fn : function(value, metaData, record, rowIndex, colIndex, store) { //funcion para convertir nomencla en human friendly
+			  return convertNomencla(value);
 		   },
 		   options : {}
    }
@@ -201,17 +204,7 @@ var gridCellRenderers=[
    attrName: 'nomencla',
    renderer: {
 			fn : function(value, metaData, record, rowIndex, colIndex, store) {
-				var nomencla='';
-				for (var i=0; i<13; i++) {
-					var k=convert[i][2];
-					for (var j=convert[i][1]; j<k;j++){
-						if(value.substring(j,j+1)!='0'){
-						nomencla+=convert[i][0]+value.substring(j,k);
-						j=k;
-						}
-					}
-				}
-			   return nomencla;
+				return convertNomencla(value);
 		   },
 		   options : {}
    }
@@ -350,8 +343,6 @@ var toolBarItems=[
 		},
 		{type: "coordinatesearch", options: {
 
-		// === Full demo configuration ===
-
 				// see ToolbarBuilder.js
 					  formWidth: 320
 					, formPageX: 15
@@ -442,7 +433,7 @@ var toolBarItems=[
 						height: 600,
 						hropts: [
 								{
-									searchPanel: {
+									searchPanel: { 						 //busqueda de mediciones
 										xtype: 'hr_formsearchpanel',
 										name: 'Busqueda de mediciones',
 										description: 'Busqueda de mediciones por fecha',
@@ -621,7 +612,7 @@ var toolBarItems=[
 									resultPanel: resultPanel
 								},
 								{
-									searchPanel: {
+									searchPanel: {							//busqueda de planos
 										xtype: 'hr_formsearchpanel',
 										name: 'Busqueda de planos Rel Territorial',
 										description: 'Busqueda de planos Rel Territorial',
@@ -699,7 +690,7 @@ var toolBarItems=[
 									resultPanel: resultPanel
 								},
 								{
-									searchPanel: {
+									searchPanel: {					//busqueda de obras sigos
 										xtype: 'hr_formsearchpanel',
 										name: 'Busqueda de Obras Sigos',
 										description: 'Busqueda de Obras Sigos',
@@ -785,7 +776,7 @@ var toolBarItems=[
 									resultPanel: resultPanel
 								},
 								{
-									searchPanel: {
+									searchPanel: { 						//busqueda de parcelas por partida/partido
 										xtype: 'hr_formsearchpanel',
 										name: 'Busqueda parcelas Arba por partido y partida',
 										description: 'Busqueda de parcelas Arba por partido y partida inmobiliaria',
@@ -871,7 +862,7 @@ var toolBarItems=[
 									resultPanel: resultPanel
 								},
 								{
-									searchPanel: {
+									searchPanel: {								//busqueda de parcelas por nomenclatura
 										xtype: 'hr_formsearchpanel',
 										name: 'Busqueda de parcelas Arba por nomenclatura',
 										description: 'Busqueda de parcelas Arba por nomenclatura',

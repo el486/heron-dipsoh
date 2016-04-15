@@ -35,7 +35,7 @@ var treeTheme = [
 				{text:'Mas...', children:
 						[
 							{nodeType: "gx_layer", layer: "Google Streets" },
-							{nodeType: "gx_layer", layer: "toner", text:"Stamen Toner" },
+							//{nodeType: "gx_layer", layer: "toner", text:"Stamen Toner" },
 							{nodeType: "gx_layer", layer: "ESRI Satelital" },
 							{nodeType: "gx_layer", layer: "ESRI Topografico"},
 							{nodeType: "gx_layer", layer: "Bing Aereo"},
@@ -150,7 +150,7 @@ var layerItems=[
 		/*
 		 * Basemaps OpenStreetMap
 		 */
-		new OpenLayers.Layer.Stamen("toner"),
+		//new OpenLayers.Layer.Stamen("toner"),
 		new OpenLayers.Layer.OSM("OpenStreetsMap"),
 		
 		
@@ -200,7 +200,7 @@ var layerItems=[
 		}),
 		
 		/*
-		 * Basemap IGN
+		 * Basemap Tilecache
 		 */
 		new OpenLayers.Layer.WMS("mdt_ign",gwcURL,
 			{layers: 'dipsoh:mdt',transparent: true, format:'image/png', tiled: true }, 
@@ -236,7 +236,11 @@ var layerItems=[
 			},{
 			transitionEffect: 'resize',isBaseLayer:false,displayInLayerSwitcher:true,visibility:false
 			}),
-			
+		
+		/*
+		 * Basemap Blanco
+		 */
+		
 		new OpenLayers.Layer.Image(
 				"Blanco",
 				Ext.BLANK_IMAGE_URL,
@@ -244,6 +248,10 @@ var layerItems=[
 				new OpenLayers.Size(10, 10),
 				{isBaseLayer: true, visibility: false, displayInLayerSwitcher: true, transitionEffect: 'resize',numZoomLevels: 18}
 		),
+		
+		/*
+		 * Layers nuestros
+		 */
 		
 		layerPartidos = new OpenLayers.Layer.WMS("Partidos",gwcURL,
 			{layers: 'dipsoh:departamentos',transparent: true, format:'image/png', singleTile: true }, 
@@ -489,7 +497,10 @@ var layerItems=[
 						}
 					}
 			}
-		),//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente
+		),
+		
+		
+		//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente (layer geodesia)
 		new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
 			"http://geobasig.com.ar/geoserver/Geodesia/wms?",
 			{layers: 'Geodesia:parcelas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {

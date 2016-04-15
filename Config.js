@@ -25,7 +25,7 @@ Ext.namespace("Heron.globals");
 Heron.globals.serviceUrl=serverURL+'/cgi-bin/heron.cgi';
 OpenLayers.ProxyHost = serverURL+'/cgi-bin/proxy.cgi?url=';
 
-// Evita le mattonelle rosa
+// Avoid pink tiles (not always)
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
 OpenLayers.Util.onImageLoadErrorColor = "transparent";
 
@@ -178,7 +178,7 @@ Heron.layout = {
 						 }
 					],
 
-					// layer sources
+					// wms layer sources
 					defaultSourceType: "gxp_wmssource",
 					sources: {
 						ignwms: {

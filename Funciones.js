@@ -21,7 +21,7 @@ function getAjax(url,pars,idSucess){
                 alert('Se produjo un error al cargar, intente nuevamente.');
             }
 */
-function popupObras(value){
+function popupObras(value){ //popup con informacion de la obra del SIGOS
     
 	Ext.Ajax.request({
     url: 'http://www.mosp.gba.gov.ar/sistemas/sigos/ind.php?mod=obra/obraDatos_link&idobra='+value,
@@ -57,53 +57,33 @@ function popupObras(value){
 	});
 }
 			
-function test (id){
+function test (id){ //test
 alert(id);
 }
 
-function limpiarMiniDIV(){
+function limpiarMiniDIV(){ 
 document.getElementById('infoMiniDIV').innerHTML='';
 }
 
-Ext.onReady(function() {
+Ext.onReady(function() {  //carga después de terminar de cargar el mapa. Se usa para cargar las busquedas por url
 	var mapa = Heron.App.map;
-	/*
-	Heron.App.map.addControl(new OpenLayers.Control.ScaleLine());
-	//url='/wms_hidraulica/cgi-bin/heron.cgi';
-	//Ext.getCmp('map_editor').olEditorOptions.UploadFeature.url='/wms_hidraulica/cgi-bin/heron.cgi';
-	//alert(Ext.getCmp('map_editor').olEditorOptions.DownloadFeature.url);
-
-	var partidosOver = new OpenLayers.Layer.WMS("Partidos",wmsURL,
-								{layers: 'dipsoh:departamentos',transparent: true, format:'image/png', singleTile: true }, 
-								{visibility: true, displayInLayerSwitcher:true,isBaseLayer:true}); 
+	//aca iba el overview, ahora se carga directamente en el config
 	
-	var overviewOptions = {
-		numZoomLevels:1,
-        projection: "EPSG:900913",
-        units: 'm',
-        maxExtent: new OpenLayers.Bounds(-7196781, -5036226, -6200364, -3906201),
-		restrictedExtent: new OpenLayers.Bounds(-7196781, -5036226, -6200364, -3906201),
-		layers:[partidosOver]
-	    };
-	
-    Heron.App.map.addControl(new OpenLayers.Control.OverviewMap({maximized: true, size: new OpenLayers.Size(100,100) , mapOptions:overviewOptions}));
-	*/
-	
-	if (planoUrl!=""){	
+	if (planoUrl!=""){	//dispara busqueda por numero de plano
 		params='numpla='+planoUrl;
-		//getAjax('./php/buscarPlanoId.php',params,'infoDIV');
+		//getAjax('./php/buscarPlanoId.php',params,'infoDIV');  //Se cambio getajax (prototype) por ext.ajax.request
 		Ext.Ajax.request({ 
 			url: './php/buscarPlanoId.php?'+params,
 			success: function(response){
 			//console.log(response.responseText)
-			var scripts, scriptsFinder=/<script[^>]*>([\s\S]+)<\/script>/gi;
+			var scripts, scriptsFinder=/<script[^>]*>([\s\S]+)<\/script>/gi; //necesario para ejecutar scripts dentro de la respuesta
                         while(scripts=scriptsFinder.exec(response.responseText)) {
                             eval(scripts[1]);
                        }
 			}
 		});
 		}
-	if (obraUrl!=""){	
+	if (obraUrl!=""){ //dispara busqueda por idobra
 		params='idobra='+obraUrl;
 		//getAjax('./php/buscarObraId.php',params,'infoDIV');
 		Ext.Ajax.request({ 
@@ -118,7 +98,7 @@ Ext.onReady(function() {
 		})
 		}
 	
-	Ext.Ajax.on('beforerequest', function(conn,opts){
+	Ext.Ajax.on('beforerequest', function(conn,opts){ //captura el request de impresion para cambiar la url y repara request de mapbox y esri. 
 		//alert(opts.url);
 		if (opts.url=='http://192.168.1.13/print/pdf/create.json'){
 			//rawString = Ext.encode(opts.jsonData);
@@ -139,7 +119,7 @@ Ext.onReady(function() {
 			//opts.jsonData.replace('extension: "BIKNGrVqVAilUH7g0dsmxg"','"extension":"png","customParams":{"access_token":"pk.eyJ1IjoiNDg2IiwiYSI6IkNadnAwUk0ifQ.BIKNGrVqVAilUH7g0dsmxg"}');
 			//console.log(opts.jsonData.layers[0].baseURL.substring(7,10));
 			//opts.params={spec:rawString}
-			if(opts.jsonData.layers[0].baseURL==wmsURL || opts.jsonData.layers[0].baseURL.substring(7,10)=='ecn') {
+			if(opts.jsonData.layers[0].baseURL==wmsURL || opts.jsonData.layers[0].baseURL.substring(7,10)=='ecn') {  //Muestra un cartel si se quiere usar bing o google como basemap
 				Ext.MessageBox.show({
 					title: String.format('Advertencia'),
 					msg: String.format('Por cuestiones de copyright las capas de Google y Bing no pueden usarse en la salida impresa. Elija OpenStreetMap, MapBox o capas IGN para imprimir con capa base, o intente con la impresion de pantalla.'),
@@ -153,12 +133,9 @@ Ext.onReady(function() {
 					})
 				};
 			//Ext.Ajax.abort();
-			//prev=Ext.WindowMgr.getActive();
-			//prev.close();
-			//newWin=window.open(opts.url+'?spec='+opts.params.spec,'Genera PDF','width=200,height=50');
 			}
 		});
-	Ext.Ajax.on('requestcomplete', function(conn, response, opts){
+	Ext.Ajax.on('requestcomplete', function(conn, response, opts){ //vuelve a capturar la url de respuesta del print request para apuntar al pdf en internet
 			//alert(response.responseText);
 			response.responseText = response.responseText.replace('http://192.168.1.13',serverURL);
 			//alert(response.responseText);
@@ -166,7 +143,7 @@ Ext.onReady(function() {
 	//Ext.Ajax.on('beforerequest',interceptPrint(null,{single:true}));
 	//printProvider.print(mapPanel,printPage);
 	
-	Heron.App.map.events.register('changelayer', null, function(evt){
+	Heron.App.map.events.register('changelayer', null, function(evt){ //dispara la funcion de busqueda de puntos cercanos si se enciende la capa red geoba
 				   if(evt.property === "visibility") {
 					  //alert(map.getScale())
 					    
@@ -194,16 +171,16 @@ Ext.onReady(function() {
 			   }
 			);
 			
-			var files = ["./js/javascript.util.js","./js/jsts.js","./js/attache.array.min.js","./js/mod/FeaturePanel_mod.js"];
+			var files = ["./js/javascript.util.js","./js/jsts.js","./js/attache.array.min.js","./js/mod/FeaturePanel_mod.js"]; 
 			var onload = function () {   
 			// do something onload
 			}
 			var scope = this;
-			Ext.Loader.load(files, onload, scope, true);
+			Ext.Loader.load(files, onload, scope, true); //carga los archivos necesarios para la funcion buffer (500k) despues de cargar la interfaz
 	
 });
 
-function fnclick(e){
+function fnclick(e){ //busca puntos cercanos al lugar en donde se hizo click. Consulta directamente el postgres
 	var lonlat = Heron.App.map.getLonLatFromViewPortPx(e.xy);
 	//alert(lonlat.lon+' - '+lonlat.lat);
 	//alert(lonlat.lon);

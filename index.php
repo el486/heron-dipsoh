@@ -48,14 +48,14 @@
     <script type="text/javascript" src="./js/attache.array.min.js"></script> -->
 
 	<!-- External lib: Google Maps -->
-	<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3"></script>
 	
 	<!-- External lib: OpenLayers -->
 	<script type="text/javascript" src="./js/OpenLayers.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/style.css"/>
 	
-	<!-- External lib: Stamen Maps (cargar despues de openlayers)-->	
-	<script type="text/javascript" src="./js/tile.stamen.js?v1.2.4"></script>
+	<!-- External lib: Stamen Maps (cargar despues de openlayers y google) Reemplazada por mapbox high contrast>	
+	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script-->
 	
 	<!-- External lib: GeoExt 1.0 -->
 	<script type="text/javascript" src="./js/GeoExt.js"></script>
