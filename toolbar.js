@@ -878,7 +878,36 @@ var toolBarItems=[
 										}),
 										downloadFormats: [],
 										items: [
-											{
+											{	
+												xtype:'combo',
+												fieldLabel: '  Partido',
+												name: "partido",
+												typeAhead: true,
+												width: 150,
+												triggerAction: 'all',
+												lazyRender:true,
+												mode: 'local',
+												tpl: '<tpl for="."><div ext:qtip="{tip}" class="x-combo-list-item">{display}</div></tpl>',
+												store: new Ext.data.ArrayStore({
+													id: 0,
+													fields: ['display',	'tip'],
+													data: partidos
+												}),
+												listeners: { 
+														'select': function(combo, record, index){ 
+														combo.setValue(record.data['tip']);
+														},
+														'change': function(e){ 
+														var str=(e.getValue());
+														str="00"+str;
+														str=str.substr(str.length - 3);
+														str=str.split(' ').join('%');
+														e.setValue(str);
+														armarNomencla();
+														}
+												}
+											},
+											/*{
 												xtype: "textfield",
 												name: "partido",
 												value: '',
@@ -892,7 +921,7 @@ var toolBarItems=[
 														e.setValue(str);
 														armarNomencla();
 														}}
-											},
+											},*/
 											{
 												xtype: "textfield",
 												name: "rural__ne",
@@ -1142,7 +1171,7 @@ var toolBarItems=[
 			pressed: false,
 			// Options for OLEditor
 			olEditorOptions: {
-					activeControls: [/*'UploadFeature', */'DownloadFeature', 'Separator', 'Navigation', 'SnappingSettings', 'CADTools', 'Separator', 'DeleteAllFeatures', 'DeleteFeature', 'DragFeature', 'SelectFeature', 'Separator', 'DrawHole', 'ModifyFeature', 'Separator'],
+					activeControls: ['UploadFeature', 'DownloadFeature', 'Separator', 'Navigation', 'SnappingSettings', 'CADTools', 'Separator', 'DeleteAllFeatures', 'DeleteFeature', 'DragFeature', 'SelectFeature', 'Separator', 'DrawHole', 'ModifyFeature', 'Separator'],
 					featureTypes: ['text', 'regular', 'polygon', 'path', 'point'],
 					language: 'en',
 					DownloadFeature: {
@@ -1155,8 +1184,19 @@ var toolBarItems=[
 							],
 							// For custom projections use Proj4.js
 							fileProjection: new OpenLayers.Projection('EPSG:4326')
-					}//,
+					},
+					UploadFeature: {
+							url: serverURL+'/cgi-bin/heron.cgi',
+							formats: [
+									{name: 'Well-Known-Text (WKT)', fileExt: '.wkt', mimeType: 'text/plain', formatter: 'OpenLayers.Format.WKT'},
+									//{name: 'GeoJSON', fileExt: '.json', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON'},
+									{name: 'Keyhole Markup Language (KML)', fileExt: '.kml', mimeType: 'text/xml', formatter: 'OpenLayers.Format.KML', fileProjection: new OpenLayers.Projection('EPSG:4326')},
+									//{name: 'ESRI Shapefile (zipped, WGS84)', fileExt: '.zip', mimeType: 'application/zip', formatter: 'OpenLayers.Format.GeoJSON', targetFormat: 'ESRI Shapefile', fileProjection: new OpenLayers.Projection('EPSG:4326')}
+							],
+							// For custom projections use Proj4.js
+							fileProjection: new OpenLayers.Projection('EPSG:4326')
 					}
+				}
 			}
          },
 		{type: "-"},
