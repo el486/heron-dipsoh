@@ -442,11 +442,11 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         this.drawFieldSet.show();
         this.activateDrawControl();
 		this.searchDistField.show();
-		this.VectorLayerCombo.hide();
+		this.vectorLayerCombo.hide();
 
         this.selectionStatusField.show();
         this.updateStatusPanel();
-        this.updateSelectionStatusField(__('Select a draw tool and draw to select objects from') + (this.sourceLayer ? '<br/>"' + this.sourceLayer.name + '"' : ''));
+        this.updateSelectionStatusField(__('Enter a buffer distance and draw to apply to objects from') + (this.sourceLayer ? '<br/>"' + this.sourceLayer.name + '"' : ''));
     },
 	
 	    onVectorLayerSelect: function (layer) {
@@ -460,6 +460,9 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
 		this.sourceLayerCombo.hide();
 		this.searchDistField.show();
 		this.bufferButton.show();
+		
+		this.updateStatusPanel(__('Enter a buffer distance and press "Buffer" to apply to objets from') + (this.vectorLayer ? '<br/>"' + this.vectorLayer.name + '"' : ''));
+        
     },
 
     /** api: method[onLayerSelect]

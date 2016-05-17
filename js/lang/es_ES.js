@@ -283,5 +283,9 @@ Heron.i18n.dict = {
     'WITHIN': 'TOCA',
     'WITHIN DISTANCE': 'ESTA A UNA DISTANCIA (BUFFER)',
     'CONTAINS': 'CONTIENE',
-    'Simple Time Slider': 'Control Deslizante de Fecha'
+    'Simple Time Slider': 'Control Deslizante de Fecha',
+	
+	// BUFFER
+	'Enter a buffer distance and draw to apply to objects from':'Ingrese una distancia de buffer y dibuje para aplicarlo a los objetos de la capa ',
+	'Enter a buffer distance and press "Buffer" to apply to objets from':'Ingrese una distancia de busqueda y presione el boton para dibujar el buffer sobre la capa '
 };
