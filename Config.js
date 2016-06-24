@@ -37,6 +37,7 @@ OpenLayers.Util.onImageLoadErrorColor = "transparent";
 var layerOculto;
 var mapPanel;
 var textoDIV;
+var searchWin;
 
 /* deshabilitado por interferir en la busqueda por cruce de capas
 var layerOptions = {visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {

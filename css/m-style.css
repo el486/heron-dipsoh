@@ -108,4 +108,31 @@ table.ext td {
     filter: alpha(opacity=10); /* IE */
 }
 
+/*google search places*/
+.olControlAttribution {
+bottom: 0 !important;
+}
+
+.olImageLoadError {
+background-color: transparent !important;
+}
+
+.pac-container {
+z-index: 10000
+}
+
+.x-btn .icon-map-magnify {
+background-image: url("../images/map_magnify.png") !important;
+}
+
+/* Google Maps will mess oleDialog up, so set to absolute position */
+.oleDialog {
+position: absolute;
+right: 100px;
+}
+
+.olPopup {
+z-index: 10000 !important;
+}
+
 

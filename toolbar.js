@@ -329,6 +329,7 @@ var toolBarItems=[
 		{type: "measurelength", options: {geodesic: true}},
 		{type: "measurearea", options: {geodesic: true}},
 		{type: "-"},
+		/*
 		{type: "namesearch",
 			// Optional options, see NominatimSearchCombo.js
 			options : {
@@ -340,7 +341,7 @@ var toolBarItems=[
 				tpl: '<tpl for="."><tpl for="address"><div class="x-combo-list-item">{stream} {suburb} {state_district} {state}</div></tpl></tpl>',
                 displayTpl: '<tpl for="."><tpl for="address">{stream} {suburb} {state_district} {state}</tpl></tpl>'
 			}
-		},
+		},*/
 		{type: "coordinatesearch", options: {
 
 				// see ToolbarBuilder.js
@@ -416,6 +417,71 @@ var toolBarItems=[
 
 	}},
 	GObec.streetview.toolbar,
+	{
+		type: "any",
+		options: {
+			text: '',
+			tooltip: 'Buscar con Google Places',
+			iconCls: 'icon-map-magnify',
+			id: "googleSearch",
+			handler: function (objRef) {
+				if (!searchWin) {
+					searchWin = new Ext.Window({
+						title: "Find",
+						layout: 'fit',
+						width: 400,
+						height: 70,
+						plain: true,
+						closeAction: 'hide',
+						html: '<div style="padding: 5px" id="searchContent"><input style="width: 370px" type="text" id="gAddress" name="gAddress" value="" /></div>',
+						x: 300,
+						y: 100
+					});
+				}
+				if (typeof(objRef) === "object") {
+					searchWin.show(objRef);
+				} else {
+					searchWin.show();
+				}//end if object reference was passed
+				var input = document.getElementById('gAddress');
+				var options = {
+					//bounds: defaultBounds
+					//types: ['establishment']
+				};
+				var autocomplete = new google.maps.places.Autocomplete(input, options);
+				//console.log(autocomplete.getBounds());
+				google.maps.event.addListener(autocomplete, 'place_changed', function () {
+					var place = autocomplete.getPlace();
+					var transformPoint = function (lat, lon, s, d) {
+						var p = [];
+						if (typeof Proj4js === "object") {
+							var source = new Proj4js.Proj(s);    //source coordinates will be in Longitude/Latitude
+							var dest = new Proj4js.Proj(d);
+							p = new Proj4js.Point(lat, lon);
+							Proj4js.transform(source, dest, p);
+						}
+						else {
+							p.x = null;
+							p.y = null;
+						}
+						return p;
+					};
+					var p = transformPoint(place.geometry.location.lng(), place.geometry.location.lat(), "EPSG:4326", "EPSG:900913");
+					var point = new OpenLayers.LonLat(p.x, p.y);
+					Heron.App.map.setCenter(point, 12);
+					try {
+						placeMarkers.destroy();
+					} catch (e) {
+					}
+
+					placeMarkers = new OpenLayers.Layer.Markers("Markers");
+					Heron.App.map.addLayer(placeMarkers);
+					placeMarkers.addMarker(new OpenLayers.Marker(point));
+					});
+
+			}
+		}
+	},
 	{
         type: "searchcenter",
         // Options for SearchPanel window
@@ -622,13 +688,13 @@ var toolBarItems=[
 											version: "1.1.0"
 											,srsName: "EPSG:900913"
 											,url: serverURL+"/geoserver/dipsoh/wfs"
-											,featureType: "parcelas_rt_22185"
+											,featureType: "parcelas_rt_geom"
 											,featurePrefix: "dipsoh"
 											,featureNS : serverURL+"/geoserver/dipsoh_postgis"
 										}),
 										downloadFormats: [],
 										items: [
-											{
+											/*{
 												xtype: "textfield",
 												name: "nomcat__like",
 												value: 'Part:',
@@ -640,10 +706,10 @@ var toolBarItems=[
 														e.setValue(str);
 														}  
 													}
-											},
+											},*/
 											{
 												xtype: "textfield",
-												name: "num_plano__like",
+												name: "plano_rt__like",
 												value: '55-',
 												fieldLabel: "  Num.Plano"
 											},
@@ -1099,32 +1165,6 @@ var toolBarItems=[
 			}
 		},
 		{type: "-"},
-		{type: "upload", options: {
-			upload: {
-             layerName: __('My Upload'),
-             visibleOnUpload: true,
-             url: serverURL+'/cgi-bin/heron.cgi',
-             params: {
-                 action: 'upload',
-                 mime: 'text/html',
-                 encoding: 'escape'
-             },
-             formats: [
-                 {name: 'Well-Known-Text (WKT)', fileExt: '.wkt', mimeType: 'text/plain', formatter: 'OpenLayers.Format.WKT'},
-                 //{name: 'GeoJSON', fileExt: '.json', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON'},
-                 {name: 'Keyhole Markup Language (KML)', fileExt: '.kml', mimeType: 'text/xml', formatter: 'OpenLayers.Format.KML'},
-                 {name: 'CSV (with X,Y)', fileExt: '.csv', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON'},
-                 {name: 'ESRI Shape (zip, WGS84/EPSG:4326)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON'},
-				 {name: 'ESRI Shape (zip, EPSG:3857, EPSG:900913 - Google)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:900913')},
-                 {name: 'ESRI Shape (zip, Campo Inchauspe faja 5 - EPSG:22195)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22195')}
-             ],
-             // For custom projections use Proj4.js
-             fileProjection: new OpenLayers.Projection('EPSG:4326')
-			}
-
-		}
-		},
-		{type: "-"},
 		{type: "printdialog", options: {url: serverURL+'/print/pdf' , windowWidth: 360, id:'prevImpresion'
 			// , showTitle: true
 			 , mapTitle: 'Sig DiPSOH'
@@ -1167,6 +1207,31 @@ var toolBarItems=[
 			
 		},
 		{type: "-"},
+		{type: "upload", options: {
+			upload: {
+             layerName: __('My Upload'),
+             visibleOnUpload: true,
+             url: serverURL+'/cgi-bin/heron.cgi',
+             params: {
+                 action: 'upload',
+                 mime: 'text/html',
+                 encoding: 'escape'
+             },
+             formats: [
+                 {name: 'Well-Known-Text (WKT)', fileExt: '.wkt', mimeType: 'text/plain', formatter: 'OpenLayers.Format.WKT'},
+                 //{name: 'GeoJSON', fileExt: '.json', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON'},
+                 {name: 'Keyhole Markup Language (KML)', fileExt: '.kml', mimeType: 'text/xml', formatter: 'OpenLayers.Format.KML'},
+                 {name: 'CSV (with X,Y)', fileExt: '.csv', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON'},
+                 {name: 'ESRI Shape (zip, WGS84/EPSG:4326)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON'},
+				 {name: 'ESRI Shape (zip, EPSG:3857, EPSG:900913 - Google)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:900913')},
+                 {name: 'ESRI Shape (zip, Campo Inchauspe faja 5 - EPSG:22195)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22195')}
+             ],
+             // For custom projections use Proj4.js
+             fileProjection: new OpenLayers.Projection('EPSG:4326')
+			}
+
+		  }
+		},
 		{type: "oleditor", options: {
 			pressed: false,
 			// Options for OLEditor
