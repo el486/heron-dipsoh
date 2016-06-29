@@ -295,6 +295,13 @@ var resultPanel={
 				};
 							
 var toolBarItems=[
+		{type: "any",
+			options: {
+				text: 'Información',
+				tooltip: "Herramienta de información",
+				enableToggle: false
+			}
+		},
 		{type: "featureinfo", options: {
         pressed: true,
         popupWindow: {
@@ -315,33 +322,39 @@ var toolBarItems=[
 				}
 			}
 		}},
-		{type: "-"},
-		{type: "scale", options: {width: 110}},
+		//{type: "scale", options: {width: 110}},
 		{type: "-"} ,
+		{type: "any",
+			options: {
+				text: 'Navegación',
+				tooltip: "Herramientas de zoom y navegación",
+				enableToggle: false
+			}
+		},
 		{type: "pan"},
 		{type: "zoomin"},
 		{type: "zoomout"},
 		{type: "zoomvisible"},
-		{type: "-"} ,
 		{type: "zoomprevious"},
 		{type: "zoomnext"},
 		{type: "-"},
+		{type: "any",
+			options: {
+				text: 'Medición',
+				tooltip: "Herramientas de medición",
+				enableToggle: false
+			}
+		},
 		{type: "measurelength", options: {geodesic: true}},
 		{type: "measurearea", options: {geodesic: true}},
-		{type: "-"},
-		/*
-		{type: "namesearch",
-			// Optional options, see NominatimSearchCombo.js
-			options : {
-				zoom: 8,
-				url: 'http://open.mapquestapi.com/nominatim/v1/search.php?countrycodes=AR&format=json&limit=5&addressdetails=1',
-				xtype : 'hr_nominatimsearchcombo',
-				tooltip: __('Search Nominatim'),
-				id: "nominatimsearchcombo",
-				tpl: '<tpl for="."><tpl for="address"><div class="x-combo-list-item">{stream} {suburb} {state_district} {state}</div></tpl></tpl>',
-                displayTpl: '<tpl for="."><tpl for="address">{stream} {suburb} {state_district} {state}</tpl></tpl>'
+		{type: "-"}, 
+		{type: "any",
+			options: {
+				text: 'Búsqueda',
+				tooltip: "Herramientas búsqueda y consultas",
+				enableToggle: false
 			}
-		},*/
+		},
 		{type: "coordinatesearch", options: {
 
 				// see ToolbarBuilder.js
@@ -1165,6 +1178,13 @@ var toolBarItems=[
 			}
 		},
 		{type: "-"},
+		{type: "any",
+			options: {
+				text: 'Impresión',
+				tooltip: "Interfaces de impresión",
+				enableToggle: false
+			}
+		},
 		{type: "printdialog", options: {url: serverURL+'/print/pdf' , windowWidth: 360, id:'prevImpresion'
 			// , showTitle: true
 			 , mapTitle: 'Sig DiPSOH'
@@ -1207,6 +1227,12 @@ var toolBarItems=[
 			
 		},
 		{type: "-"},
+		{type: "any",
+			options: {
+				text: 'Edición',
+				tooltip: "Herramientas para agregar geometrias"
+				}
+		},
 		{type: "upload", options: {
 			upload: {
              layerName: __('My Upload'),
