@@ -77,6 +77,12 @@ table.ext td {
 .bmenu {
     background-image: url(menu-show.gif) !important;
 }
+.binfo {
+    background-image: url(../resources/images/silk/information.png) !important;
+}
+.bnav {
+    background-image: url(../resources/images/momentum/handtool3.png) !important;
+}
 .x-btn .icon-printscr {
     background-image: url(../resources/images/silk/layers.png);
 }

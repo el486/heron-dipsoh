@@ -2,10 +2,14 @@
 	var part = Ext.getCmp('form_part').getValue();
 	var circ = Ext.getCmp('form_circ').getValue();
 	var secc = Ext.getCmp('form_secc').getValue();
-	var otro = Ext.getCmp('form_otro').getValue();
+	var chac = Ext.getCmp('form_chacra').getValue();
+	var quin = Ext.getCmp('form_quinta').getValue();
+	var frac = Ext.getCmp('form_fraccion').getValue();
+	var manz = Ext.getCmp('form_manzana').getValue();
 	var pnum = Ext.getCmp('form_pnum').getValue();
 	var plet = Ext.getCmp('form_plet').getValue();
-	Ext.getCmp('form_nomencla').setValue(part+circ+secc+"%"+otro+"%"+pnum+plet);
+	Ext.getCmp('form_nomencla').setValue(part+circ+secc+"%"+chac+"%"+quin+"%"+frac+"%"+manz+"%"+pnum+plet);
+	
 }
 			
 function convertNomencla(value){ //funcion para convertir la nomenclatura en un formato legible
@@ -295,16 +299,11 @@ var resultPanel={
 				};
 							
 var toolBarItems=[
-		{type: "any",
-			options: {
-				text: 'Información',
-				tooltip: "Herramienta de información",
-				enableToggle: false
-			}
-		},
 		{type: "featureinfo", options: {
         pressed: true,
-        popupWindow: {
+		text: 'Información',
+		iconCls: 'binfo',
+		popupWindow: {
             width: 320,
             height: 200,
             featureInfoPanel: {
@@ -324,14 +323,12 @@ var toolBarItems=[
 		}},
 		//{type: "scale", options: {width: 110}},
 		{type: "-"} ,
-		{type: "any",
-			options: {
-				text: 'Navegación',
-				tooltip: "Herramientas de zoom y navegación",
-				enableToggle: false
+		{type: "pan", options: {
+			pressed: true,
+			text: 'Navegación',
+			iconCls: 'bnav'
 			}
 		},
-		{type: "pan"},
 		{type: "zoomin"},
 		{type: "zoomout"},
 		{type: "zoomvisible"},
@@ -342,7 +339,7 @@ var toolBarItems=[
 			options: {
 				text: 'Medición',
 				tooltip: "Herramientas de medición",
-				enableToggle: false
+				disabled: true
 			}
 		},
 		{type: "measurelength", options: {geodesic: true}},
@@ -352,7 +349,7 @@ var toolBarItems=[
 			options: {
 				text: 'Búsqueda',
 				tooltip: "Herramientas búsqueda y consultas",
-				enableToggle: false
+				disabled: true
 			}
 		},
 		{type: "coordinatesearch", options: {
@@ -960,6 +957,7 @@ var toolBarItems=[
 											{	
 												xtype:'combo',
 												fieldLabel: '  Partido',
+												id:'form_part',
 												name: "partido",
 												typeAhead: true,
 												width: 150,
@@ -1010,6 +1008,7 @@ var toolBarItems=[
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
 														val="00"+val;
+														if (val=="00"){ val="";}
 														val=val.substr(val.length - 2);
 														val=val.split(' ').join('%');
 														e.setValue(val);
@@ -1025,6 +1024,7 @@ var toolBarItems=[
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
 														val="00"+val;
+														if (val=="00"){ val="";}
 														val=val.substr(val.length - 2);
 														val=val.split(' ').join('%');
 														e.setValue(val);
@@ -1035,15 +1035,54 @@ var toolBarItems=[
 												xtype: "textfield",
 												name: "rural__ne",
 												value: '',
-												id:'form_otro',
-												fieldLabel: "  Ch/Qt/Fr/Mz",
+												id:'form_chacra',
+												fieldLabel: "  Chacra",
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
-														val=val.split(' ').join('%');
+														val=val.split('').join('%');
 														e.setValue(val);
 														armarNomencla();
 														}}
 											},
+											{
+												xtype: "textfield",
+												name: "rural__ne",
+												value: '',
+												id:'form_quinta',
+												fieldLabel: "  Quinta",
+												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val=val.split('').join('%');
+														e.setValue(val);
+														armarNomencla();
+														}}
+											},
+											{
+												xtype: "textfield",
+												name: "rural__ne",
+												value: '',
+												id:'form_fraccion',
+												fieldLabel: "  Fraccion",
+												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val=val.split('').join('%');
+														e.setValue(val);
+														armarNomencla();
+														}}
+											},
+											{
+												xtype: "textfield",
+												name: "rural__ne",
+												value: '',
+												id:'form_manzana',
+												fieldLabel: "  Manzana",
+												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val=val.split('').join('%');
+														e.setValue(val);
+														armarNomencla();
+														}}
+											},/*
 											{
 												xtype: "label",
 												id: "helplabel",
@@ -1052,7 +1091,7 @@ var toolBarItems=[
 													fontSize: '10px',
 													color: '#AAAAAA'
 												}
-											},
+											},*/
 											{
 												xtype: "textfield",
 												name: "rural__ne",
@@ -1062,6 +1101,7 @@ var toolBarItems=[
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
 														val="000"+val;
+														if (val=="000"){ val="";}
 														val=val.substr(val.length - 4);
 														val=val.split(' ').join('%');
 														e.setValue(val);
@@ -1077,11 +1117,31 @@ var toolBarItems=[
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
 														val="00"+val;
+														if (val=="00"){ val="";}
 														val=val.substr(val.length - 3);
 														val=val.split(' ').join('%');
 														e.setValue(val);
 														armarNomencla();
 														}}
+											},
+											{
+												xtype:"button",
+												//anchor: "20%",
+												text: 'Borrar datos',
+												listeners: {
+													click: function () {
+														Ext.getCmp('form_part').setValue('');
+														Ext.getCmp('form_circ').setValue('');
+														Ext.getCmp('form_secc').setValue('');
+														Ext.getCmp('form_chacra').setValue('');
+														Ext.getCmp('form_quinta').setValue('');
+														Ext.getCmp('form_fraccion').setValue('');
+														Ext.getCmp('form_manzana').setValue('');
+														Ext.getCmp('form_pnum').setValue('');
+														Ext.getCmp('form_plet').setValue('');													
+													
+													}
+												}
 											},
 											{
 												xtype: "textfield",
@@ -1182,7 +1242,7 @@ var toolBarItems=[
 			options: {
 				text: 'Impresión',
 				tooltip: "Interfaces de impresión",
-				enableToggle: false
+				disabled: true
 			}
 		},
 		{type: "printdialog", options: {url: serverURL+'/print/pdf' , windowWidth: 360, id:'prevImpresion'
@@ -1230,7 +1290,8 @@ var toolBarItems=[
 		{type: "any",
 			options: {
 				text: 'Edición',
-				tooltip: "Herramientas para agregar geometrias"
+				tooltip: "Herramientas para agregar geometrias",
+				disabled: true
 				}
 		},
 		{type: "upload", options: {
