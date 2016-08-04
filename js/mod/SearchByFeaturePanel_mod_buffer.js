@@ -543,16 +543,23 @@ Heron.widgets.search.SearchByBuffer = Ext.extend(Heron.widgets.search.SpatialSea
         this.resetForm();
     },
 	
+	 /** api: method[bufferFeatures]
+     *  Function called before performing the (vector or wfs) search, 
+	 *  applies the buffer to all input features and returns an array of buffer features
+     */
 	bufferFeatures: function (features){
 		var input,buffer,distance;
 		var buffered=[];
 		var reader = new jsts.io.WKTReader();
-		var parser = new jsts.io.OpenLayersParser();
+		var parser = new jsts.io.GeoJSONWriter();
+		var geoJSON = new OpenLayers.Format.GeoJSON();
+		//var parser = new jsts.io.OpenLayersParser(); //jsts version 0.11
 		var distance=this.spatialFilterDistance;
 		for (var i = 0; i < features.length; i++) {
 				input = reader.read(features[i].geometry.toString());
 				buffer = input.buffer(distance*1.25); //corrects distance error (caused maybe because of projection issues)
 				buffer = parser.write(buffer);
+				buffer = geoJSON.read(buffer, 'Geometry'); //added for jsts version 1.2 
 				var newfeat=new OpenLayers.Feature.Vector(buffer,null,null);
 				buffered.push(newfeat);
         }

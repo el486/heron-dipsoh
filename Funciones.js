@@ -171,7 +171,7 @@ Ext.onReady(function() {  //carga después de terminar de cargar el mapa. Se usa 
 			   }
 			);
 			
-			var files = ["./js/javascript.util.js","./js/jsts.js","./js/attache.array.min.js","./js/mod/FeaturePanel_mod.js"]; 
+			var files = ["./js/jsts.min.js","./js/mod/FeaturePanel_mod.js"]; 
 			var onload = function () {   
 			// do something onload
 			}

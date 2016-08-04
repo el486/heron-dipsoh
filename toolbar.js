@@ -8,7 +8,10 @@
 	var manz = Ext.getCmp('form_manzana').getValue();
 	var pnum = Ext.getCmp('form_pnum').getValue();
 	var plet = Ext.getCmp('form_plet').getValue();
-	Ext.getCmp('form_nomencla').setValue(part+circ+secc+"%"+chac+"%"+quin+"%"+frac+"%"+manz+"%"+pnum+plet);
+	var rejunte=chac+quin+frac+manz;
+	rejunte=rejunte.replace(/\s+/g,'');
+	rejunte=rejunte.split('').join('%');
+	Ext.getCmp('form_nomencla').setValue(part+circ+secc+"%"+rejunte+"%"+pnum+plet);
 	
 }
 			
@@ -975,30 +978,15 @@ var toolBarItems=[
 														combo.setValue(record.data['tip']);
 														},
 														'change': function(e){ 
-														var str=(e.getValue());
-														str="00"+str;
-														str=str.substr(str.length - 3);
-														str=str.split(' ').join('%');
-														e.setValue(str);
+														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
+														val="00"+val;
+														val=val.substr(val.length - 3);
+														e.setValue(val);
 														armarNomencla();
 														}
 												}
 											},
-											/*{
-												xtype: "textfield",
-												name: "partido",
-												value: '',
-												id:'form_part',
-												fieldLabel: "  Partido",
-												listeners: { 'change': function(e){ 
-														var str=(e.getValue());
-														str="00"+str;
-														str=str.substr(str.length - 3);
-														str=str.split(' ').join('%');
-														e.setValue(str);
-														armarNomencla();
-														}}
-											},*/
 											{
 												xtype: "textfield",
 												name: "rural__ne",
@@ -1007,10 +995,10 @@ var toolBarItems=[
 												fieldLabel: "  Circunscripcion",
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
 														val="00"+val;
 														if (val=="00"){ val="";}
 														val=val.substr(val.length - 2);
-														val=val.split(' ').join('%');
 														e.setValue(val);
 														armarNomencla();
 														}}
@@ -1023,10 +1011,10 @@ var toolBarItems=[
 												fieldLabel: "  Seccion",
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
 														val="00"+val;
 														if (val=="00"){ val="";}
 														val=val.substr(val.length - 2);
-														val=val.split(' ').join('%');
 														e.setValue(val);
 														armarNomencla();
 														}}
@@ -1038,9 +1026,6 @@ var toolBarItems=[
 												id:'form_chacra',
 												fieldLabel: "  Chacra",
 												listeners: { 'change': function(e){ 
-														var val=(e.getValue());
-														val=val.split('').join('%');
-														e.setValue(val);
 														armarNomencla();
 														}}
 											},
@@ -1051,9 +1036,6 @@ var toolBarItems=[
 												id:'form_quinta',
 												fieldLabel: "  Quinta",
 												listeners: { 'change': function(e){ 
-														var val=(e.getValue());
-														val=val.split('').join('%');
-														e.setValue(val);
 														armarNomencla();
 														}}
 											},
@@ -1064,9 +1046,6 @@ var toolBarItems=[
 												id:'form_fraccion',
 												fieldLabel: "  Fraccion",
 												listeners: { 'change': function(e){ 
-														var val=(e.getValue());
-														val=val.split('').join('%');
-														e.setValue(val);
 														armarNomencla();
 														}}
 											},
@@ -1077,9 +1056,6 @@ var toolBarItems=[
 												id:'form_manzana',
 												fieldLabel: "  Manzana",
 												listeners: { 'change': function(e){ 
-														var val=(e.getValue());
-														val=val.split('').join('%');
-														e.setValue(val);
 														armarNomencla();
 														}}
 											},/*
@@ -1100,10 +1076,10 @@ var toolBarItems=[
 												fieldLabel: "  Parcela Numero",
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
 														val="000"+val;
 														if (val=="000"){ val="";}
 														val=val.substr(val.length - 4);
-														val=val.split(' ').join('%');
 														e.setValue(val);
 														armarNomencla();
 														}}
@@ -1116,10 +1092,10 @@ var toolBarItems=[
 												fieldLabel: "  Parcela Letra",
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
 														val="00"+val;
 														if (val=="00"){ val="";}
 														val=val.substr(val.length - 3);
-														val=val.split(' ').join('%');
 														e.setValue(val);
 														armarNomencla();
 														}}
@@ -1138,8 +1114,8 @@ var toolBarItems=[
 														Ext.getCmp('form_fraccion').setValue('');
 														Ext.getCmp('form_manzana').setValue('');
 														Ext.getCmp('form_pnum').setValue('');
-														Ext.getCmp('form_plet').setValue('');													
-													
+														Ext.getCmp('form_plet').setValue('');
+														Ext.getCmp('form_nomencla').setValue('');
 													}
 												}
 											},
