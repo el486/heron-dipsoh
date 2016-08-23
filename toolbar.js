@@ -351,167 +351,27 @@ var toolBarItems=[
 		{type: "zoomprevious"},
 		{type: "zoomnext"},
 		{type: "-"},
-		{type: "any",
-			options: {
-				text: 'Medición',
-				tooltip: "Herramientas de medición",
-				disabled: true
-			}
-		},
-		{type: "measurelength", options: {geodesic: true}},
+		{type: "measurelength", options: {
+			geodesic: true,
+			text: 'Medición',
+			iconCls: 'bmed'//,
+			//tooltip: "Herramientas de medición",
+			}},
 		{type: "measurearea", options: {geodesic: true}},
 		{type: "-"}, 
-		{type: "any",
+		/*{type: "any",
 			options: {
 				text: 'Búsqueda',
 				tooltip: "Herramientas búsqueda y consultas",
 				disabled: true
 			}
-		},
-		{type: "coordinatesearch", options: {
-
-				// see ToolbarBuilder.js
-					  formWidth: 320
-					, formPageX: 15
-					, formPageY: 200
-				// see CoordSearchPanel.js
-					// , title: 'My title'
-					, titleDescription: 'Elija la proyección de entrada...<br><br>Luego ingrese los valores Lon/Lat o las coordenadas<br>X/Y.<br>&nbsp;<br>'
-					, titleDescriptionStyle: 'font-size:11px; color:dimgrey;'
-					, bodyBaseCls: 'x-form-back'
-					, bodyItemCls: 'hr-html-panel-font-size-11'
-					, bodyCls: 'hr-html-panel-font-size-11'
-					, fieldMaxWidth: 200
-					, fieldLabelWidth: 80
-					, fieldStyle: 'color: blue;'
-					, fieldLabelStyle: 'color: darkblue'
-					, layerName: 'Lon/Lat'
-					, onProjectionIndex: 1
-					, onZoomLevel: -1
-					, showProjection: true
-					, showZoom: true
-					, showAddMarkers: true
-					, checkAddMarkers: true
-					, showHideMarkers: true
-					, checkHideMarkers: false
-					, showResultMarker: true
-					, fieldResultMarkerStyle: 'color: green;'
-					, fieldResultMarkerText: 'Posicion del marcador: '
-					, fieldResultMarkerSeparator: ' | '
-					, fieldResultMarkerPrecision: 4
-					, removeMarkersOnClose: true
-					, showRemoveMarkersBtn: true
-					, buttonAlign: 'center'		// left, center, right
-					, hropts: [
-						{
-							  projEpsg: 'EPSG:22195'
-							, projDesc: 'EPSG:22195 - Campo Inchauspe/Faja5'
-							, fieldLabelX: 'X [m]'
-							, fieldLabelY: 'Y [m]'
-							, fieldEmptyTextX: 'Ingrese coordenada X...'
-							, fieldEmptyTextY: 'Ingrese coordenada Y...'
-							, fieldMinX: 4500000
-							, fieldMinY: 5000000
-							, fieldMaxX: 6500000
-							, fieldMaxY: 7000000
-							, fieldDecPrecision: 2
-							, iconWidth: 32
-							, iconHeight: 32
-							, localIconFile: 'redpin.png'
-							, iconUrl: null
-						},
-						{
-							  projEpsg: 'EPSG:4326'
-							, projDesc: 'EPSG:4326 - WGS 84'
-							, fieldLabelX: 'Lon [Grad]'
-							, fieldLabelY: 'Lat [Grad]'
-							, fieldEmptyTextX: 'Ingrese Longitud...'
-							, fieldEmptyTextY: 'Ingrese Latitud...'
-							, fieldMinX: -180
-							, fieldMinY: -90
-							, fieldMaxX: 180
-							, fieldMaxY: 90
-							, fieldDecPrecision: 6
-							, iconWidth: 32
-							, iconHeight: 32
-							, localIconFile: 'bluepin.png'
-							, iconUrl: null
-						}
-					]
-
-		// ====================================
-
-	}},
-	GObec.streetview.toolbar,
-	{
-		type: "any",
-		options: {
-			text: '',
-			tooltip: 'Buscar con Google Places',
-			iconCls: 'icon-map-magnify',
-			id: "googleSearch",
-			handler: function (objRef) {
-				if (!searchWin) {
-					searchWin = new Ext.Window({
-						title: "Find",
-						layout: 'fit',
-						width: 400,
-						height: 70,
-						plain: true,
-						closeAction: 'hide',
-						html: '<div style="padding: 5px" id="searchContent"><input style="width: 370px" type="text" id="gAddress" name="gAddress" value="" /></div>',
-						x: 300,
-						y: 100
-					});
-				}
-				if (typeof(objRef) === "object") {
-					searchWin.show(objRef);
-				} else {
-					searchWin.show();
-				}//end if object reference was passed
-				var input = document.getElementById('gAddress');
-				var options = {
-					//bounds: defaultBounds
-					//types: ['establishment']
-				};
-				var autocomplete = new google.maps.places.Autocomplete(input, options);
-				//console.log(autocomplete.getBounds());
-				google.maps.event.addListener(autocomplete, 'place_changed', function () {
-					var place = autocomplete.getPlace();
-					var transformPoint = function (lat, lon, s, d) {
-						var p = [];
-						if (typeof Proj4js === "object") {
-							var source = new Proj4js.Proj(s);    //source coordinates will be in Longitude/Latitude
-							var dest = new Proj4js.Proj(d);
-							p = new Proj4js.Point(lat, lon);
-							Proj4js.transform(source, dest, p);
-						}
-						else {
-							p.x = null;
-							p.y = null;
-						}
-						return p;
-					};
-					var p = transformPoint(place.geometry.location.lng(), place.geometry.location.lat(), "EPSG:4326", "EPSG:900913");
-					var point = new OpenLayers.LonLat(p.x, p.y);
-					Heron.App.map.setCenter(point, 12);
-					try {
-						placeMarkers.destroy();
-					} catch (e) {
-					}
-
-					placeMarkers = new OpenLayers.Layer.Markers("Markers");
-					Heron.App.map.addLayer(placeMarkers);
-					placeMarkers.addMarker(new OpenLayers.Marker(point));
-					});
-
-			}
-		}
-	},
-	{
+		},*/
+		{
         type: "searchcenter",
         // Options for SearchPanel window
         options: {
+			iconCls: 'bsearch',
+			text: 'Búsqueda',
             show: false,
 				searchWindow: {
 					title: __('Multiple Searches'),
@@ -1226,15 +1086,153 @@ var toolBarItems=[
 				}
 			}
 		},
-		{type: "-"},
-		{type: "any",
-			options: {
-				text: 'Impresión',
-				tooltip: "Interfaces de impresión",
-				disabled: true
+		{type: "coordinatesearch", options: {
+
+				// see ToolbarBuilder.js
+					  formWidth: 320
+					, formPageX: 15
+					, formPageY: 200
+				// see CoordSearchPanel.js
+					// , title: 'My title'
+					, titleDescription: 'Elija la proyección de entrada...<br><br>Luego ingrese los valores Lon/Lat o las coordenadas<br>X/Y.<br>&nbsp;<br>'
+					, titleDescriptionStyle: 'font-size:11px; color:dimgrey;'
+					, bodyBaseCls: 'x-form-back'
+					, bodyItemCls: 'hr-html-panel-font-size-11'
+					, bodyCls: 'hr-html-panel-font-size-11'
+					, fieldMaxWidth: 200
+					, fieldLabelWidth: 80
+					, fieldStyle: 'color: blue;'
+					, fieldLabelStyle: 'color: darkblue'
+					, layerName: 'Lon/Lat'
+					, onProjectionIndex: 1
+					, onZoomLevel: -1
+					, showProjection: true
+					, showZoom: true
+					, showAddMarkers: true
+					, checkAddMarkers: true
+					, showHideMarkers: true
+					, checkHideMarkers: false
+					, showResultMarker: true
+					, fieldResultMarkerStyle: 'color: green;'
+					, fieldResultMarkerText: 'Posicion del marcador: '
+					, fieldResultMarkerSeparator: ' | '
+					, fieldResultMarkerPrecision: 4
+					, removeMarkersOnClose: true
+					, showRemoveMarkersBtn: true
+					, buttonAlign: 'center'		// left, center, right
+					, hropts: [
+						{
+							  projEpsg: 'EPSG:22195'
+							, projDesc: 'EPSG:22195 - Campo Inchauspe/Faja5'
+							, fieldLabelX: 'X [m]'
+							, fieldLabelY: 'Y [m]'
+							, fieldEmptyTextX: 'Ingrese coordenada X...'
+							, fieldEmptyTextY: 'Ingrese coordenada Y...'
+							, fieldMinX: 4500000
+							, fieldMinY: 5000000
+							, fieldMaxX: 6500000
+							, fieldMaxY: 7000000
+							, fieldDecPrecision: 2
+							, iconWidth: 32
+							, iconHeight: 32
+							, localIconFile: 'redpin.png'
+							, iconUrl: null
+						},
+						{
+							  projEpsg: 'EPSG:4326'
+							, projDesc: 'EPSG:4326 - WGS 84'
+							, fieldLabelX: 'Lon [Grad]'
+							, fieldLabelY: 'Lat [Grad]'
+							, fieldEmptyTextX: 'Ingrese Longitud...'
+							, fieldEmptyTextY: 'Ingrese Latitud...'
+							, fieldMinX: -180
+							, fieldMinY: -90
+							, fieldMaxX: 180
+							, fieldMaxY: 90
+							, fieldDecPrecision: 6
+							, iconWidth: 32
+							, iconHeight: 32
+							, localIconFile: 'bluepin.png'
+							, iconUrl: null
+						}
+					]
+
+		// ====================================
+
+		}},
+		GObec.streetview.toolbar,
+		{
+		type: "any",
+		options: {
+			text: '',
+			tooltip: 'Buscar con Google Places',
+			iconCls: 'icon-map-magnify',
+			id: "googleSearch",
+			handler: function (objRef) {
+				if (!searchWin) {
+					searchWin = new Ext.Window({
+						title: "Find",
+						layout: 'fit',
+						width: 400,
+						height: 70,
+						plain: true,
+						closeAction: 'hide',
+						html: '<div style="padding: 5px" id="searchContent"><input style="width: 370px" type="text" id="gAddress" name="gAddress" value="" /></div>',
+						x: 300,
+						y: 100
+					});
+				}
+				if (typeof(objRef) === "object") {
+					searchWin.show(objRef);
+				} else {
+					searchWin.show();
+				}//end if object reference was passed
+				var input = document.getElementById('gAddress');
+				var options = {
+					//bounds: defaultBounds
+					//types: ['establishment']
+				};
+				var autocomplete = new google.maps.places.Autocomplete(input, options);
+				//console.log(autocomplete.getBounds());
+				google.maps.event.addListener(autocomplete, 'place_changed', function () {
+					var place = autocomplete.getPlace();
+					var transformPoint = function (lat, lon, s, d) {
+						var p = [];
+						if (typeof Proj4js === "object") {
+							var source = new Proj4js.Proj(s);    //source coordinates will be in Longitude/Latitude
+							var dest = new Proj4js.Proj(d);
+							p = new Proj4js.Point(lat, lon);
+							Proj4js.transform(source, dest, p);
+						}
+						else {
+							p.x = null;
+							p.y = null;
+						}
+						return p;
+					};
+					var p = transformPoint(place.geometry.location.lng(), place.geometry.location.lat(), "EPSG:4326", "EPSG:900913");
+					var point = new OpenLayers.LonLat(p.x, p.y);
+					Heron.App.map.setCenter(point, 12);
+					try {
+						placeMarkers.destroy();
+					} catch (e) {
+					}
+
+					placeMarkers = new OpenLayers.Layer.Markers("Markers");
+					Heron.App.map.addLayer(placeMarkers);
+					placeMarkers.addMarker(new OpenLayers.Marker(point));
+					});
+
+				}
 			}
 		},
-		{type: "printdialog", options: {url: serverURL+'/print/pdf' , windowWidth: 360, id:'prevImpresion'
+		{type: "-"},
+		{type: "printdialog", options: {
+			iconCls: 'bimp',
+			text: 'Impresión',
+			url: serverURL+'/print/pdf' , 
+			windowWidth: 360, 
+			id:'prevImpresion'
 			// , showTitle: true
 			 , mapTitle: 'Sig DiPSOH'
 			// , mapTitleYAML: "mapTitle"		// MapFish - field name in config.yaml - default is: 'mapTitle'
@@ -1276,31 +1274,9 @@ var toolBarItems=[
 			
 		},
 		{type: "-"},
-		{type: "any",
-			options: {
-				text: 'Edición',
-				tooltip: "Herramientas para agregar geometrias",
-				disabled: true
-				}
-		},
-		{type: "upload", options: {
-			upload: {
-             layerName: __('My Upload'),
-             visibleOnUpload: true,
-             url: serverURL+'/cgi-bin/heron.cgi',
-             params: {
-                 action: 'upload',
-                 mime: 'text/html',
-                 encoding: 'escape'
-             },
-             formats: uploadFormats,
-             // For custom projections use Proj4.js
-             fileProjection: new OpenLayers.Projection('EPSG:4326')
-			}
-
-		}
-		},
 		{type: "oleditor", options: {
+			iconCls: "bedit",
+			text: 'Edición',
 			pressed: false,
 			// Options for OLEditor
 			olEditorOptions: {
@@ -1322,6 +1298,23 @@ var toolBarItems=[
 				}
 			}
          },
+		 {type: "upload", options: {
+				upload: {
+				 layerName: __('My Upload'),
+				 visibleOnUpload: true,
+				 url: serverURL+'/cgi-bin/heron.cgi',
+				 params: {
+					 action: 'upload',
+					 mime: 'text/html',
+					 encoding: 'escape'
+				 },
+				 formats: uploadFormats,
+				 // For custom projections use Proj4.js
+				 fileProjection: new OpenLayers.Projection('EPSG:4326')
+				}
+
+			}
+		},
 		{type: "-"},
 		{type: "help", options: {tooltip: 'Ayuda', contentUrl: 'help.html'}}//,
 	]

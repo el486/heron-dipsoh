@@ -83,6 +83,18 @@ table.ext td {
 .bnav {
     background-image: url(../resources/images/momentum/handtool3.png) !important;
 }
+.bmed {
+    background-image: url(../resources/images/geosilk/ruler.png) !important;
+}
+.bsearch {
+    background-image: url(../resources/images/silk/find.png) !important;
+}
+.bimp {
+    background-image: url(../resources/images/silk/printer.png) !important;
+}
+.bedit {
+    background-image: url(../resources/images/silk/map_edit.png) !important;
+}
 .x-btn .icon-printscr {
     background-image: url(../resources/images/silk/layers.png);
 }

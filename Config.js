@@ -236,21 +236,14 @@ Heron.layout = {
 							version: "1.3.0",
 							title: "Transporte",
 							group: 'ideba'
-						},
+						},*/
 						urbasigwms: {
-							url: "http://sig.gobierno.gba.gov.ar:8080/geoserver/urbasig/wms",
+							url: "http://sig.gobierno.gba.gov.ar/geoserver/urbasig/wms",
 							version: "1.3.0",
 							title: "UrbaSig",
 							group: 'ideba'
-						},
-						*/
-						opengeotms: {
-							ptype: "gxp_tmssource",
-							url: "http://maps.opengeo.org/geowebcache/service/tms",
-							title: "OpenGeo TMS",
-							isBaseLayer: true,  // default is true
-							group: 'background' // 'background' or 'default', default value is 'background'
 						}
+						
 					}
 				},
 				{
