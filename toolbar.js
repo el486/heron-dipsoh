@@ -197,6 +197,16 @@ var gridCellRenderers=[
    }
 },
 {
+   featureType: 'conductos_con_planilla',
+   attrName: 'text',
+   renderer: {
+			fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				   return '<a href="./php/verPDF.php?codigo='+value+'" target="_blank">'+value+'</a>';
+		   },
+		   options : {}
+   }
+},
+{
    featureType: 'parcelas',
    attrName: 'plano',
    renderer: {
@@ -282,6 +292,33 @@ var downloadFormats=['CSV',
 						format: 'OpenLayers.Format.GeoJSON',
 						targetFormat: 'DXF',
 						targetSrs: 'EPSG:22196',
+						fileExt: '.dxf',
+						mimeType: 'application/dxf'
+					},
+					{
+						name: 'DXF (Posgar 07 faja 4 - EPSG:5347)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'DXF',
+						targetSrs: 'EPSG:5347',
+						fileExt: '.dxf',
+						mimeType: 'application/dxf'
+					},
+					{
+						name: 'DXF (Posgar 07 faja 5 - EPSG:5348)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'DXF',
+						targetSrs: 'EPSG:5348',
+						fileExt: '.dxf',
+						mimeType: 'application/dxf'
+					},
+					{
+						name: 'DXF (Posgar 07 faja 6 - EPSG:5349)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'DXF',
+						targetSrs: 'EPSG:5349',
 						fileExt: '.dxf',
 						mimeType: 'application/dxf'
 					},
@@ -1254,6 +1291,7 @@ var toolBarItems=[
 			create : function(mapPanel, options) {
 				// A trivial handler
 				options.handler = function() {
+				Ext.getCmp('hr-menu-left-container').collapse(true);
 				window.print();
 				};
 				// Provide an ExtJS Action object

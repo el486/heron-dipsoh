@@ -74,11 +74,13 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Partidos y Circunscripciones" },
 							{nodeType: "gx_layer", layer: "Macizos" },
 							{nodeType: "gx_layer", layer: "Parcelas" },
+							{nodeType: "gx_layer", layer: "Calles" }
 						]
 				},
 				{
 					text:'Obras Hidraulica',expanded:true, children:
 						[
+							{nodeType: "gx_layer", layer: "Obras con planilla" ,legend:true },
 							{nodeType: "gx_layer", layer: "Trazas DiPSOH" ,legend:true },
 							{nodeType: "gx_layer", layer: "Limpiezas Cooperativas"},
 							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  },
@@ -265,7 +267,16 @@ var layerItems=[
 			}
 			 
 		),
-		
+		layerCallesArba = new OpenLayers.Layer.WMS("Calles",gwcURL,
+			{layers: 'dipsoh:calles',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
 		layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",gwcURL,
 			{layers: 'dipsoh:parcelas_vista_2016',transparent: true, format:'image/png', singleTile: true },
 			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
@@ -500,6 +511,17 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Parcelas_con_plano",gwcURL,
 			{layers: 'dipsoh:parcelas_con_plano_geom',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		
+		new OpenLayers.Layer.WMS("Obras con planilla",wmsURL,
+			{layers: 'dipsoh:conductos_con_planilla',transparent: true, format:'image/png', singleTile: true },
 			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',

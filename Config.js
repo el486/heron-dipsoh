@@ -206,6 +206,12 @@ Heron.layout = {
 							title: "Direccion de Geodesia pcia. de Bs.As.",
 							group: 'ideba'
 						},
+						energiawms: {
+							url: "http://sig.se.gob.ar/cgi-bin/mapserv6?map=/var/www/html/visor/geofiles/map/mapase.map",
+							version: "1.1.1",
+							title: "Ministerio de Energía y Minería.",
+							group: 'nacion'
+						},
 						/*
 						cdiwms: {
 							url: "http://sig.gobierno.gba.gov.ar:8080/geoserver/cdi/wms",
