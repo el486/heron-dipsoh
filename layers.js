@@ -44,6 +44,8 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Mapbox - High Contrast"},
 							{nodeType: "gx_layer", layer: "Mapbox - Dark"},
 							{nodeType: "gx_layer", layer: "Mapbox - Streets/Satellite"},
+							{nodeType: "gx_layer", layer: "Geo5000_Faja5",text:"Geodesia 1:5000 Faja5"},
+							{nodeType: "gx_layer", layer: "Geo5000_Faja6",text:"Geodesia 1:5000 Faja6"},
 							{nodeType: "gx_layer", layer: "Blanco"}
 						]
 				}
@@ -91,13 +93,13 @@ var treeTheme = [
 					text:'Relevamiento',expanded:true, children:
 						[
 							{nodeType: "gx_layer", layer: "Red_Geoba",legend:true },
+							{nodeType: "gx_layer", layer: "Estaciones permanentes IGN",legend:true },
 							{nodeType: "gx_layer", layer: "Parcelas_RT",text:"Planos en Rel. Territorial" },
 							{nodeType: "gx_layer", layer: "Parcelas_con_plano",text:"Planos en Geodesia" },
 							{nodeType: "gx_layer", layer: "Puntos_acotados_IGN",legend:true  },
 							{nodeType: "gx_layer", layer: "Curvas_de_nivel",legend:true  },
-							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  },
-							{nodeType: "gx_layer", layer: "Geo5000_Faja5",text:"Geodesia 1:5000 Faja5"},
-							{nodeType: "gx_layer", layer: "Geo5000_Faja6",text:"Geodesia 1:5000 Faja6"}
+							{nodeType: "gx_layer", layer: "puntosGeodesia5000",legend:true,text:"Puntos fijos Geodesia 5000"},
+							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  }
 
 						]
 				},{
@@ -219,7 +221,7 @@ var layerItems=[
 			},
 			{transitionEffect: 'resize',isBaseLayer:true,displayInLayerSwitcher:false}
 			),
-			
+		/*	
 		new OpenLayers.Layer.WMS( "Geo5000_Faja5", 
 			serverURL+"/tilecache/tilecache.cgi", 
 			{
@@ -239,7 +241,16 @@ var layerItems=[
 			},{
 			transitionEffect: 'resize',isBaseLayer:false,displayInLayerSwitcher:true,visibility:false
 			}),
+		*/
+		new OpenLayers.Layer.WMS("Geo5000_Faja5",gwcURL,
+			{layers: 'dipsoh:Geo5000_F5',transparent: true, format:'image/png', tiled: true }, 
+			{visibility: false,isBaseLayer:false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml'}								 
+		), 
 		
+		new OpenLayers.Layer.WMS("Geo5000_Faja6",gwcURL,
+			{layers: 'dipsoh:Geo5000_F6',transparent: true, format:'image/png', tiled: true }, 
+			{visibility: false,isBaseLayer:false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml'}								 
+		), 
 		/*
 		 * Basemap Blanco
 		 */
@@ -531,10 +542,30 @@ var layerItems=[
 			}
 		),
 		
+		new OpenLayers.Layer.WMS("Estaciones permanentes IGN",wmsURL,
+			{layers: 'dipsoh:estaciones_permanentes_IGN',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("puntosGeodesia5000",wmsURL,
+			{layers: 'dipsoh:puntosGeodesia5000',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
 		
-		//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente (layer geodesia)
+		//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente (layer geodesia) http://geobasig.com.ar/geoserver29/Geodesia/wms?
 		new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
-			"http://geobasig.com.ar/geoserver/Geodesia/wms?",
+			"http://geobasig.com.ar/geoserver29/Geodesia/wms?",
 			{layers: 'Geodesia:parcelas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',

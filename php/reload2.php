@@ -6,8 +6,8 @@
     $logfh = fopen("GeoserverPHP.log", 'w') or die("can't open log file");
 
     // Initiate cURL session
-    $service = "http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/dipsoh/wms?"; // replace with your URL
-    $request ="LAYERS=dipsoh%3Adepartamentos&TRANSPARENT=TRUE&FORMAT=image%2Fpng&SINGLETILE=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG%3A900913&BBOX=-5943762.6800744,-4395236.4393942,-5630676.6122619,-4082150.3715817&WIDTH=256&HEIGHT=256"; // to add a new workspace
+    $service = "http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/dipsoh/gwc/service/wms?"; // replace with your URL
+    $request ="LAYERS=dipsoh%3Aparcelas_vista_2016&TRANSPARENT=TRUE&FORMAT=image%2Fpng&SINGLETILE=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG%3A900913&INFO_FORMAT=application%2Fvnd.ogc.gml&BBOX=-6976579.8061199,-4692423.6053256,-6975968.3098937,-4691812.1090994&WIDTH=256&HEIGHT=256"; // to add a new workspace
     $url = $service . $request;
     $ch = curl_init($url);
 
@@ -33,7 +33,7 @@
 			//$msgStr .= "Error en geoserver. Aqui debería correr el reload\n";
 			    // Initiate cURL session
 				$service = "http://localhost:8888/geoserver/"; // replace with your URL
-				$request = "rest/reload"; // to add a new workspace
+				$request = "rest/reset"; // to add a new workspace
 				$url = $service . $request;
 				$ch = curl_init($url);
 
