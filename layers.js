@@ -61,12 +61,12 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Hidrografia",text:"Hidrografia escala 1:250.000" },
 							{nodeType: "gx_layer", layer: "Hidrografia_detalle" },
 							{nodeType: "gx_layer", layer: "Hidrografia_detalle_OSM" },
-							{nodeType: "gx_layer", layer: "Cuencas",text:"Cuencas (actualizado el 4-3-2016)" },
+							{nodeType: "gx_layer", layer: "Cuencas",text:"Cuencas (actualizado el 12/4/2017)" },
 							{nodeType: "gx_layer", layer: "Cuencas Detalle"},
 							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
 							{nodeType: "gx_layer", layer: "Rutas" ,legend:true },
 							{nodeType: "gx_layer", layer: "Censo_2010",text:"Censo 2010 INDEC",legend:true },
-							{nodeType: "gx_layer", layer: "Estaciones de medicion"} 
+							{nodeType: "gx_layer", layer: "Estaciones de medicion",legend:true} 
 							
 						]
 				},
@@ -375,7 +375,7 @@ var layerItems=[
 		),
 		
 		new OpenLayers.Layer.WMS("Estaciones de medicion",wmsURL,
-			{layers: 'dipsoh:estaciones_medicion',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: ['dipsoh:estaciones_medicion','dipsoh:estaciones_historico_salado'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
