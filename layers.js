@@ -99,8 +99,8 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Puntos_acotados_IGN",legend:true  },
 							{nodeType: "gx_layer", layer: "Curvas_de_nivel",legend:true  },
 							{nodeType: "gx_layer", layer: "puntosGeodesia5000",legend:true,text:"Puntos fijos Geodesia 5000"},
-							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  }
-
+							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  },
+							{nodeType: "gx_layer", layer: "Red de nivelacion IGN",legend:true  }
 						]
 				},{
 					text:'Descargas',expanded:true, children:
@@ -562,7 +562,49 @@ var layerItems=[
 					}
 			}
 		),
-		
+		new OpenLayers.Layer.WMS("Red de nivelacion IGN",wmsURL,
+			{layers: 'dipsoh:nivelacion_IGN',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		//dipsoh:nivelacion_IGN
+		/*
+		new OpenLayers.Layer.WMS("IGN:Nivelacion alta precision",
+			"http://wms.ign.gob.ar/geoserver/idera/wms?",
+			{layers: 'idera:nivelacion_alta_precision',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("IGN:Nivelacion precision",
+			"http://wms.ign.gob.ar/geoserver/idera/wms?",
+			{layers: 'idera:nivelacion_precision',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("IGN:Nivelacion topografica",
+			"http://wms.ign.gob.ar/geoserver/idera/wms?",
+			{layers: 'idera:nivelacion_topografica',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		*/
 		//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente (layer geodesia) http://geobasig.com.ar/geoserver29/Geodesia/wms?
 		new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
 			"http://geobasig.com.ar/geoserver29/Geodesia/wms?",

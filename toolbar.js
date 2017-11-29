@@ -74,12 +74,21 @@ var gridCellRenderers=[
 	}
 },
 {
+   featureType: 'nivelacion_IGN',
+   attrName: 'link',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				   return '<a href="http://ramsac.ign.gob.ar/posgar07_pg_web/index.php?frm=punto_nivelacion&nxt=punto_nivelacion_ver&'+value+'" target="_blank">Ver</a>';
+		   },
+   }
+},
+{
    featureType: 'estaciones_medicion',
    attrName: 'estacion',
    renderer:{
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
 																				
-				   return '<a href="javascript:void(0)" onclick="popupMediciones(\''+value+'\',\''+record.data.oid_+'\');">' + value + '</a>';
+				   return '<a href="./php/verMediciones.php?cod='+value+'&tipo='+record.data.oid_+'" target="_blank">'+ value +'</a>';
 		   },
 		   options : {}
    }
@@ -89,8 +98,8 @@ var gridCellRenderers=[
    attrName: 'codest',
    renderer:{
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
-																				
-				   return '<a href="javascript:void(0)" onclick="popupMediciones('+value+',\'h\');">' + value + '</a>';
+					var v=parseInt(value);															
+				   return '<a href="./php/verMediciones.php?cod='+v+'&tipo=h" target="_blank">'+v+'</a>';
 		   },
 		   options : {}
    }
@@ -357,7 +366,7 @@ var downloadFormats=['CSV',
 						targetSrs: 'EPSG:22186',
 						fileExt: '.dxf',
 						mimeType: 'application/dxf'
-					},
+					},*/
 					{
 						name: 'DXF (Posgar 07 faja 4 - EPSG:5347)',
 						formatter: 'OpenLayersFormatter',
@@ -384,7 +393,7 @@ var downloadFormats=['CSV',
 						targetSrs: 'EPSG:5349',
 						fileExt: '.dxf',
 						mimeType: 'application/dxf'
-					},*/
+					},
 					{
 						name: 'KML (Google Earth)',
 						formatter: 'OpenLayersFormatter',
