@@ -5,26 +5,17 @@
 Host: www.mosp.gba.gov.ar
 Accept: */*
 
-< HTTP/1.1 503 Service Temporarily Unavail
-< Date: Thu, 16 Feb 2017 13:49:13 GMT
+< HTTP/1.1 200 OK
+< Date: Tue, 22 Aug 2017 12:45:40 GMT
 < Server: Microsoft-IIS/6.0
 < X-Powered-By: ASP.NET
-< Content-Length: 323
-< Content-Type: text/html; charset=iso-8859-1
+< Expires: Thu, 01 Jan 1970 00:00:00 GMT
+< Content-Type: image/png
+< Content-Disposition: inline; filename=dipsoh-parcelas_vista_2016.png
 < Via: 1.1 192.168.1.13 (IIRF v2.1)
+< Set-Cookie: GS_FLOW_CONTROL=GS_CFLOW_7a0274f1:15e09beff27:-7fbb
 < Via: 1.1 prodweb.mosp.gba.gov.ar
-< Vary: Accept-Encoding
-< Connection: close
+< Transfer-Encoding: chunked
 < 
+* Connection #0 to host www.mosp.gba.gov.ar left intact
 * Closing connection #0
-# Unsuccessful cURL request to http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/dipsoh/gwc/service/wms?LAYERS=dipsoh%3Aparcelas_vista_2016&TRANSPARENT=TRUE&FORMAT=image%2Fpng&SINGLETILE=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG%3A900913&INFO_FORMAT=application%2Fvnd.ogc.gml&BBOX=-6976579.8061199,-4692423.6053256,-6975968.3098937,-4691812.1090994&WIDTH=256&HEIGHT=256 [503]
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<html><head>
-<title>503 Service Temporarily Unavailable</title>
-</head><body>
-<h1>Service Temporarily Unavailable</h1>
-<p>The server is temporarily unable to service your
-request due to maintenance downtime or capacity
-problems. Please try again later.</p>
-</body></html>
-

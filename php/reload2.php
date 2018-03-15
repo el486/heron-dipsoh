@@ -33,7 +33,7 @@
 			//$msgStr .= "Error en geoserver. Aqui debería correr el reload\n";
 			    // Initiate cURL session
 				$service = "http://localhost:8888/geoserver/"; // replace with your URL
-				$request = "rest/reset"; // to add a new workspace
+				$request = "rest/reload"; // to add a new workspace
 				$url = $service . $request;
 				$ch = curl_init($url);
 

@@ -74,6 +74,15 @@ var gridCellRenderers=[
 	}
 },
 {
+   featureType: 'Mantenimiento_AnalisisZonaVIII',
+   attrName: 'name',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				return '<a href="javascript:void(0)" onclick="popupFoto(\''+value+'\');">' + value + '</a>';
+		   },
+   }
+},
+{
    featureType: 'nivelacion_IGN',
    attrName: 'link',
    renderer: {
@@ -169,7 +178,7 @@ var gridCellRenderers=[
    renderer:{
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
 																				
-				   return '<a href="javascript:void(0)" onclick="popupObras(\''+value+'\');">' + value + '</a>';
+				   return '<a href="./php/descargaArchObra.php?codigo='+value+'" target="_blank">'+ value +'</a>';
 		   },
 		   options : {}
    }
@@ -180,7 +189,7 @@ var gridCellRenderers=[
    renderer:{
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
 																				
-				   return '<a href="javascript:void(0)" onclick="popupObras(\''+value+'\');">' + value + '</a>';
+				   return '<a href="./php/descargaArchObra.php?codigo='+value+'" target="_blank">'+ value +'</a>';
 		   },
 		   options : {}
    }
@@ -191,7 +200,7 @@ var gridCellRenderers=[
    renderer:{
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
 				if(value.substring(0,7)!='Buffer:'){															
-				   return '<a href="javascript:void(0)" onclick="popupObras(\''+value+'\');">' + value + '</a>';
+				   return '<a href="./php/descargaArchObra.php?codigo='+value+'" target="_blank">'+ value +'</a>';
 				}else return value;
 				},
 		   options : {}

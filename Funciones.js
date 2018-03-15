@@ -57,37 +57,31 @@ function popupObras(value){ //popup con informacion de la obra del SIGOS
 	});
 }
 
-function popupMediciones(cod,tipo){ //popup con informacion de la obra del SIGOS
-    
-	Ext.Ajax.request({
-    url: 'http://www.mosp.gba.gov.ar/sig_hidraulica/visor/php/verMediciones.php?cod=%27'+cod+'%27&tipo='+tipo,
-    success: function(response){
-    		var win;
-			if(!win){
-				win = new Ext.Window({
-					//applyTo     : 'hello-win',
-					//layout      : 'fit',
-					title:'Mediciones',
-					width: 400,
-					height: 500,
-					closeAction :'hide',
-					//plain: true,
-					modal: true, 
-					html: response.responseText,
-					//overflow:'auto', 
-					autoScroll:'true',
-					buttons: [{
-						text     : 'Close',
-						handler  : function(){
-							win.hide();
-						}
-					}]
-				});
-				win.show();
-			} 
-	  }
-	});
-}
+function popupFoto(value){ //popup con foto
+    var win;
+	if(!win){
+		win = new Ext.Window({
+			//applyTo     : 'hello-win',
+			//layout      : 'fit',
+			title:value,
+			width: 500,
+			height: 500,
+			closeAction :'hide',
+			//plain: true,
+			modal: true, 
+			html: '<br><img src="../imagenes/mantenimiento/zonaVIII/'+value+'" height="450" width="450"><br>',
+			//overflow:'auto', 
+			autoScroll:'true',
+			buttons: [{
+				text     : 'Close',
+				handler  : function(){
+					win.hide();
+				}
+			}]
+		});
+		win.show();
+  } 
+}	 
 			
 function test (id){ //test
 alert(id);

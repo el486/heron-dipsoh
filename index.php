@@ -102,7 +102,7 @@
 
 </head>
 <body>
-Cargando interfaz y capas de Google...
+Cargando interfaz y capas de Google.<br> Si el visor tarda en cargar pruebe el acceso a prueba de fallos en la pagina de entrada (se solicitara la contraseña) 
 </body>
 
 </html>
