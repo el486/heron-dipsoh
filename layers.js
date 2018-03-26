@@ -109,7 +109,25 @@ var treeTheme = [
 							{nodeType: "gx_layer", layer: "Limpiezas Cooperativas 2017"}, 
 							{nodeType: "gx_layer", layer: "Analisis Zona VIII" ,text:"Analisis zona VIII"},
 						]
-				},
+				},// Urbanizaciones e industrias
+				{
+					text:'Cuenca Lujan',expanded:false, children:
+						[
+							{nodeType: "gx_layer", layer: "Urbanizaciones e industrias"},
+							{nodeType: "gx_layer", layer: "Parques Industriales"}, 
+							{
+							text:'Manchas de inundacion',expanded:false, children:
+								[
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 100 años",text:"Sin obra - Rec100"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 50 años",text:"Sin obra - Rec50"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 25 años",text:"Sin obra - Rec25"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 10 años",text:"Sin obra - Rec10"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 5 años",text:"Sin obra - Rec5"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 2 años",text:"Sin obra - Rec2"},
+								]
+							}
+						]
+				}, 
 				{
 					text:'Descargas',expanded:false, children:
 						[
@@ -591,6 +609,86 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Analisis Zona VIII",wmsURL,
 			{layers: 'dipsoh:Mantenimiento_AnalisisZonaVIII',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Urbanizaciones e industrias",wmsURL,
+			{layers: 'dipsoh:lujan_urbanizaciones-industrias-asentamientos',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		), //dipsoh:Lujan_ManchaSituacionActual-Rec100
+		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 100 años",wmsURL,
+			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec100',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 50 años",wmsURL,
+			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec50',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 25 años",wmsURL,
+			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec25',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 10 años",wmsURL,
+			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec10',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 5 años",wmsURL,
+			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec5',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 2 años",wmsURL,
+			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec2',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		), //dipsoh:lujan_parques_industriales
+		new OpenLayers.Layer.WMS("Parques Industriales",wmsURL,
+			{layers: 'dipsoh:lujan_parques_industriales',transparent: true, format:'image/png', singleTile: true },
 			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',

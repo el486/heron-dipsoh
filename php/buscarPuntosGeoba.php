@@ -8,22 +8,69 @@ $x = $_REQUEST['x'];
 $y = $_REQUEST['y'];
 
 $sql = "
-select round(st_distance(the_geom, geomfromtext('POINT($x $y)',22195))) as distancia, 
+select * from
+((select round(st_distance(the_geom, geomfromtext('POINT($x $y)',22195))) as distancia, 
+						ST_X(transform(st_centroid(the_geom), 900913)) AS x, 
+						ST_Y(transform(st_centroid(the_geom), 900913)) AS y,
+						ST_X(st_centroid(the_geom)) AS xorig, 
+						ST_Y(st_centroid(the_geom)) AS yorig,
+						nomenclatu as codigo,
+						faja as carta,
+						red as observ,
+						cota as punto_fijo 
+from dipsoh.\"nivelacion_IGN\"
+where estado != 'destruido' 
+order by distancia asc
+limit 5)
+union
+(select round(st_distance(the_geom, geomfromtext('POINT($x $y)',22195))) as distancia, 
+						ST_X(transform(st_centroid(the_geom), 900913)) AS x, 
+						ST_Y(transform(st_centroid(the_geom), 900913)) AS y,
+						ST_X(st_centroid(the_geom)) AS xorig, 
+						ST_Y(st_centroid(the_geom)) AS yorig,
+						nomenclatu as codigo,
+						faja as carta,
+						red as observ,
+						cota as punto_fijo 
+from dipsoh.\"nivelacion_IGN\"
+where estado != 'destruido' and red != 'Topografica'
+order by distancia asc
+limit 5
+)
+union
+(select round(st_distance(the_geom, geomfromtext('POINT($x $y)',22195))) as distancia, 
 						ST_X(transform(the_geom, 900913)) AS x, ST_Y(transform(the_geom, 900913)) AS y,
 						ST_X(the_geom) AS xorig, ST_Y(the_geom) AS yorig,
 						codigo,carta,observ,punto_fijo 
 from red_geoba_22195 
 where estado is null 
-order by distancia 
-limit 10
+order by distancia asc
+limit 5)
+) results
+order by distancia asc
 ";
+/*
+$sql = "select round(st_distance(the_geom, geomfromtext('POINT($x $y)',22195))) as distancia, 
+						ST_X(transform(st_centroid(the_geom), 900913)) AS x, 
+						ST_Y(transform(st_centroid(the_geom), 900913)) AS y,
+						ST_X(st_centroid(the_geom)) AS xorig, 
+						ST_Y(st_centroid(the_geom)) AS yorig,
+						nomenclatu as codigo,
+						faja as carta,
+						red as observ,
+						cota as punto_fijo 
+from dipsoh.\"nivelacion_IGN\"
+where estado != 'destruido'
+order by distancia 
+limit 10";
+*/
 $res = pg_query($link, $sql);
 ?>
 
 <script>
 textoDiv='Punto Origen: <br>x:<? echo intval($x) ?> y:<? echo intval($y) ?><br>';
-textoDiv+='<table border=1 width="300%" cellpadding=3><tr ><td><b>Dist(m) </b></td><td><b>Codigo </b></td><td><b>Carta IGN </b></td><td><b>Obs. </b></td><td><b>Punto Fijo </b></td><td><b>x:</b></td><td><b>y:</b></td></tr>';
-
+textoDiv+='<table class="flat-table"><tr ><th><b>Dist(m) </b></th><th><b>Codigo </b></th><th><b>Obs. </b></th><th><b>Punto Fijo </b></th><th><b>Vinculacion Geoba</b></th><th><b>Vinculacion pto fijo</b></th></tr>';
+/*
 var store = new Ext.data.ArrayStore({
         fields: [
            {name: 'distancia'},
@@ -38,7 +85,21 @@ var store = new Ext.data.ArrayStore({
 		   
            ]
     });
-		
+*/	
+	<?php
+	$sql="select round(st_distance(transform(the_geom,900913),transform(geomfromtext('POINT($x $y)',22195),900913))) as distancia, ST_X(transform(st_centroid(the_geom), 900913)) AS x,ST_Y(transform(st_centroid(the_geom), 900913)) AS y, \"Name\" as codigo, \"Description\" as observ from \"estaciones_IGN.kml\" order by distancia limit 5";
+	$res2 = pg_query($link, $sql);
+	?>
+	
+	<?php while ($row2 = pg_fetch_array($res2)) {  ?>
+	var x = '<?php echo $row2['x']; ?>';
+	var y = '<?php echo $row2['y']; ?>';
+	var distancia = '<?php echo $row2['distancia']; ?>';
+	var codigo2 = '<?php echo $row2['codigo']; ?>';
+	var observ = "<?php echo $row2['observ']; ?>";
+	textoDiv+='<tr class="blue"><td>'+distancia+'</td><td><a href="javascript:centrar('+x+' ,'+y+')" > '+codigo2+'</a> </td><td> '+observ+'</td><td>Origen</td><td>'+parseInt(distancia/1000+30)+'min</td><td>'+parseInt(distancia/500+30)+'min</td></tr>';
+<?php } // END while($row = pg_fetch_array($res)){  ?>
+	
 		
 <?php while ($row = pg_fetch_array($res)) {  ?>
 
@@ -47,14 +108,30 @@ var store = new Ext.data.ArrayStore({
 	var distancia = '<?php echo $row['distancia']; ?>';
 	var codigo = '<?php echo $row['codigo']; ?>';
 	var carta = '<?php echo $row['carta']; ?>';
-	var observ = '<?php echo $row['observ']; ?>';
+	var observ = "<?php echo $row['observ']; ?>";
 	var punto_fijo = '<?php echo $row['punto_fijo']; ?>';
 	var xorig= '<?php echo $row['xorig']; ?>';
 	var yorig= '<?php echo $row['yorig']; ?>';
 
-	textoDiv+='<tr><td>'+distancia+'</td><td><a href="javascript:centrar('+x+' ,'+y+')" > '+codigo+'</a> </td><td> '+carta+'</td><td> '+observ+'</td><td> '+punto_fijo+'</td><td> '+xorig+'</td><td> '+yorig+'</td></tr>';
+	textoDiv+='<tr class="blue"><td>'+distancia+'</td><td><a href="javascript:centrar('+x+' ,'+y+')" > '+codigo+'</a> </td><td> '+observ+'</td><td> '+punto_fijo+'</td><td>'+parseInt(distancia/1000+30)+'min</td><td>'+parseInt(distancia/500+30)+'min</td></tr>';
+	 
+	<?php
+	$x2=$row['xorig'];
+	$y2=$row['yorig'];
+	$sql="select round(st_distance(transform(the_geom,900913),transform(geomfromtext('POINT($x2 $y2)',22195),900913))) as distancia, ST_X(transform(st_centroid(the_geom), 900913)) AS x,ST_Y(transform(st_centroid(the_geom), 900913)) AS y, \"Name\" as codigo, \"Description\" as observ from \"estaciones_IGN.kml\" order by distancia limit 3";
+	$res2 = pg_query($link, $sql);
+	?>
 	
+	<?php while ($row2 = pg_fetch_array($res2)) {  ?>
+	var x = '<?php echo $row2['x']; ?>';
+	var y = '<?php echo $row2['y']; ?>';
+	var distancia = '<?php echo $row2['distancia']; ?>';
+	var codigo2 = '<?php echo $row2['codigo']; ?>';
+	var observ = "<?php echo $row2['observ']; ?>";
+	textoDiv+='<tr><td>'+distancia+'</td><td><a href="javascript:centrar('+x+' ,'+y+')" > '+codigo2+'</a> </td><td> '+observ+'</td><td>'+codigo+'</td><td>'+parseInt(distancia/1000+30)+'min</td><td>'+parseInt(distancia/500+30)+'min</td></tr>';
+	<?php } // END while($row = pg_fetch_array($res)){  ?>
 	//crea el registro para agregar al store
+	/*
 	var defaultData = {
 			distancia: distancia,
 			codigo: codigo,
@@ -69,12 +146,12 @@ var store = new Ext.data.ArrayStore({
 		var recId = codigo; // provide unique id for the record
 		var r = new store.recordType(defaultData, ++recId); // create new record
 		store.insert(0, r); // insert a new record into the store - store.add(r) funca igual 
-	
+	*/
 <?php } // END while($row = pg_fetch_array($res)){  ?>
 		textoDiv+='</table>';
-		
-		//document.getElementById('infoDIV').innerHTML=textoDiv;
-		
+		textoDiv+='<a href="javascript:desactivarDist()" >Desactivar</a>';
+		document.getElementById('infoDIV').innerHTML=textoDiv;
+	/*	
 		var myFormPanel = new Ext.form.FormPanel({
 		title: 'Puntos mas cercanos a',
 		renderTo: 'infoDIV',
@@ -86,8 +163,8 @@ var store = new Ext.data.ArrayStore({
 	var gridGeoba = new Ext.grid.GridPanel({
         store: store,
 		id:'gridGeoba',
-		bbar : [
-				{
+		bbar : [*/
+				/*{
 				xtype:'button',
 				store: store,
 	   			formatter:'CSVFormatter',
@@ -103,16 +180,19 @@ var store = new Ext.data.ArrayStore({
 					var data=formatter.format(store,config);
 					data=Base64.encode(data);
 					Heron.data.DataExporter.download(data,config)}
-				},
-				{
+				},*/
+		/*		{
 				xtype:'button',
 				text:'Desactivar',
 				handler: function(){
 					//alert(config.formatter+config.fileName+config.mimeType);
-					layers = Heron.App.map.getLayersByName('Red_Geoba');
-					geoba = layers[0];
-					geoba.setVisibility(false);
+					//layers = Heron.App.map.getLayersByName('Red_Geoba');
+					//geoba = layers[0];
+					//geoba.setVisibility(false);
 					Ext.getCmp('layertree').expand(true);
+					layerOculto.removeFeatures(layerOculto.features);
+					document.getElementById('infoDIV').innerHTML='info';
+					Heron.App.map.events.unregister('click', this, fnclick);
 					}
 				
 				
@@ -134,5 +214,5 @@ var store = new Ext.data.ArrayStore({
     });
 
 	store.load();
-		
+	*/	
 </script>

@@ -65,7 +65,7 @@ function popupFoto(value){ //popup con foto
 			//layout      : 'fit',
 			title:value,
 			width: 500,
-			height: 500,
+			height: 600,
 			closeAction :'hide',
 			//plain: true,
 			modal: true, 
@@ -168,7 +168,7 @@ Ext.onReady(function() {  //carga después de terminar de cargar el mapa. Se usa 
 	});
 	//Ext.Ajax.on('beforerequest',interceptPrint(null,{single:true}));
 	//printProvider.print(mapPanel,printPage);
-	
+	/*
 	Heron.App.map.events.register('changelayer', null, function(evt){ //dispara la funcion de busqueda de puntos cercanos si se enciende la capa red geoba
 				   if(evt.property === "visibility") {
 					  //alert(map.getScale())
@@ -188,14 +188,15 @@ Ext.onReady(function() {  //carga después de terminar de cargar el mapa. Se usa 
 						layerOculto.removeFeatures(layerOculto.features);
 						document.getElementById('infoDIV').innerHTML='info';
 						 }
-					/*if (evt.layer.name =='Parcelas' && evt.layer.visibility == true && Heron.App.map.getScale()>100000){
+					if (evt.layer.name =='Parcelas' && evt.layer.visibility == true && Heron.App.map.getScale()>100000){
 						alert('La capa de parcelas ARBA solo es visible por debajo del zoom 1:100.000');
 						//layerParcelas.visibility=false;
-						}*/
+						}
 					
 				   }
 			   }
-			);
+			);*/
+			
 			
 			var files = ["./js/jsts.min.js","./js/mod/FeaturePanel_mod.js"]; 
 			var onload = function () {   
@@ -250,6 +251,7 @@ function fnclick(e){ //busca puntos cercanos al lugar en donde se hizo click. Co
 
 	//alert(lonlat22195.lon + " E, "+lonlat22195.lat + " N");
 	//map.events.unregister("click", map, fnclick );
+	Heron.App.map.events.unregister('click', this, fnclick);
 }
 
 /*FUNCIONES DE LAYER OCULTO - Ver si se usan fuera de buscarPuntosGeoba.php*/
@@ -264,6 +266,13 @@ function centrar (x,y){
     var pointFeature = new OpenLayers.Feature.Vector(point,null,null);
     layerOculto.addFeatures([pointFeature]);
 	
+}
+
+function desactivarDist(){
+	Ext.getCmp('layertree').expand(true);
+	layerOculto.removeFeatures(layerOculto.features);
+	document.getElementById('infoDIV').innerHTML='info';
+	Heron.App.map.events.unregister('click', this, fnclick);
 }
 
 function zoomToGeometry (wkt){

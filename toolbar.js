@@ -72,13 +72,81 @@ var gridCellRenderers=[
 				return '<a href="http://www.ign.gob.ar/archivos/ramsac/estacion2.php?estacion='+value+'" target="_blank">'+value+'</a><br><a href="http://ramsac.ign.gob.ar/ver_formulario.php?e='+encodedValue+'" target="_blank">PDF</a>';
 		   }
 	}
+}, //dipsoh:Lujan_ManchaSituacionActual-Rec2
+{
+   featureType: 'Lujan_ManchaSituacionActual-Rec2',
+   attrName: 'GRAY_INDEX',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if (value > 0){
+				return value;
+				}else{ return 'Sin Datos'; }
+		   },
+   }
+},
+{
+   featureType: 'Lujan_ManchaSituacionActual-Rec5',
+   attrName: 'GRAY_INDEX',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if (value > 0){
+				return value;
+				}else{ return 'Sin Datos'; }
+		   },
+   }
+},
+{
+   featureType: 'Lujan_ManchaSituacionActual-Rec10',
+   attrName: 'GRAY_INDEX',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if (value > 0){
+				return value;
+				}else{ return 'Sin Datos'; }
+		   },
+   }
+},
+{
+   featureType: 'Lujan_ManchaSituacionActual-Rec25',
+   attrName: 'GRAY_INDEX',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if (value > 0){
+				return value;
+				}else{ return 'Sin Datos'; }
+		   },
+   }
+},
+{
+   featureType: 'Lujan_ManchaSituacionActual-Rec50',
+   attrName: 'GRAY_INDEX',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if (value > 0){
+				return value;
+				}else{ return 'Sin Datos'; }
+		   },
+   }
+},
+{
+   featureType: 'Lujan_ManchaSituacionActual-Rec100',
+   attrName: 'GRAY_INDEX',
+   renderer: {
+		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if (value > 0){
+				return value;
+				}else{ return 'Sin Datos'; }
+		   },
+   }
 },
 {
    featureType: 'Mantenimiento_AnalisisZonaVIII',
    attrName: 'name',
    renderer: {
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				if (record.data.base==300){
 				return '<a href="javascript:void(0)" onclick="popupFoto(\''+value+'\');">' + value + '</a>';
+				}else{ return value; }
 		   },
    }
 },
@@ -1683,6 +1751,32 @@ var toolBarItems=[
 				}
 
 			}
+		},
+		{  //distancias
+			
+			create : function(mapPanel, options) {
+				// A trivial handler
+				options.handler = function() {
+				Heron.App.map.events.register('click', this , fnclick);
+				Ext.getCmp('hr-info-west').expand(true);
+				document.getElementById('infoDIV').innerHTML="Haga click sobre el mapa para obtener el cuadro de distancias";
+				};
+				// Provide an ExtJS Action object
+				// If you use an OpenLayers control, you need to provide a GeoExt Action object.
+				return new Ext.Action(options);
+			},
+
+			/* Options to be passed to your create function. */
+			options : {
+				tooltip: 'Consultar distancia a puntos fijos',
+				iconCls: "icon-dist",
+				enableToggle : true,
+				pressed : false,
+				id: "dist",
+				toggleGroup: "toolGroup",
+				msg: 'Consultar distancia a puntos fijos'
+			 }
+			
 		},
 		{type: "-"},
 		{type: "help", options: {tooltip: 'Ayuda', contentUrl: 'help.html'}}//,
