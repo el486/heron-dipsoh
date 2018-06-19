@@ -311,7 +311,7 @@ Heron.layout = {
 						settings :
 						{
 							projection: 'EPSG:900913',
-							displayProjection: new OpenLayers.Projection("EPSG:22195"),
+							displayProjection: new OpenLayers.Projection("EPSG:5347"),
 							units: 'm',
 							//maxExtent: '-20037508.34, -20037508.34, 20037508.34, 20037508.34',
 							tileSize: new OpenLayers.Size(256, 256),

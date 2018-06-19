@@ -71,19 +71,20 @@ var treeTheme = [
 						]
 				},
 				{
-					text:'Parcelario Arba 2016', nodeType: 'hr_cascader', expanded: false, children:
+					text:'Parcelario Arba 2018', nodeType: 'hr_cascader', expanded: false, children:
 						[
 							{nodeType: "gx_layer", layer: "Partidos y Circunscripciones" },
 							{nodeType: "gx_layer", layer: "Macizos" },
 							{nodeType: "gx_layer", layer: "Parcelas" },
-							{nodeType: "gx_layer", layer: "Calles" }
+							{nodeType: "gx_layer", layer: "Calles" },
+							{nodeType: "gx_layer", layer: "Urbanizaciones Cerradas" }
 						]
 				},
 				{
 					text:'Obras Hidraulica',expanded:false, children:
 						[
-							{nodeType: "gx_layer", layer: "Obras con planilla" ,legend:true },
-							{nodeType: "gx_layer", layer: "Trazas DiPSOH" ,legend:true },
+							{nodeType: "gx_layer", layer: "Obras con planilla" , text:"Antecedentes en PDF",legend:true },
+							{nodeType: "gx_layer", layer: "Trazas DiPSOH" , text:"Obras DPH",legend:true },
 							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  },
 							{nodeType: "gx_layer", layer: "Trazas+Obras_SIGOS" ,text:"Obras Sigos - Trazas",legend:true }
 						]
@@ -303,9 +304,9 @@ var layerItems=[
 					}
 			}
 			 
-		),
+		), 
 		layerCallesArba = new OpenLayers.Layer.WMS("Calles",gwcURL,
-			{layers: 'dipsoh:calles',transparent: true, format:'image/png', singleTile: true },
+			{layers: 'dipsoh:calles_2018',transparent: true, format:'image/png', singleTile: true },
 			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
@@ -315,7 +316,7 @@ var layerItems=[
 			}
 		),
 		layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",gwcURL,
-			{layers: 'dipsoh:parcelas_vista_2016',transparent: true, format:'image/png', singleTile: true },
+			{layers: 'dipsoh:parcelas_vista_2018',transparent: true, format:'image/png', singleTile: true },
 			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
@@ -325,7 +326,7 @@ var layerItems=[
 			}
 		),
 		layerMacizosArba = new OpenLayers.Layer.WMS("Macizos",gwcURL,
-			{layers: 'dipsoh:macizos_vista_2016',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:macizos_vista_2018',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -334,14 +335,23 @@ var layerItems=[
 			}
 		),
 		layerCircunscripcionesArba = new OpenLayers.Layer.WMS("Partidos y Circunscripciones",gwcURL,
-			{layers: ['dipsoh:secciones_vista_2016','dipsoh:circunscripciones_vista_2016','dipsoh:partidos_vista_2016'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: ['dipsoh:secciones_vista_2018','dipsoh:circunscripciones_vista_2018','dipsoh:partidos_vista_2018'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
 						}
 					}
 			}
-		),							
+		),
+		layerBarriosCerradosArba = new OpenLayers.Layer.WMS("Urbanizaciones Cerradas",gwcURL,
+			{layers: ['	dipsoh:urbanizaciones_cerradas_2018'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),			
 		layerPartidos_descarga = new OpenLayers.Layer.WMS("Descarga_Partidos_DWG",wmsURL,
 			{layers: 'dipsoh:departamentos_descarga',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
@@ -731,9 +741,10 @@ var layerItems=[
 		),
 		*/
 		//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente (layer geodesia) http://geobasig.com.ar/geoserver29/Geodesia/wms?
+		//http://www.geoinfra.minfra.gba.gov.ar/geoserver/Geoinfra/wms?LAYERS=parcelario_completo
 		new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
-			"http://geobasig.com.ar/geoserver29/Geodesia/wms?",
-			{layers: 'Geodesia:parcelas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			"http://www.geoinfra.minfra.gba.gov.ar/geoserver/Geoinfra/wms?",
+			{layers: 'parcelario_completo',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats

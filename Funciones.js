@@ -57,6 +57,42 @@ function popupObras(value){ //popup con informacion de la obra del SIGOS
 	});
 }
 
+function popupPlanos(value){ //popup con informacion de la obra del SIGOS
+    
+	Ext.Ajax.request({
+    url: 'http://www.geoinfra.minfra.gba.gov.ar/historial.php?nomencla='+value,
+    success: function(response){
+        // response.responseText will have your html content
+        // you can then feed it into your component using update()
+	//response.responseText = response.responseText.replace('img/SistemaSIGOS.jpg','images/SistemaSIGOS.jpg');	   
+			
+			var win;
+			if(!win){
+				win = new Ext.Window({
+					//applyTo     : 'hello-win',
+					//layout      : 'fit',
+					title:'Historial de planos',
+					width: 300,
+					height: 200,
+					closeAction :'hide',
+					//plain: true,
+					modal: true, 
+					html: response.responseText,
+					//overflow:'auto', 
+					autoScroll:'true',
+					buttons: [{
+						text     : 'Close',
+						handler  : function(){
+							win.hide();
+						}
+					}]
+				});
+				win.show();
+			} 
+	  }
+	});
+}
+
 function popupFoto(value){ //popup con foto
     var win;
 	if(!win){
@@ -198,7 +234,7 @@ Ext.onReady(function() {  //carga después de terminar de cargar el mapa. Se usa 
 			);*/
 			
 			
-			var files = ["./js/jsts.min.js","./js/mod/FeaturePanel_mod.js"]; 
+			var files = ["./js/jsts.min.js"/*,"./js/mod/FeaturePanel_mod.js"*/]; 
 			var onload = function () {   
 			// do something onload
 			}

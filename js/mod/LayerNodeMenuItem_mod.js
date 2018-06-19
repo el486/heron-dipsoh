@@ -273,7 +273,7 @@ Heron.widgets.LayerNodeMenuItem.LayerInfo = Ext.extend(Heron.widgets.LayerNodeMe
         var hasWFS = layer.metadata.wfs || isWFS ? 'Yes' : 'No';
         var hasFeatureInfo = isVector || layer.featureInfoFormat ? 'Yes' : 'No';
 
-var infoWms = Ext.getCmp('capasGrid').store;
+		var infoWms = Ext.getCmp('capasGrid').store;
 		infoWms.filter('name',layer.params.LAYERS);
 		
 		if(infoWms.data.items.length>0){

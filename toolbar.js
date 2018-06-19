@@ -57,7 +57,8 @@ var partidos=[
 ["Tordillo","105"],["Tornquist","106"],["Trenque Lauquen","107"],["Tres Arroyos","108"],["Tres de Febrero","117"],["Tres Lomas","127"],["Veinticinco de Mayo","109"],
 ["Vicente Lopez","110"],["Villa Gesell","125"],["Villarino","111"],["Zarate","38"]
 ];
-	
+
+//agregar popup http://www.geoinfra.minfra.gba.gov.ar/historial.php?nomencla=011070000000000000000000000000000000653000	
 var gridCellRenderers=[
 {
    featureType: 'estaciones_permanentes_IGN', 
@@ -339,11 +340,11 @@ var gridCellRenderers=[
    }
 },
 {
-   featureType: 'parcelas',
+   featureType: 'parcelas_vista_2018',
    attrName: 'nomencla',
    renderer: {
 			fn : function(value, metaData, record, rowIndex, colIndex, store) {
-				return convertNomencla(value);
+				return '<a href="javascript:void(0)" onclick="popupPlanos(\''+value+'\');">' + value + '</a>';
 		   },
 		   options : {}
    }
@@ -357,13 +358,79 @@ var uploadFormats=[
 	 {name: 'ESRI Shape (zip, WGS84/EPSG:4326)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON'},
 	 {name: 'ESRI Shape (zip, EPSG:3857, EPSG:900913 - Google)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:900913')},
 	 {name: 'ESRI Shape (zip, Campo Inchauspe faja 5 - EPSG:22195)', fileExt: '.zip', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22195')},
-	 {name: 'DXF (Faja 5 - EPSG:22195)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22195')},
-	 {name: 'DXF (Faja 6 - EPSG:22196)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22196')},
-	 {name: 'DXF (Faja 4 - EPSG:22194)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22194')}
+	 {name: 'DXF (Posgar07 Faja 5 - EPSG:5347)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:5347')},
+	 {name: 'DXF (Posgar07 Faja 6 - EPSG:5348)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:5348')},
+	 {name: 'DXF (Posgar07 Faja 4 - EPSG:5346)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:5346')},
+	 {name: 'DXF (Campo inchauspe Faja 5 - EPSG:22195)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22195')},
+	 {name: 'DXF (Campo inchauspe Faja 6 - EPSG:22196)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22196')},
+	 {name: 'DXF (Campo inchauspe Faja 4 - EPSG:22194)', fileExt: '.dxf', mimeType: 'text/plain', formatter: 'OpenLayers.Format.GeoJSON', fileProjection: new OpenLayers.Projection('EPSG:22194')}
 ];
 							
 var downloadFormats=['CSV',
 					 'XLS',
+					{
+						name: 'KML (Google Earth)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'KML',
+						targetSrs: 'EPSG:4326',
+						fileExt: '.kml',
+						mimeType: 'application/kml'
+					},
+					{
+						name: 'Esri Shapefile (Posgar07 faja 4 - EPSG:5346)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'ESRI Shapefile',
+						targetSrs: 'EPSG:5346',
+						fileExt: '.zip',
+						mimeType: 'application/zip'
+					},
+					{
+						name: 'Esri Shapefile (Posgar07 faja 5 - EPSG:5347)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'ESRI Shapefile',
+						targetSrs: 'EPSG:5347',
+						fileExt: '.zip',
+						mimeType: 'application/zip'
+					},
+					{
+						name: 'Esri Shapefile (Posgar07 faja 6 - EPSG:5348)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'ESRI Shapefile',
+						targetSrs: 'EPSG:5348',
+						fileExt: '.zip',
+						mimeType: 'application/zip'
+					},
+					{
+						name: 'DXF (Posgar 07 faja 4 - EPSG:5346)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'DXF',
+						targetSrs: 'EPSG:5346',
+						fileExt: '.dxf',
+						mimeType: 'application/dxf'
+					},
+					{
+						name: 'DXF (Posgar 07 faja 5 - EPSG:5347)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'DXF',
+						targetSrs: 'EPSG:5347',
+						fileExt: '.dxf',
+						mimeType: 'application/dxf'
+					},
+					{
+						name: 'DXF (Posgar 07 faja 6 - EPSG:5348)',
+						formatter: 'OpenLayersFormatter',
+						format: 'OpenLayers.Format.GeoJSON',
+						targetFormat: 'DXF',
+						targetSrs: 'EPSG:5348',
+						fileExt: '.dxf',
+						mimeType: 'application/dxf'
+					},
 					{
 						name: 'Esri Shapefile (Campo Inchauspe faja 4 - EPSG:22194)',
 						formatter: 'OpenLayersFormatter',
@@ -381,7 +448,8 @@ var downloadFormats=['CSV',
 						targetSrs: 'EPSG:22195',
 						fileExt: '.zip',
 						mimeType: 'application/zip'
-					},{
+					},
+					{
 						name: 'Esri Shapefile (Campo Inchauspe faja 6 - EPSG:22196)',
 						formatter: 'OpenLayersFormatter',
 						format: 'OpenLayers.Format.GeoJSON',
@@ -416,7 +484,7 @@ var downloadFormats=['CSV',
 						targetSrs: 'EPSG:22196',
 						fileExt: '.dxf',
 						mimeType: 'application/dxf'
-					},
+					}//,
 					/*{
 						name: 'DXF (POSGAR 94 faja 4 - EPSG:22184)',
 						formatter: 'OpenLayersFormatter',
@@ -444,42 +512,7 @@ var downloadFormats=['CSV',
 						fileExt: '.dxf',
 						mimeType: 'application/dxf'
 					},*/
-					{
-						name: 'DXF (Posgar 07 faja 4 - EPSG:5347)',
-						formatter: 'OpenLayersFormatter',
-						format: 'OpenLayers.Format.GeoJSON',
-						targetFormat: 'DXF',
-						targetSrs: 'EPSG:5347',
-						fileExt: '.dxf',
-						mimeType: 'application/dxf'
-					},
-					{
-						name: 'DXF (Posgar 07 faja 5 - EPSG:5348)',
-						formatter: 'OpenLayersFormatter',
-						format: 'OpenLayers.Format.GeoJSON',
-						targetFormat: 'DXF',
-						targetSrs: 'EPSG:5348',
-						fileExt: '.dxf',
-						mimeType: 'application/dxf'
-					},
-					{
-						name: 'DXF (Posgar 07 faja 6 - EPSG:5349)',
-						formatter: 'OpenLayersFormatter',
-						format: 'OpenLayers.Format.GeoJSON',
-						targetFormat: 'DXF',
-						targetSrs: 'EPSG:5349',
-						fileExt: '.dxf',
-						mimeType: 'application/dxf'
-					},
-					{
-						name: 'KML (Google Earth)',
-						formatter: 'OpenLayersFormatter',
-						format: 'OpenLayers.Format.GeoJSON',
-						targetFormat: 'KML',
-						targetSrs: 'EPSG:4326',
-						fileExt: '.kml',
-						mimeType: 'application/kml'
-					}
+					
 					];
 							
 var resultPanel={
@@ -1174,7 +1207,7 @@ var toolBarItems=[
 											version: "1.1.0"
 											,srsName: "EPSG:900913"
 											,url: serverURL+"/geoserver/dipsoh/wfs"
-											,featureType: "parcelas"
+											,featureType: "parcelas_vista_2018"
 											,featurePrefix: "dipsoh"
 											,featureNS :  serverURL+"/geoserver/dipsoh_postgis"
 										}),
@@ -1204,7 +1237,17 @@ var toolBarItems=[
 												}),
 												listeners: { 'select': function(combo, record, index){ 
 														combo.setValue(record.data['tip']);
+														label = Ext.getCmp('partido_label');
+														label.setText(record.data['display']);
 														}  
+												}
+											},
+											{
+												xtype: "label",
+												id: "partido_label",
+												html: '',
+												style: {
+													padding: '105px'
 												}
 											},
 											{
@@ -1260,7 +1303,7 @@ var toolBarItems=[
 											version: "1.1.0"
 											,srsName: "EPSG:900913"
 											,url: serverURL+"/geoserver/dipsoh/wfs"
-											,featureType: "parcelas"
+											,featureType: "parcelas_vista_2018"
 											,featurePrefix: "dipsoh"
 											,featureNS : serverURL+"/geoserver/dipsoh_postgis"
 										}),
@@ -1285,6 +1328,8 @@ var toolBarItems=[
 												listeners: { 
 														'select': function(combo, record, index){ 
 														combo.setValue(record.data['tip']);
+														label = Ext.getCmp('partidolabel');
+														label.setText(record.data['display']);
 														},
 														'change': function(e){ 
 														var val=(e.getValue());
@@ -1294,6 +1339,14 @@ var toolBarItems=[
 														e.setValue(val);
 														armarNomencla();
 														}
+												}
+											},
+											{
+												xtype: "label",
+												id: "partidolabel",
+												html: '',
+												style: {
+													padding: '105px'
 												}
 											},
 											{
@@ -1575,6 +1628,23 @@ var toolBarItems=[
 							, iconUrl: null
 						},
 						{
+							  projEpsg: 'EPSG:5347'
+							, projDesc: 'EPSG:5347 - Posgar2007/Faja5'
+							, fieldLabelX: 'X [m]'
+							, fieldLabelY: 'Y [m]'
+							, fieldEmptyTextX: 'Ingrese coordenada X...'
+							, fieldEmptyTextY: 'Ingrese coordenada Y...'
+							, fieldMinX: 4500000
+							, fieldMinY: 5000000
+							, fieldMaxX: 6500000
+							, fieldMaxY: 7000000
+							, fieldDecPrecision: 2
+							, iconWidth: 32
+							, iconHeight: 32
+							, localIconFile: 'redpin.png'
+							, iconUrl: null
+						},
+						{
 							  projEpsg: 'EPSG:4326'
 							, projDesc: 'EPSG:4326 - WGS 84'
 							, fieldLabelX: 'Lon [Grad]'
@@ -1670,7 +1740,7 @@ var toolBarItems=[
 			windowWidth: 360, 
 			id:'prevImpresion'
 			// , showTitle: true
-			 , mapTitle: 'Sig DiPSOH'
+			 , mapTitle: 'Sig DPH'
 			// , mapTitleYAML: "mapTitle"		// MapFish - field name in config.yaml - default is: 'mapTitle'
 			// , showComment: true
 			 , mapComment: 'Provincia de Buenos Aires'
