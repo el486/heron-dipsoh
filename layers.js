@@ -52,93 +52,7 @@ var treeTheme = [
 			]
 	},
 	{
-		text:'Capas de informacion', expanded: true, children:
-			[
-				{
-					text:'Provincia', expanded: true, children:
-						[
-							{nodeType: "gx_layer", layer: "Partidos" },
-							{nodeType: "gx_layer", layer: "Hidrografia",text:"Hidrografia escala 1:250.000" },
-							{nodeType: "gx_layer", layer: "Hidrografia_detalle" },
-							{nodeType: "gx_layer", layer: "Hidrografia_detalle_OSM" },
-							{nodeType: "gx_layer", layer: "Cuencas",text:"Cuencas (actualizado el 12/4/2017)" },
-							{nodeType: "gx_layer", layer: "Cuencas Detalle"},
-							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
-							{nodeType: "gx_layer", layer: "Rutas" ,legend:true },
-							{nodeType: "gx_layer", layer: "Censo_2010",text:"Censo 2010 INDEC",legend:true },
-							{nodeType: "gx_layer", layer: "Estaciones de medicion",legend:true} 
-							
-						]
-				},
-				{
-					text:'Parcelario Arba 2018', nodeType: 'hr_cascader', expanded: false, children:
-						[
-							{nodeType: "gx_layer", layer: "Partidos y Circunscripciones" },
-							{nodeType: "gx_layer", layer: "Macizos" },
-							{nodeType: "gx_layer", layer: "Parcelas" },
-							{nodeType: "gx_layer", layer: "Calles" },
-							{nodeType: "gx_layer", layer: "Urbanizaciones Cerradas" }
-						]
-				},
-				{
-					text:'Obras Hidraulica',expanded:false, children:
-						[
-							{nodeType: "gx_layer", layer: "Obras con planilla" , text:"Antecedentes en PDF",legend:true },
-							{nodeType: "gx_layer", layer: "Trazas DiPSOH" , text:"Obras DPH",legend:true },
-							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  },
-							{nodeType: "gx_layer", layer: "Trazas+Obras_SIGOS" ,text:"Obras Sigos - Trazas",legend:true }
-						]
-				},
-				{
-					text:'Relevamiento',expanded:false, children:
-						[
-							{nodeType: "gx_layer", layer: "Red_Geoba",legend:true },
-							{nodeType: "gx_layer", layer: "Estaciones permanentes IGN",legend:true },
-							{nodeType: "gx_layer", layer: "Parcelas_RT",text:"Planos en Rel. Territorial" },
-							{nodeType: "gx_layer", layer: "Parcelas_con_plano",text:"Planos en Geodesia" },
-							{nodeType: "gx_layer", layer: "Puntos_acotados_IGN",legend:true  },
-							{nodeType: "gx_layer", layer: "Curvas_de_nivel",legend:true  },
-							{nodeType: "gx_layer", layer: "puntosGeodesia5000",legend:true,text:"Puntos fijos Geodesia 5000"},
-							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  },
-							{nodeType: "gx_layer", layer: "Red de nivelacion IGN",legend:true  }
-						]
-				},
-				{
-					text:'Direccion de mantenimiento',expanded:false, children:
-						[
-							{nodeType: "gx_layer", layer: "Limpiezas Cooperativas 2015"},
-							{nodeType: "gx_layer", layer: "Limpiezas Cooperativas 2017"}, 
-							{nodeType: "gx_layer", layer: "Analisis Zona VIII" ,text:"Analisis zona VIII"},
-						]
-				},// Urbanizaciones e industrias
-				{
-					text:'Cuenca Lujan',expanded:false, children:
-						[
-							{nodeType: "gx_layer", layer: "Urbanizaciones e industrias"},
-							{nodeType: "gx_layer", layer: "Parques Industriales"}, 
-							{
-							text:'Manchas de inundacion',expanded:false, children:
-								[
-									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 100 años",text:"Sin obra - Rec100"},
-									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 50 años",text:"Sin obra - Rec50"},
-									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 25 años",text:"Sin obra - Rec25"},
-									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 10 años",text:"Sin obra - Rec10"},
-									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 5 años",text:"Sin obra - Rec5"},
-									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 2 años",text:"Sin obra - Rec2"},
-								]
-							}
-						]
-				}, 
-				{
-					text:'Descargas',expanded:false, children:
-						[
-							{nodeType: "gx_layer", layer: "Descarga_Cartas_IGN50000" ,text:"Descarga cartas IGN 1:50K",legend:true },
-							{nodeType: "gx_layer", layer: "Descarga_Partidos_DWG" ,text:"Descarga de partidos en DWG",legend:true },
-							{nodeType: "gx_layer", layer: "Descarga_MDT_IGN" ,text:"Descarga MDT IGN 1:50K",legend:true }
-						]
-				}
-
-			]
+		text:'Capas de informacion', expanded: true, children:[]
 	}
 ];
 
@@ -155,7 +69,8 @@ var layerItems=[
 			], {
 				attribution: "Tiles &copy; <a href='http://mapbox.com/'>MapBox</a>",
 				sphericalMercator: true,
-				wrapDateLine: true
+				wrapDateLine: true,
+				displayInLayerSwitcher:false
 		}),
 		new OpenLayers.Layer.XYZ( "Mapbox - Streets/Satellite",
 			[
@@ -166,7 +81,8 @@ var layerItems=[
 			], {
 				attribution: "Tiles &copy; <a href='http://mapbox.com/'>MapBox</a>",
 				sphericalMercator: true,
-				wrapDateLine: true
+				wrapDateLine: true,
+				displayInLayerSwitcher:false
 		}),
 		new OpenLayers.Layer.XYZ( "Mapbox - Dark",
 			[
@@ -177,8 +93,39 @@ var layerItems=[
 			], {
 				attribution: "Tiles &copy; <a href='http://mapbox.com/'>MapBox</a>",
 				sphericalMercator: true,
-				wrapDateLine: true
+				wrapDateLine: true,
+				displayInLayerSwitcher:false
 		}),
+
+		/*
+		 * Basemap Tilecache y geoserver
+		 */
+		
+		new OpenLayers.Layer.WMS( "Cartas IGN", 
+			serverURL+"/tilecache/tilecache.cgi", 
+			{
+			layers: 'basic', 
+			reproyect:true,
+			format: 'image/png'
+			},
+			{transitionEffect: 'resize',isBaseLayer:true,displayInLayerSwitcher:false}
+		),
+		 new OpenLayers.Layer.WMS("mdt_ign",gwcURL,
+			{layers: 'dipsoh:mdt',transparent: true, format:'image/png', tiled: true }, 
+			{isBaseLayer:true, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml'}								 
+		), 
+
+
+		new OpenLayers.Layer.WMS("Geo5000_Faja5",gwcURL,
+			{layers: 'dipsoh:Geo5000_F5',transparent: true, format:'image/png', tiled: true }, 
+			{visibility: false,isBaseLayer:false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml'}								 
+		), 
+		
+		new OpenLayers.Layer.WMS("Geo5000_Faja6",gwcURL,
+			{layers: 'dipsoh:Geo5000_F6',transparent: true, format:'image/png', tiled: true }, 
+			{visibility: false,isBaseLayer:false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml'}								 
+		), 
+		
 		/*
 		 * Basemaps OpenStreetMap
 		 */
@@ -187,7 +134,7 @@ var layerItems=[
 		
 		
 		/*
-		 * Google Maps
+		 * Basemap Google Maps
 		 */
 		new OpenLayers.Layer.Google(
 			  "Google Streets", // the default
@@ -198,17 +145,17 @@ var layerItems=[
 				"Google Hybrid",
 				{type: google.maps.MapTypeId.HYBRID, visibility: true,'sphericalMercator': true, numZoomLevels: 20,displayInLayerSwitcher:false}
 		),
-								
+
 		/*
 		 * Basemaps ESRI
 		 */
 		new OpenLayers.Layer.XYZ("ESRI Topografico",
 				"http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}",
-				{sphericalMercator: true, attribution: "Base Map Tiles &copy; <a href='http://www.esri.com/'>Esri</a>", isBaseLayer: true} 
+				{sphericalMercator: true, attribution: "Base Map Tiles &copy; <a href='http://www.esri.com/'>Esri</a>", isBaseLayer: true, displayInLayerSwitcher:false} 
 		),
 		new OpenLayers.Layer.XYZ("ESRI Satelital",
 				"http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}",
-				{sphericalMercator: true, attribution: "<font color='white'>Base Map Tiles &copy; <a href='http://www.esri.com/'>Esri</a></font>", isBaseLayer: true} 
+				{sphericalMercator: true, attribution: "<font color='white'>Base Map Tiles &copy; <a href='http://www.esri.com/'>Esri</a></font>", isBaseLayer: true,displayInLayerSwitcher:false} 
 		),
 		
 		/*
@@ -218,66 +165,23 @@ var layerItems=[
 		 new OpenLayers.Layer.Bing({
 			name: "Bing Callejero",
 			key: apiKey,
-			type: "Road"
+			type: "Road",
+			displayInLayerSwitcher:false
 		}),
 		new OpenLayers.Layer.Bing({
 			name: "Bing Hibrido",
 			key: apiKey,
-			type: "AerialWithLabels"
+			type: "AerialWithLabels",
+			displayInLayerSwitcher:false
 		}),
 		new OpenLayers.Layer.Bing({
 			name: "Bing Aereo",
 			key: apiKey,
-			type: "Aerial"
+			type: "Aerial",
+			displayInLayerSwitcher:false
 		}),
 		
-		/*
-		 * Basemap Tilecache
-		 */
-		new OpenLayers.Layer.WMS("mdt_ign",gwcURL,
-			{layers: 'dipsoh:mdt',transparent: true, format:'image/png', tiled: true }, 
-			{isBaseLayer:true, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml'}								 
-		), 
-		
-		new OpenLayers.Layer.WMS( "Cartas IGN", 
-			serverURL+"/tilecache/tilecache.cgi", 
-			{
-			layers: 'basic', 
-			reproyect:true,
-			format: 'image/png'
-			},
-			{transitionEffect: 'resize',isBaseLayer:true,displayInLayerSwitcher:false}
-			),
-		/*	
-		new OpenLayers.Layer.WMS( "Geo5000_Faja5", 
-			serverURL+"/tilecache/tilecache.cgi", 
-			{
-			layers: ['geo5000_22195'], 
-			reproyect:true,
-			format: 'image/png'
-			},{
-			transitionEffect: 'resize',isBaseLayer:false,displayInLayerSwitcher:true,visibility:false
-			}),
-			
-		new OpenLayers.Layer.WMS( "Geo5000_Faja6", 
-			serverURL+"/tilecache/tilecache.cgi", 
-			{
-			layers: 'geo5000_22196', 
-			reproyect:true,
-			format: 'image/png'
-			},{
-			transitionEffect: 'resize',isBaseLayer:false,displayInLayerSwitcher:true,visibility:false
-			}),
-		*/
-		new OpenLayers.Layer.WMS("Geo5000_Faja5",gwcURL,
-			{layers: 'dipsoh:Geo5000_F5',transparent: true, format:'image/png', tiled: true }, 
-			{visibility: false,isBaseLayer:false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml'}								 
-		), 
-		
-		new OpenLayers.Layer.WMS("Geo5000_Faja6",gwcURL,
-			{layers: 'dipsoh:Geo5000_F6',transparent: true, format:'image/png', tiled: true }, 
-			{visibility: false,isBaseLayer:false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml'}								 
-		), 
+
 		/*
 		 * Basemap Blanco
 		 */
@@ -289,14 +193,14 @@ var layerItems=[
 				new OpenLayers.Size(10, 10),
 				{isBaseLayer: true, visibility: false, displayInLayerSwitcher: true, transitionEffect: 'resize',numZoomLevels: 18}
 		),
-		
+	]	
 		/*
-		 * Layers nuestros
+		 * Layers nuestros: Provincia
 		 */
-		
+provincia=[	
 		layerPartidos = new OpenLayers.Layer.WMS("Partidos",gwcURL,
 			{layers: 'dipsoh:departamentos',transparent: true, format:'image/png', singleTile: true }, 
-			{visibility: true, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: true, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -305,163 +209,9 @@ var layerItems=[
 			}
 			 
 		), 
-		layerCallesArba = new OpenLayers.Layer.WMS("Calles",gwcURL,
-			{layers: 'dipsoh:calles_2018',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",gwcURL,
-			{layers: 'dipsoh:parcelas_vista_2018',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		layerMacizosArba = new OpenLayers.Layer.WMS("Macizos",gwcURL,
-			{layers: 'dipsoh:macizos_vista_2018',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		layerCircunscripcionesArba = new OpenLayers.Layer.WMS("Partidos y Circunscripciones",gwcURL,
-			{layers: ['dipsoh:secciones_vista_2018','dipsoh:circunscripciones_vista_2018','dipsoh:partidos_vista_2018'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		layerBarriosCerradosArba = new OpenLayers.Layer.WMS("Urbanizaciones Cerradas",gwcURL,
-			{layers: ['	dipsoh:urbanizaciones_cerradas_2018'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),			
-		layerPartidos_descarga = new OpenLayers.Layer.WMS("Descarga_Partidos_DWG",wmsURL,
-			{layers: 'dipsoh:departamentos_descarga',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-
-		new OpenLayers.Layer.WMS("Descarga_Cartas_IGN50000",wmsURL,
-			{layers: 'dipsoh:cartas050igm',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		new OpenLayers.Layer.WMS("Descarga_MDT_IGN",wmsURL,
-			{layers: 'dipsoh:cartas100igm',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		new OpenLayers.Layer.WMS("Cartas_Geodesia_1:5000",wmsURL,
-			{layers: 'dipsoh:cartas_geodesia_5000',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		), 
-		
-		layerParcelasRT = new OpenLayers.Layer.WMS("Parcelas_RT",wmsURL,
-			{layers: 'dipsoh:parcelas_rt_geom',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		
-		new OpenLayers.Layer.WMS("Red_Geoba",wmsURL,
-			{layers: 'dipsoh:red_geoba_22195',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		
-		new OpenLayers.Layer.WMS("Estaciones de medicion",wmsURL,
-			{layers: ['dipsoh:estaciones_medicion','dipsoh:estaciones_historico_salado'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		
-		new OpenLayers.Layer.WMS("Puntos_acotados_IGN",wmsURL,
-			{layers: 'dipsoh:puntosacotados_22195',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		
-		new OpenLayers.Layer.WMS("Curvas_de_nivel",wmsURL,
-			{layers: 'dipsoh:curvas_area_metropolitana_22195',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		
-		new OpenLayers.Layer.WMS("Cuencas",wmsURL,
-			{layers: 'dipsoh:cuencas',transparent: true, format:'image/png', singleTile: true },{opacity: 0.75,visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		
-		new OpenLayers.Layer.WMS("Censo_2010",wmsURL,
-			{layers: 'dipsoh:indec_2010',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		
+				
 		new OpenLayers.Layer.WMS("Hidrografia",wmsURL,
-			{layers: 'dipsoh:hidro_view',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:hidro_view',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -471,7 +221,7 @@ var layerItems=[
 		),
 		
 		new OpenLayers.Layer.WMS("Hidrografia_detalle",wmsURL,
-			{layers: 'dipsoh:hidro_detalle',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:hidro_detalle',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -481,7 +231,7 @@ var layerItems=[
 		),
 		
 		new OpenLayers.Layer.WMS("Hidrografia_detalle_OSM",wmsURL,
-			{layers: 'dipsoh:hidro_detalle_OSM',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:hidro_detalle_OSM',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -491,7 +241,7 @@ var layerItems=[
 		),
 		
 		new OpenLayers.Layer.WMS("Lagos_y_lagunas",wmsURL,
-			{layers: 'dipsoh:lagunas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:lagunas',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -500,18 +250,8 @@ var layerItems=[
 			}
 		), 
 		
-		new OpenLayers.Layer.WMS("Rutas",wmsURL,
-			{layers: 'dipsoh:rutas_filter',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			} 
-		), 
-		
-		layerTrazas = new OpenLayers.Layer.WMS("Trazas+Obras_SIGOS",wmsURL,
-			{layers: ['dipsoh:dipsoh_obras_sigos_total'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Cuencas",wmsURL,
+			{layers: 'dipsoh:cuencas',transparent: true, format:'image/png', singleTile: true },{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -520,8 +260,137 @@ var layerItems=[
 			}
 		),
 
-		new OpenLayers.Layer.WMS("Obras_SIGOS",wmsURL,
-			{layers: 'dipsoh:dipsoh_obras_ref',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Cuencas Detalle",wmsURL,
+			{layers: 'dipsoh:cuencas_detalle',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		
+		new OpenLayers.Layer.WMS("Rutas",wmsURL,
+			{layers: 'dipsoh:rutas_filter',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			} 
+		), 
+				
+		
+		new OpenLayers.Layer.WMS("Censo_2010",wmsURL,
+			{layers: 'dipsoh:indec_2010',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		
+		new OpenLayers.Layer.WMS("Estaciones de medicion",wmsURL,
+			{layers: ['dipsoh:estaciones_medicion','dipsoh:estaciones_historico_salado'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+	]
+
+layerItems=layerItems.concat(provincia);
+treeTheme[1].children.push({
+					text:'Provincia', expanded: true, children:
+						[
+							{nodeType: "gx_layer", layer: "Partidos" },
+							{nodeType: "gx_layer", layer: "Hidrografia",text:"Hidrografia escala 1:250.000" },
+							{nodeType: "gx_layer", layer: "Hidrografia_detalle" },
+							{nodeType: "gx_layer", layer: "Hidrografia_detalle_OSM" },
+							{nodeType: "gx_layer", layer: "Lagos_y_lagunas",text:"Lagos y lagunas",legend:true },
+							{nodeType: "gx_layer", layer: "Cuencas",text:"Cuencas (actualizado el 12/4/2017)" },
+							{nodeType: "gx_layer", layer: "Cuencas Detalle"},
+							{nodeType: "gx_layer", layer: "Rutas" ,legend:true },
+							{nodeType: "gx_layer", layer: "Censo_2010",text:"Censo 2010 INDEC",legend:true },
+							{nodeType: "gx_layer", layer: "Estaciones de medicion",legend:true} 
+							
+						]
+				});
+	
+		/*
+		 * Layers nuestros: ARBA
+		 */
+arba=[
+		 layerCircunscripcionesArba = new OpenLayers.Layer.WMS("Partidos y Circunscripciones",gwcURL,
+			{layers: ['dipsoh:secciones_vista_2018','dipsoh:circunscripciones_vista_2018','dipsoh:partidos_vista_2018'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),		
+		layerMacizosArba = new OpenLayers.Layer.WMS("Macizos",gwcURL,
+			{layers: 'dipsoh:macizos_vista_2018',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		layerParcelasArba = new OpenLayers.Layer.WMS("Parcelas",gwcURL,
+			{layers: 'dipsoh:parcelas_vista_2018',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		layerCallesArba = new OpenLayers.Layer.WMS("Calles",gwcURL,
+			{layers: 'dipsoh:calles_2018',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		layerBarriosCerradosArba = new OpenLayers.Layer.WMS("Urbanizaciones Cerradas",gwcURL,
+			{layers: ['	dipsoh:urbanizaciones_cerradas_2018'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		)
+	]
+layerItems=layerItems.concat(arba);
+treeTheme[1].children.push({
+					text:'Parcelario Arba 2018', nodeType: 'hr_cascader', expanded: false, children:
+						[
+							{nodeType: "gx_layer", layer: "Partidos y Circunscripciones" },
+							{nodeType: "gx_layer", layer: "Macizos" },
+							{nodeType: "gx_layer", layer: "Parcelas" },
+							{nodeType: "gx_layer", layer: "Calles" },
+							{nodeType: "gx_layer", layer: "Urbanizaciones Cerradas" }
+						]
+				});
+
+		/*
+		 * Layers nuestros: Obras
+		 */
+obras=[
+		 new OpenLayers.Layer.WMS("Obras con planilla",wmsURL,
+			{layers: 'dipsoh:conductos_con_planilla',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -530,7 +399,7 @@ var layerItems=[
 			}
 		),
 		new OpenLayers.Layer.WMS("Trazas DiPSOH",wmsURL,
-			{layers: 'dipsoh:obras_sigos_line',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: 'dipsoh:obras_sigos_line',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -538,8 +407,8 @@ var layerItems=[
 					}
 			}
 		),
-		new OpenLayers.Layer.WMS("Limpiezas Cooperativas 2015",wmsURL,
-			{layers: 'dipsoh:LimpiezaCooperativas2015',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Obras_SIGOS",wmsURL,
+			{layers: 'dipsoh:dipsoh_obras_ref',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -547,8 +416,33 @@ var layerItems=[
 					}
 			}
 		),
-		new OpenLayers.Layer.WMS("Limpiezas Cooperativas 2017",wmsURL,
-			{layers: 'dipsoh:LimpiezaCooperativasNov2017',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		layerTrazas = new OpenLayers.Layer.WMS("Trazas+Obras_SIGOS",wmsURL,
+			{layers: ['dipsoh:dipsoh_obras_sigos_total'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		)
+	]
+layerItems=layerItems.concat(obras);
+treeTheme[1].children.push({
+					text:'Obras Hidraulica',expanded:false, children:
+						[
+							{nodeType: "gx_layer", layer: "Obras con planilla" , text:"Antecedentes en PDF",legend:true },
+							{nodeType: "gx_layer", layer: "Trazas DiPSOH" , text:"Obras DPH",legend:true },
+							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  },
+							{nodeType: "gx_layer", layer: "Trazas+Obras_SIGOS" ,text:"Obras Sigos - Trazas",legend:true }
+						]
+				});
+
+		/*
+		 * Layers nuestros: Relevamiento
+		 */
+relevamiento=[
+		new OpenLayers.Layer.WMS("Red_Geoba",wmsURL,
+			{layers: 'dipsoh:red_geoba_22195',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -556,8 +450,18 @@ var layerItems=[
 					}
 			}
 		),
-		new OpenLayers.Layer.WMS("Cuencas Detalle",wmsURL,
-			{layers: 'dipsoh:cuencas_detalle',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Estaciones permanentes IGN",wmsURL,
+			{layers: 'dipsoh:estaciones_permanentes_IGN',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		layerParcelasRT = new OpenLayers.Layer.WMS("Parcelas_RT",wmsURL,
+			{layers: 'dipsoh:parcelas_rt_geom',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -567,7 +471,7 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Parcelas_con_plano",gwcURL,
 			{layers: 'dipsoh:parcelas_con_plano_geom',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -575,10 +479,8 @@ var layerItems=[
 					}
 			}
 		),
-		
-		new OpenLayers.Layer.WMS("Obras con planilla",wmsURL,
-			{layers: 'dipsoh:conductos_con_planilla',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Puntos_acotados_IGN",wmsURL,
+			{layers: 'dipsoh:puntosacotados_22195',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -586,10 +488,8 @@ var layerItems=[
 					}
 			}
 		),
-		
-		new OpenLayers.Layer.WMS("Estaciones permanentes IGN",wmsURL,
-			{layers: 'dipsoh:estaciones_permanentes_IGN',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Curvas_de_nivel",wmsURL,
+			{layers: 'dipsoh:curvas_de_nivel',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -599,7 +499,16 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("puntosGeodesia5000",wmsURL,
 			{layers: 'dipsoh:puntosGeodesia5000',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Cartas_Geodesia_1:5000",wmsURL,
+			{layers: 'dipsoh:cartas_geodesia_5000',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -609,7 +518,55 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Red de nivelacion IGN",wmsURL,
 			{layers: 'dipsoh:nivelacion_IGN',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		)
+	]
+layerItems=layerItems.concat(relevamiento);
+treeTheme[1].children.push({
+					text:'Relevamiento',expanded:false, children:
+						[
+							{nodeType: "gx_layer", layer: "Red_Geoba",legend:true },
+							{nodeType: "gx_layer", layer: "Estaciones permanentes IGN",legend:true },
+							{nodeType: "gx_layer", layer: "Parcelas_RT",text:"Planos en Rel. Territorial" },
+							{nodeType: "gx_layer", layer: "Parcelas_con_plano",text:"Planos en Geodesia" },
+							{nodeType: "gx_layer", layer: "Puntos_acotados_IGN",legend:true  },
+							{nodeType: "gx_layer", layer: "Curvas_de_nivel",legend:true  },
+							{nodeType: "gx_layer", layer: "puntosGeodesia5000",legend:true,text:"Puntos fijos Geodesia 5000"},
+							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  },
+							{nodeType: "gx_layer", layer: "Red de nivelacion IGN",legend:true  }
+						]
+				});
+ 		/*
+		 * Layers nuestros: Mantenimiento
+		 */
+mantenimiento=[
+		new OpenLayers.Layer.WMS("Limpiezas Cooperativas 2015",wmsURL,
+			{layers: 'dipsoh:LimpiezaCooperativas2015',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Limpiezas Cooperativas 2017",wmsURL,
+			{layers: 'dipsoh:LimpiezaCooperativasNov2017',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Relevamiento canales",wmsURL,
+			{layers: 'dipsoh:mantenimiento_relevamientos_kml',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -619,7 +576,43 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Analisis Zona VIII",wmsURL,
 			{layers: 'dipsoh:Mantenimiento_AnalisisZonaVIII',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		)
+	]
+layerItems=layerItems.concat(mantenimiento);
+treeTheme[1].children.push({
+					text:'Direccion de mantenimiento',expanded:false, children:
+						[
+							{nodeType: "gx_layer", layer: "Limpiezas Cooperativas 2015"},
+							{nodeType: "gx_layer", layer: "Limpiezas Cooperativas 2017"}, 
+							{nodeType: "gx_layer", layer: "Relevamiento canales"},
+							{nodeType: "gx_layer", layer: "Analisis Zona VIII" ,text:"Analisis zona VIII"},
+						]
+				});
+		/*
+		 * Layers nuestros: Cuenca Lujan
+		 */
+lujan=[
+		new OpenLayers.Layer.WMS("Urbanizaciones e industrias",wmsURL,
+			{layers: 'dipsoh:lujan_urbanizaciones-industrias-asentamientos',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		), 
+		//dipsoh:lujan_parques_industriales
+		new OpenLayers.Layer.WMS("Parques Industriales",wmsURL,
+			{layers: 'dipsoh:lujan_parques_industriales',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -627,19 +620,20 @@ var layerItems=[
 					}
 			}
 		),
-		new OpenLayers.Layer.WMS("Urbanizaciones e industrias",wmsURL,
-			{layers: 'dipsoh:lujan_urbanizaciones-industrias-asentamientos',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("MDE Palsar Lujan",wmsURL,
+			{layers: 'dipsoh:MDE_PALSAR_LUJAN',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
 						}
 					}
 			}
-		), //dipsoh:Lujan_ManchaSituacionActual-Rec100
+		),		
+		//dipsoh:Lujan_ManchaSituacionActual-Rec100
 		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 100 años",wmsURL,
 			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec100',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -649,7 +643,7 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 50 años",wmsURL,
 			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec50',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -659,7 +653,7 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 25 años",wmsURL,
 			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec25',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -669,7 +663,7 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 10 años",wmsURL,
 			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec10',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -679,7 +673,7 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 5 años",wmsURL,
 			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec5',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -689,29 +683,42 @@ var layerItems=[
 		),
 		new OpenLayers.Layer.WMS("Mancha de inundacion - Recurrencia 2 años",wmsURL,
 			{layers: 'dipsoh:Lujan_ManchaSituacionActual-Rec2',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
 						}
 					}
 			}
-		), //dipsoh:lujan_parques_industriales
-		new OpenLayers.Layer.WMS("Parques Industriales",wmsURL,
-			{layers: 'dipsoh:lujan_parques_industriales',transparent: true, format:'image/png', singleTile: true },
-			{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
-					wfs: {
-						protocol: 'fromWMSLayer',
-						downloadFormats:Heron.options.wfs.downloadFormats
-						}
-					}
-			}
-		),
-		//dipsoh:nivelacion_IGN
+		)
+	]
+layerItems=layerItems.concat(lujan);
+treeTheme[1].children.push({
+					text:'Cuenca Lujan',expanded:false, children:
+						[
+							{nodeType: "gx_layer", layer: "Urbanizaciones e industrias"},
+							{nodeType: "gx_layer", layer: "Parques Industriales"},
+							{nodeType: "gx_layer", layer: "MDE Palsar Lujan",legend:true  },
+							{
+							text:'Manchas de inundacion',expanded:false, children:
+								[
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 100 años",text:"Sin obra - Rec100"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 50 años",text:"Sin obra - Rec50"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 25 años",text:"Sin obra - Rec25"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 10 años",text:"Sin obra - Rec10"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 5 años",text:"Sin obra - Rec5"},
+									{nodeType: "gx_layer", layer: "Mancha de inundacion - Recurrencia 2 años",text:"Sin obra - Rec2"},
+								]
+							}
+						]
+				});	
 		/*
-		new OpenLayers.Layer.WMS("IGN:Nivelacion alta precision",
-			"http://wms.ign.gob.ar/geoserver/idera/wms?",
-			{layers: 'idera:nivelacion_alta_precision',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		 * Layers nuestros: Capas meteorologicas
+		 */
+meteorologicas=[
+		new OpenLayers.Layer.WMS("Temperaturas",wmsURL,
+			{layers: 'dipsoh:capa_temperatura',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -719,9 +726,9 @@ var layerItems=[
 					}
 			}
 		),
-		new OpenLayers.Layer.WMS("IGN:Nivelacion precision",
-			"http://wms.ign.gob.ar/geoserver/idera/wms?",
-			{layers: 'idera:nivelacion_precision',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Isotermas",wmsURL,
+			{layers: 'dipsoh:isotermas_v',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -729,9 +736,9 @@ var layerItems=[
 					}
 			}
 		),
-		new OpenLayers.Layer.WMS("IGN:Nivelacion topografica",
-			"http://wms.ign.gob.ar/geoserver/idera/wms?",
-			{layers: 'idera:nivelacion_topografica',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+		new OpenLayers.Layer.WMS("Niveles",wmsURL,
+			{layers: 'dipsoh:niveles',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -739,9 +746,123 @@ var layerItems=[
 					}
 			}
 		),
-		*/
+		new OpenLayers.Layer.WMS("Viento actual",wmsURL,
+			{layers: 'dipsoh:vientos_00',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Viento +03hs",wmsURL,
+			{layers: 'dipsoh:vientos_03',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Viento +06hs",wmsURL,
+			{layers: 'dipsoh:vientos_06',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Viento +12hs",wmsURL,
+			{layers: 'dipsoh:vientos_12',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Viento +24hs",wmsURL,
+			{layers: 'dipsoh:vientos_24',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		)
+	]
+layerItems=layerItems.concat(meteorologicas);
+treeTheme[1].children.push({
+					text:'Capas meteorologicas',expanded:false, children:
+						[
+							{nodeType: "gx_layer", layer: "Temperaturas"},
+							{nodeType: "gx_layer", layer: "Isotermas"}, 
+							{nodeType: "gx_layer", layer: "Niveles"},
+							{
+								text:'Viento',expanded:false, children:
+									[
+										{nodeType: "gx_layer", layer: "Viento actual"},
+										{nodeType: "gx_layer", layer: "Viento +03hs"}, 
+										{nodeType: "gx_layer", layer: "Viento +06hs"},
+										{nodeType: "gx_layer", layer: "Viento +12hs"}, 
+										{nodeType: "gx_layer", layer: "Viento +24hs"},
+									]
+							},
+						]
+				});
+
+		/*
+		 * Layers nuestros: Descargas
+		 */
+descargas=[		 
+		layerPartidos_descarga = new OpenLayers.Layer.WMS("Descarga_Partidos_DWG",wmsURL,
+			{layers: 'dipsoh:departamentos_descarga',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+
+		new OpenLayers.Layer.WMS("Descarga_Cartas_IGN50000",wmsURL,
+			{layers: 'dipsoh:cartas050igm',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Descarga_MDT_IGN",wmsURL,
+			{layers: 'dipsoh:cartas100igm',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		)
+	]
+layerItems=layerItems.concat(descargas);
+treeTheme[1].children.push({
+					text:'Descargas',expanded:false, children:
+						[
+							{nodeType: "gx_layer", layer: "Descarga_Cartas_IGN50000" ,text:"Descarga cartas IGN 1:50K",legend:true },
+							{nodeType: "gx_layer", layer: "Descarga_Partidos_DWG" ,text:"Descarga de partidos en DWG",legend:true },
+							{nodeType: "gx_layer", layer: "Descarga_MDT_IGN" ,text:"Descarga MDT IGN 1:50K",legend:true }
+						]
+				});	
+
 		//http://www.geobasig.com.ar:8080/geoserver/Geodesia/wms?SERVICE=WMS&LAYERS=Parcelario_Transparente (layer geodesia) http://geobasig.com.ar/geoserver29/Geodesia/wms?
 		//http://www.geoinfra.minfra.gba.gov.ar/geoserver/Geoinfra/wms?LAYERS=parcelario_completo
+otras=[
 		new OpenLayers.Layer.WMS("Parcelas_Geo_WFS",
 			"http://www.geoinfra.minfra.gba.gov.ar/geoserver/Geoinfra/wms?",
 			{layers: 'parcelario_completo',transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:true, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
@@ -752,4 +873,5 @@ var layerItems=[
 					}
 			}
 		)
-	];
+	]
+layerItems=layerItems.concat(otras);

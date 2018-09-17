@@ -287,6 +287,31 @@ Heron.layout = {
 								]
 							}
 					]
+				},
+				{
+					xtype: 'hr_bookmarkspanel',
+					id: 'hr-bookmarks',
+					/** The contexts (see Options.js) to create bookmarks in the bookmarks panel. */
+					hropts: [
+								{
+									id: 'la_plata',
+									name: 'Hybrid - La Plata',
+									desc: 'La Plata',
+									layers: ['Mapbox - High Contrast','Macizos'],
+									x: -6450000,
+									y: -4155000,
+									zoom: 13
+								},
+								{
+									id: 'cuenca_matanza',
+									name: 'Cuenca Matanza',
+									desc: 'Matanza',
+									layers: ['Mapbox - High Contrast','Hidrografia','Cuencas','Lagos_y_lagunas'],
+									x: -6530000,
+									y: -4150000,
+									zoom: 11
+								}
+							]
 				}
 			]
 		},

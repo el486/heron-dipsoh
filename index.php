@@ -24,12 +24,14 @@
 	<?php
 	$plano=$_GET['plano']; //php para capturar el parámetro pasado por URL
 	$idobra=$_GET['idobra']; //php para capturar el parámetro pasado por URL
+	$bookmark=$_GET['bookmark']; //php para capturar el parámetro pasado por URL
 	?>
 	<script type="text/javascript" >
 	if(navigator.appName.indexOf("Internet Explorer")!=-1){alert('Usted está usando Internet Explorer. Si tiene problemas con alguna de las funciones del visor, le recomendamos probarlo con otro navegador (Firefox o  Chrome).');}
 	var planoUrl,obraUrl,serverURL;
 	planoUrl='<?php echo $plano ?>'; //Pasaje del parámetro a JS para uso en buscarPlano()
 	obraUrl='<?php echo $idobra ?>'; //Pasaje del parámetro a JS para uso en buscarObra()
+	bookmarkUrl='<?php echo $bookmark ?>'; //Pasaje del parámetro a JS para uso en bookmarks()
 	serverURL='http://www.mosp.gba.gov.ar/sig_hidraulica/ms'; 
 	</script>
 

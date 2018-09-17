@@ -117,6 +117,32 @@ function popupFoto(value){ //popup con foto
 		});
 		win.show();
   } 
+}
+
+function popupHTML(value){ //popup con foto
+    var win;
+	if(!win){
+		win = new Ext.Window({
+			//applyTo     : 'hello-win',
+			//layout      : 'fit',
+			title:'Detalle',
+			width: 500,
+			height: 600,
+			closeAction :'hide',
+			//plain: true,
+			modal: true, 
+			html: Base64.decode(value),
+			//overflow:'auto', 
+			autoScroll:'true',
+			buttons: [{
+				text     : 'Close',
+				handler  : function(){
+					win.hide();
+				}
+			}]
+		});
+		win.show();
+  } 
 }	 
 			
 function test (id){ //test
@@ -160,12 +186,16 @@ Ext.onReady(function() {  //carga después de terminar de cargar el mapa. Se usa 
 		})
 		}
 	
+	if (bookmarkUrl!=""){ //dispara busqueda por idobra
+		document.getElementById(bookmarkUrl).click();
+		}
+	
 	Ext.Ajax.on('beforerequest', function(conn,opts){ //captura el request de impresion para cambiar la url y repara request de mapbox y esri. 
 		//alert(opts.url);
-		if (opts.url=='http://192.168.1.13/print/pdf/create.json'){
+		if (opts.url=='http://192.168.1.13/print3/pdf/create.json' || opts.url=='http://www.mosp.gba.gov.ar/sig_hidraulica/ms/print3/pdf/create.json'){
 			//rawString = Ext.encode(opts.jsonData);
 			//opts.url='http://www.mosp.gba.gov.ar/wms_hidraulica/print/pdf/print.pdf';
-			opts.url=serverURL+'/print/pdf/create.json';
+			opts.url=serverURL+'/print3/pdf/create.json';
 			//alert(printProvider);
 			//opts.method='GET';
 			if(opts.jsonData.layers[0].extension=='BIKNGrVqVAilUH7g0dsmxg'){
@@ -204,11 +234,11 @@ Ext.onReady(function() {  //carga después de terminar de cargar el mapa. Se usa 
 	});
 	//Ext.Ajax.on('beforerequest',interceptPrint(null,{single:true}));
 	//printProvider.print(mapPanel,printPage);
-	/*
+	
 	Heron.App.map.events.register('changelayer', null, function(evt){ //dispara la funcion de busqueda de puntos cercanos si se enciende la capa red geoba
 				   if(evt.property === "visibility") {
 					  //alert(map.getScale())
-					    
+					/*    
 					if (evt.layer.name =='Red_Geoba' && evt.layer.visibility == true){
 						//alert(evt.layer.name + " layer visibility changed to " +	evt.layer.visibility );
 					  
@@ -224,14 +254,20 @@ Ext.onReady(function() {  //carga después de terminar de cargar el mapa. Se usa 
 						layerOculto.removeFeatures(layerOculto.features);
 						document.getElementById('infoDIV').innerHTML='info';
 						 }
-					if (evt.layer.name =='Parcelas' && evt.layer.visibility == true && Heron.App.map.getScale()>100000){
-						alert('La capa de parcelas ARBA solo es visible por debajo del zoom 1:100.000');
+					*/
+					if (evt.layer.name =='Parcelas' && evt.layer.visibility == true && Heron.App.map.getScale()>140000){
+						alert('La capa de parcelas ARBA solo es visible en los niveles de zoom mayores de 11 ');
 						//layerParcelas.visibility=false;
 						}
+					if (evt.layer.name.includes("Viento") && evt.layer.visibility == true){
+					console.log(evt.layer);
+					//evt.layer.setVisibility(false);
+					
+					}
 					
 				   }
 			   }
-			);*/
+			);
 			
 			
 			var files = ["./js/jsts.min.js"/*,"./js/mod/FeaturePanel_mod.js"*/]; 

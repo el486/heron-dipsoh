@@ -63,43 +63,6 @@ table.ext td {
 	border-color: #B8CFEE;
 }
 
-.flat-table {
-  display: block;
-  font-family: sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-size: 100%;
-  overflow: auto;
-  width: 100%;
-} 
- 
- .flat-table th {
-    background-color: rgb(112, 112, 112);
-    color: white;
-    font-weight: normal;
-    padding: 3px 3px;
-    text-align: center;
-  }
-  
- .flat-table tr {
-    background-color: #e0e0e0;
-    color: white;
-    font-weight: normal;
-    padding: 3px 3px;
-    text-align: center;
-  }
-
- .flat-table .blue {
-    background-color: #c3daf9;
-  }
-  
- .flat-table td {
-    /*background-color: rgb(238, 238, 238);*/
-    color: rgb(111, 111, 111);
-    padding: 3px 3px;
-  }
- 
-
-
 			
  /* Button styling for your item: 16x16 transparent png. */
 .x-btn .icon-busqueda {
@@ -137,9 +100,6 @@ table.ext td {
 }
 .x-btn .icon-help {
     background-image: url(../resources/images/silk/help.png);
-}
-.x-btn .icon-dist {
-    background-image: url(../resources/images/silk/table.png);
 }
 .multilineColumn .x-grid3-cell-inner {
             white-space:  normal !important;
@@ -191,6 +151,17 @@ right: 100px;
 
 .olPopup {
 z-index: 10000 !important;
+}
+
+.x-tree-node-collapsed .x-tree-node-icon, .x-tree-node-expanded .x-tree-node-icon, .x-tree-node-leaf .x-tree-node-icon{
+	border: 0 none;
+	height: 0px;
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+	width: 0px;
+	background-position:center;
+	background-repeat: no-repeat;
 }
 
 
