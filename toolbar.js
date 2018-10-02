@@ -1676,7 +1676,7 @@ var toolBarItems=[
 		// ====================================
 
 		}},
-		GObec.streetview.toolbar,
+		//GObec.streetview.toolbar,
 		{
 		type: "any",
 		options: {
@@ -1764,7 +1764,7 @@ var toolBarItems=[
 			, showOutputFormats: true
 			// , mapLimitScales: false
 		  }
-		},
+		},/*
 		{  //print screen
 			
 			create : function(mapPanel, options) {
@@ -1778,7 +1778,7 @@ var toolBarItems=[
 				return new Ext.Action(options);
 			},
 
-			/* Options to be passed to your create function. */
+			// Options to be passed to your create function.
 			options : {
 				tooltip: 'Imprimir Pantalla',
 				iconCls: "icon-printscr",
@@ -1789,7 +1789,7 @@ var toolBarItems=[
 				msg: 'Imprimir Pantalla'
 			 }
 			
-		},
+		},*/
 		{type: "-"},
 		{type: "oleditor", options: {
 			iconCls: "bedit",
@@ -1832,6 +1832,7 @@ var toolBarItems=[
 
 			}
 		},
+		{type: "-"},
 		{  //distancias
 			
 			create : function(mapPanel, options) {

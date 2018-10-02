@@ -275,51 +275,48 @@ Heron.widgets.LayerNodeMenuItem.LayerInfo = Ext.extend(Heron.widgets.LayerNodeMe
 
 		var infoWms = Ext.getCmp('capasGrid').store;
 		infoWms.filter('name',layer.params.LAYERS);
+		console.log(layer);
 		
 		if(infoWms.data.items.length>0){
-			Ext.MessageBox.show({
-				title: String.format('Info for Layer "{0}"', layer.name),
-
-
-
-
-
-				msg: String.format("<br><b>Nombre: </b>{0}" +
-						"<br><b>Tipo: </b>{1}" +
-						"<br><b>Mosaico: </b>{2}" +
-						"<br><b>Tiene informacion: </b>{3}" +
-						"<br><b>Soporta WFS: </b>{4}" + 
-						'<br><b>Titulo: </b>{5}'+
-						'<br><b>Resumen: </b>{6}'
-						, layer.name, layerType, tiled, hasFeatureInfo, hasWFS,infoWms.data.items[0].data.title,infoWms.data.items[0].data.abstract),
-				buttons: Ext.Msg.OK,
-				fn: function (btn) {
-					if (btn == 'ok') {
-					}
-				},
-				icon: Ext.MessageBox.INFO,
-				maxWidth: 300
-				})
+			infoWin = new Ext.Window({
+					title: String.format('Info for Layer "{0}"', layer.name),
+					layout: 'fit',
+					width: 250,
+					//height: 70,
+					plain: true,
+					closeAction: 'hide',
+					html: String.format("<br><b>Nombre: </b>{0}" +
+					"<br><b>Tipo: </b>{1}" +
+					"<br><b>Mosaico: </b>{2}" +
+					"<br><b>Tiene informacion: </b>{3}" +
+					"<br><b>Soporta WFS: </b>{4}" + 
+					'<br><b>Titulo: </b>{5}'+
+					'<br><b>Resumen: </b>{6}'+
+					'<br><b>Leyenda: </b><br>{7}'
+					, layer.name, layerType, tiled, hasFeatureInfo, hasWFS,infoWms.data.items[0].data.title,infoWms.data.items[0].data.abstract,'<img src="http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/dipsoh/wms?TRANSPARENT=TRUE&SINGLETILE=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER='+layer.params.LAYERS+'&FORMAT=image%2Fgif">'),
+					x: 30,
+					y: 100
+					});
+			infoWin.show();
 			}else{
-			Ext.MessageBox.show({
-				title: String.format('Info for Layer "{0}"', layer.name),
-				msg: String.format("<br><b>Nombre: </b>{0}" +
-						"<br><b>Tipo: </b>{1}" +
-						"<br><b>Mosaico: </b>{2}" +
-						"<br><b>Tiene informacion: </b>{3}" +
-						"<br><b>Soporta WFS: </b>{4}"
-						, layer.name, layerType, tiled, hasFeatureInfo, hasWFS),
-				buttons: Ext.Msg.OK,
-				fn: function (btn) {
-					if (btn == 'ok') {
-
-
-					}
-				},
-				icon: Ext.MessageBox.INFO,
-				maxWidth: 300
-
-				})
+			infoWin = new Ext.Window({
+					title: String.format('Info for Layer "{0}"', layer.name),
+					layout: 'fit',
+					width: 250,
+					//height: 70,
+					plain: true,
+					closeAction: 'hide',
+					html: String.format("<br><b>Nombre: </b>{0}" +
+					"<br><b>Tipo: </b>{1}" +
+					"<br><b>Mosaico: </b>{2}" +
+					"<br><b>Tiene informacion: </b>{3}" +
+					"<br><b>Soporta WFS: </b>{4}" + 
+					'<br><b>Leyenda: </b><br>{5}'
+					, layer.name, layerType, tiled, hasFeatureInfo, hasWFS,'<img src="http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/dipsoh/wms?TRANSPARENT=TRUE&SINGLETILE=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER='+layer.params.LAYERS+'&FORMAT=image%2Fgif">'),
+					x: 30,
+					y: 100
+					});
+			infoWin.show();
 			}
     }
 });

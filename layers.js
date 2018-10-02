@@ -57,6 +57,13 @@ var treeTheme = [
 ];
 
 var layerItems=[
+		
+		/*
+		 * Basemaps OpenStreetMap
+		 */
+		//new OpenLayers.Layer.Stamen("toner"),
+		new OpenLayers.Layer.OSM("OpenStreetsMap"),
+		
 		/*
 		 * Basemaps MapBox
 		 */
@@ -125,13 +132,6 @@ var layerItems=[
 			{layers: 'dipsoh:Geo5000_F6',transparent: true, format:'image/png', tiled: true }, 
 			{visibility: false,isBaseLayer:false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml'}								 
 		), 
-		
-		/*
-		 * Basemaps OpenStreetMap
-		 */
-		//new OpenLayers.Layer.Stamen("toner"),
-		new OpenLayers.Layer.OSM("OpenStreetsMap"),
-		
 		
 		/*
 		 * Basemap Google Maps
@@ -795,6 +795,206 @@ meteorologicas=[
 						}
 					}
 			}
+		),
+		new OpenLayers.Layer.WMS("Ola calor +24hs",wmsURL,
+			{layers: 'dipsoh:ola_calor_24',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Ola calor +48hs",wmsURL,
+			{layers: 'dipsoh:ola_calor_48',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Ola calor +72hs",wmsURL,
+			{layers: 'dipsoh:ola_calor_72',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Ola calor +96hs",wmsURL,
+			{layers: 'dipsoh:ola_calor_96',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Prevision +03hs",wmsURL,
+			{layers: 'dipsoh:prevision_03_mm',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Prevision +06hs",wmsURL,
+			{layers: 'dipsoh:prevision_06_mm',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Prevision +12hs",wmsURL,
+			{layers: 'dipsoh:prevision_12_mm',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Prevision +24hs",wmsURL,
+			{layers: 'dipsoh:prevision_24_mm',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Prevision +36hs",wmsURL,
+			{layers: 'dipsoh:prevision_36_mm',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Prevision +48hs",wmsURL,
+			{layers: 'dipsoh:prevision_48_mm',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Prevision +72hs",wmsURL,
+			{layers: 'dipsoh:prevision_72_mm',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Prevision +96hs",wmsURL,
+			{layers: 'dipsoh:prevision_96_mm',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Acumulada +03hs",wmsURL,
+			{layers: 'dipsoh:prevision_03_acc',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Acumulada +06hs",wmsURL,
+			{layers: 'dipsoh:prevision_06_acc',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Acumulada +12hs",wmsURL,
+			{layers: 'dipsoh:prevision_12_acc',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Acumulada +24hs",wmsURL,
+			{layers: 'dipsoh:prevision_24_acc',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Acumulada +36hs",wmsURL,
+			{layers: 'dipsoh:prevision_36_acc',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Acumulada +48hs",wmsURL,
+			{layers: 'dipsoh:prevision_48_acc',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Acumulada +72hs",wmsURL,
+			{layers: 'dipsoh:prevision_72_acc',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
+		),
+		new OpenLayers.Layer.WMS("Acumulada +96hs",wmsURL,
+			{layers: 'dipsoh:prevision_96_acc',transparent: true, format:'image/png', singleTile: true },
+			{opacity: 0.75,visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
 		)
 	]
 layerItems=layerItems.concat(meteorologicas);
@@ -804,14 +1004,45 @@ treeTheme[1].children.push({
 							{nodeType: "gx_layer", layer: "Temperaturas"},
 							{nodeType: "gx_layer", layer: "Isotermas"}, 
 							{nodeType: "gx_layer", layer: "Niveles"},
-							{
-								text:'Viento',expanded:false, children:
+							{text:'Viento',expanded:false, children:
 									[
 										{nodeType: "gx_layer", layer: "Viento actual"},
 										{nodeType: "gx_layer", layer: "Viento +03hs"}, 
 										{nodeType: "gx_layer", layer: "Viento +06hs"},
 										{nodeType: "gx_layer", layer: "Viento +12hs"}, 
-										{nodeType: "gx_layer", layer: "Viento +24hs"},
+										{nodeType: "gx_layer", layer: "Viento +24hs"}
+									]
+							},
+							{text:'Prevision ola de calor',expanded:false, children:
+									[
+										{nodeType: "gx_layer", layer: "Ola calor +24hs"},
+										{nodeType: "gx_layer", layer: "Ola calor +48hs"}, 
+										{nodeType: "gx_layer", layer: "Ola calor +72hs"},
+										{nodeType: "gx_layer", layer: "Ola calor +96hs"}
+									]
+							},
+							{text:'Prevision de precipitaciones',expanded:false, children:
+									[
+										{nodeType: "gx_layer", layer: "Prevision +03hs"},
+										{nodeType: "gx_layer", layer: "Prevision +06hs"}, 
+										{nodeType: "gx_layer", layer: "Prevision +12hs"},
+										{nodeType: "gx_layer", layer: "Prevision +24hs"}, 
+										{nodeType: "gx_layer", layer: "Prevision +36hs"},
+										{nodeType: "gx_layer", layer: "Prevision +48hs"},
+										{nodeType: "gx_layer", layer: "Prevision +72hs"},
+										{nodeType: "gx_layer", layer: "Prevision +96hs"}
+									]
+							},
+							{text:'Precipitaciones acumuladas',expanded:false, children:
+									[
+										{nodeType: "gx_layer", layer: "Acumulada +03hs"},
+										{nodeType: "gx_layer", layer: "Acumulada +06hs"},
+										{nodeType: "gx_layer", layer: "Acumulada +12hs"},
+										{nodeType: "gx_layer", layer: "Acumulada +24hs"},
+										{nodeType: "gx_layer", layer: "Acumulada +36hs"},
+										{nodeType: "gx_layer", layer: "Acumulada +48hs"},
+										{nodeType: "gx_layer", layer: "Acumulada +72hs"},
+										{nodeType: "gx_layer", layer: "Acumulada +96hs"}										
 									]
 							},
 						]

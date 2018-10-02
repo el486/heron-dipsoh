@@ -96,6 +96,7 @@ Heron.layout = {
 			region : "west",
 			width: 240,
 			collapsible: true,
+			collapsed: true,
 			split	: true,
 			border: false,
 			items: [
@@ -343,10 +344,9 @@ Heron.layout = {
 							maxResolution:2445.984904688, 
 							//resolutions:[2445.984904688,1222.992452344,611.496226172,305.748113086,152.874056543,76.437028271,38.218514136,19.109257068,9.554628534,4.777314267,2.388657133,1.194328567],  //desactivados para imprimir OSM
 							numZoomLevels: 12,
-							maxExtent:new OpenLayers.Bounds(-7822279.086949371,-5021408.575019243,-5346607.805595686,-3837573.972371518), //pcia 900913
-							restrictedExtent: new OpenLayers.Bounds(-7822279.086949371,-5021408.575019243,-5346607.805595686,-3837573.972371518),
-							center: '-6500000, -4500000',
-							//maxResolution: 'auto',
+							maxExtent:new OpenLayers.Bounds(-7600000,-5100000,-5900000,-3600000), //pcia 900913
+							restrictedExtent: new OpenLayers.Bounds(-7600000,-5100000,-5900000,-3600000),
+							center: '-6700000, -4450000',			//maxResolution: 'auto',
 							xy_precision: 2,
 							zoom: 7,
 							controls: [

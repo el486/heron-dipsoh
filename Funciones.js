@@ -284,7 +284,8 @@ function fnclick(e){ //busca puntos cercanos al lugar en donde se hizo click. Co
 	//alert(lonlat.lon+' - '+lonlat.lat);
 	//alert(lonlat.lon);
 	var point = new OpenLayers.Geometry.Point(lonlat.lon,lonlat.lat);
-
+	Ext.getCmp('hr-menu-left-container').expand(true);
+	Ext.getCmp('hr-info-west').expand(true);
 	if(!layerOculto){
 					// layer Oculto, se usa solo en esta funcion
 					layerOculto = new OpenLayers.Layer.Vector("layerOculto", {
@@ -345,6 +346,7 @@ function desactivarDist(){
 	layerOculto.removeFeatures(layerOculto.features);
 	document.getElementById('infoDIV').innerHTML='info';
 	Heron.App.map.events.unregister('click', this, fnclick);
+	Ext.getCmp('hr-menu-left-container').collapse();
 }
 
 function zoomToGeometry (wkt){

@@ -93,7 +93,7 @@
 	<!--script type="text/javascript" src="./js/mod/FeaturePanel_mod.js"></script--> <!-- buffer en info panel - cargado con ajax despues de jsts -->
 	
 	<!-- Script and css resources for streetview -->
-	<script type="text/javascript" src="./js/GObec.streetview.src.js"></script>
+	<!--script type="text/javascript" src="./js/GObec.streetview.src.js"></script-->
 	
 	<!-- Script and css resources for main app -->
 	<link rel="stylesheet" type="text/css" href="./css/m-style.css"/>

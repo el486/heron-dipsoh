@@ -63,10 +63,51 @@ table.ext td {
 	border-color: #B8CFEE;
 }
 
+.flat-table {
+  display: block;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 100%;
+  overflow: auto;
+  width: 100%;
+} 
+ 
+ .flat-table th {
+    background-color: rgb(112, 112, 112);
+    color: white;
+    font-weight: normal;
+    padding: 3px 3px;
+    text-align: center;
+  }
+  
+ .flat-table tr {
+    background-color: #e0e0e0;
+    color: white;
+    font-weight: normal;
+    padding: 3px 3px;
+    text-align: center;
+  }
+
+ .flat-table .blue {
+    background-color: #c3daf9;
+  }
+  
+ .flat-table td {
+    /*background-color: rgb(238, 238, 238);*/
+    color: rgb(111, 111, 111);
+    padding: 3px 3px;
+  }
+ 
+
+
 			
  /* Button styling for your item: 16x16 transparent png. */
+
 .x-btn .icon-busqueda {
-    background-image: url(../resources/images/silk/zoom.png);
+    background-image: url(../images/binoculars.svg);
+	margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
 }
 .x-btn .icon-addwms {
     background-image: url(../resources/images/silk/server_add.png);
@@ -78,29 +119,146 @@ table.ext td {
     background-image: url(menu-show.gif) !important;
 }
 .binfo {
-    background-image: url(../resources/images/silk/information.png) !important;
+    background-image: url(../images/info.svg) !important;
 }
 .bnav {
-    background-image: url(../resources/images/momentum/handtool3.png) !important;
+    background-image: url(../images/hand-paper.svg) !important;
 }
 .bmed {
-    background-image: url(../resources/images/geosilk/ruler.png) !important;
+    background-image: url(../images/ruler-vertical.svg) !important;
+}
+.bmedarea {
+    background-image: url(../images/ruler-combined.svg) !important;
 }
 .bsearch {
-    background-image: url(../resources/images/silk/find.png) !important;
+    background-image: url(../images/binoculars.svg) !important;
 }
 .bimp {
-    background-image: url(../resources/images/silk/printer.png) !important;
+    background-image: url(../images/print.svg) !important;
 }
 .bedit {
-    background-image: url(../resources/images/silk/map_edit.png) !important;
+    background-image: url(../images/edit.svg) !important;
 }
 .x-btn .icon-printscr {
     background-image: url(../resources/images/silk/layers.png);
 }
 .x-btn .icon-help {
-    background-image: url(../resources/images/silk/help.png);
+    background-image: url(../images/question.svg);
+	margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
 }
+.x-btn .icon-print { 
+    background-image: url(../images/print.svg) !important;
+}
+.x-btn .icon-map-magnify {
+	background-image: url("../images/google.svg") !important;
+	margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.icon-map-magnify {
+	background-image: url("../images/google.svg") !important;
+}
+
+.x-btn .icon-zoom-next {
+    background: url(../images/arrow-right.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.x-btn .icon-zoom-previous {
+    background: url(../images/arrow-left.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.x-btn .icon-zoom-in {
+    background: url(../images/search-plus.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.x-btn .icon-zoom-out {
+    background: url(../images/search-minus.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.x-btn .icon-zoom-visible {
+    background: url(../images/expand-arrows-alt.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.x-btn  .icon-measure-area {
+    background: url(../images/ruler-combined.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.icon-measure-area {
+    background: url(../images/ruler-combined.svg) no-repeat 0 0 !important;
+}
+.x-btn .icon-map-pin {
+    background: url(../images/map-pin.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.icon-map-pin {
+    background: url(../images/map-pin.svg) no-repeat 0 0 !important;
+}
+.x-btn .icon-upload {
+    background: url(../images/upload.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.icon-upload {
+    background: url(../images/upload.svg) no-repeat 0 0 !important;
+}
+.x-btn .icon-dist {
+    background-image: url(../images/file-excel.svg);
+	margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.icon-dist {
+    background-image: url(../images/file-excel.svg);
+}
+.x-btn .icon-help {
+    background: url(../images/question.svg) no-repeat 0 0 !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+.icon-help {
+    background: url(../images/question.svg) no-repeat 0 0 !important;
+}
+.x-btn .icon-table-save {
+    background-image: url(../images/download.svg) !important;
+}
+.x-btn .icon-table-clear {
+    background-image: url(../images/times.svg) !important;
+}
+.x-btn .icon-table-export {
+    background: url(../images/file-export.svg) no-repeat 0 0 !important;
+ }
+.x-btn .icon-detail {
+    background-image: url(../images/bars.svg) !important;
+}
+.x-btn .icon-table {
+    background-image: url(../images/table.svg) !important;
+}
+.x-tool-expand-east, .x-tool-expand-west {
+	background-image: url(../images/bars.svg);
+    float: none;
+    margin: 3px 2px;
+}
+
+
+
 .multilineColumn .x-grid3-cell-inner {
             white-space:  normal !important;
 }
@@ -139,10 +297,6 @@ background-color: transparent !important;
 z-index: 10000
 }
 
-.x-btn .icon-map-magnify {
-background-image: url("../images/map_magnify.png") !important;
-}
-
 /* Google Maps will mess oleDialog up, so set to absolute position */
 .oleDialog {
 position: absolute;
@@ -163,5 +317,36 @@ z-index: 10000 !important;
 	background-position:center;
 	background-repeat: no-repeat;
 }
-
-
+.x-tool {
+    background-image: url(../images/times.svg);
+	background-position: 0 -0;
+}
+.x-form-field-wrap .x-form-trigger {
+    background-image: url(../images/caret-square-down.svg);
+    width: 18px !important;
+    height: 24px !important;
+    border-bottom: 0px;
+    background-position:0 0;
+}
+.x-trigger-wrap-focus .x-form-trigger {
+    background-position: 0 0;
+}
+.x-form-field-wrap .x-form-trigger-over{
+    background-position:0 0;
+}
+.x-form-text, textarea.x-form-field {
+    background-color: #fff;
+    background-image: none;
+    border-color: #000;
+}
+.x-tool-expand-east, .x-tool-expand-west {
+    background-image: url(../images/bars.svg);
+    float: none;
+    margin: 3px 2px;
+}
+.x-panel-header {
+    color: #000;
+    font-weight: bold;
+    font-size: 12px;
+    border-color: #B6B6B4/*Gray Cloud*/;
+}

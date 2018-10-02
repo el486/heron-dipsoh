@@ -19,20 +19,6 @@ select * from
 						red as observ,
 						cota as punto_fijo 
 from dipsoh.\"nivelacion_IGN\"
-where estado != 'destruido' 
-order by distancia asc
-limit 5)
-union
-(select round(st_distance(the_geom, geomfromtext('POINT($x $y)',22195))) as distancia, 
-						ST_X(transform(st_centroid(the_geom), 900913)) AS x, 
-						ST_Y(transform(st_centroid(the_geom), 900913)) AS y,
-						ST_X(st_centroid(the_geom)) AS xorig, 
-						ST_Y(st_centroid(the_geom)) AS yorig,
-						nomenclatu as codigo,
-						faja as carta,
-						red as observ,
-						cota as punto_fijo 
-from dipsoh.\"nivelacion_IGN\"
 where estado != 'destruido' and red != 'Topografica'
 order by distancia asc
 limit 5
@@ -68,8 +54,8 @@ $res = pg_query($link, $sql);
 ?>
 
 <script>
-textoDiv='Punto Origen: <br>x:<? echo intval($x) ?> y:<? echo intval($y) ?><br>';
-textoDiv+='<table class="flat-table"><tr ><th><b>Dist(m) </b></th><th><b>Codigo </b></th><th><b>Obs. </b></th><th><b>Punto Fijo </b></th><th><b>Vinculacion Geoba</b></th><th><b>Vinculacion pto fijo</b></th></tr>';
+textoDiv='Punto Origen (POSGAR07): <br>x:<? echo intval($x) ?> y:<? echo intval($y) ?><br>';
+textoDiv+='<table class="flat-table"><tr ><th><b>Dist(m) </b></th><th><b>Codigo </b></th><th><b>Obs. </b></th><th><b>Punto Fijo </b></th><th><b>Vinculacion Geoba</b></th><th><b>Vinculacion pto fijo</b></th></tr><tr><td colspan="6">Distancia del origen a estaciones IGN</td></tr>';
 /*
 var store = new Ext.data.ArrayStore({
         fields: [
@@ -100,6 +86,7 @@ var store = new Ext.data.ArrayStore({
 	textoDiv+='<tr class="blue"><td>'+distancia+'</td><td><a href="javascript:centrar('+x+' ,'+y+')" > '+codigo2+'</a> </td><td> '+observ+'</td><td>Origen</td><td>'+parseInt(distancia/1000+30)+'min</td><td>'+parseInt(distancia/500+30)+'min</td></tr>';
 <?php } // END while($row = pg_fetch_array($res)){  ?>
 	
+	textoDiv+='<tr><td colspan="6">Distancia del origen a puntos de redes IGN y geoba (en celeste)<br>Distancia entre el punto IGN o geoba y estaciones IGN (en gris)</td></tr>'
 		
 <?php while ($row = pg_fetch_array($res)) {  ?>
 

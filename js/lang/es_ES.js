@@ -227,7 +227,7 @@ Heron.i18n.dict = {
     'No query layers found': 'No se encontraron layers de búsqueda',
     'Edit Layer Style': 'Editar estilo de la capa',
     'Zoom to Layer Extent': 'Zoom a la extensión de la capa',
-    'Get Layer information': 'Información de la capa',
+    'Get Layer information': 'Información y leyenda de la capa.',
     'Change Layer opacity': 'Cambiar opacidad',
     'Select a drawing tool and draw to search immediately': 'Seleccione una herramienta y dibuje para buscar',
     'Search in': 'Buscar en',
