@@ -189,30 +189,36 @@ Heron.layout = {
 							title: "IGN",
 							group: 'ign'
 						},
-						arbawms: {
-							url: "http://cartoservices.arba.gov.ar/geoserver/cartoservice/wms",
+						intawms: {
+							url:"http://geointa.inta.gov.ar/geoserver/wms",
 							version: "1.3.0",
-							title: "Arba",
-							group: 'ideba'
-						},
-						escuelaswms: {
-							url: "http://190.210.101.129/cgi-bin/mapaescolar",
-							version: "1.3.0",
-							title: "Mapa Escolar",
-							group: 'ideba'
-						},
-						geodesiawms: {
-							url: "http://geobasig.com.ar/geoserver/Geodesia/wms",
-							version: "1.1.1",
-							title: "Direccion de Geodesia pcia. de Bs.As.",
-							group: 'ideba'
-						},
-						energiawms: {
-							url: "http://sig.se.gob.ar/cgi-bin/mapserv6?map=/var/www/html/visor/geofiles/map/mapase.map",
-							version: "1.1.1",
-							title: "Ministerio de Energía y Minería.",
+							title: "Inta",
 							group: 'nacion'
 						},
+						urbasigwms: {
+							url: "http://www.urbasig.minfra.gba.gob.ar/geoserver/urbasig/wms",
+							version: "1.3.0",
+							title: "UrbaSig",
+							group: 'urbasig'
+						},
+						escuelaswms: {
+							url:"http://mapaescolar.abc.gob.ar/geoserver/mapa/wms",
+							version: "1.3.0",
+							title: "Mapa Escolar",
+							group: 'escuelas'
+						},						
+						geodesiawms: {
+							url:"http://www.geoinfra.minfra.gba.gov.ar/geoserver/Geoinfra/wms",
+							version: "1.3.0",
+							title: "GeoInfra",
+							group: 'geoinfra'
+						},
+						energiawms: {
+							url:"http://sig.se.gob.ar/wmsenergia",
+							version: "1.1.1",
+							title: "Ministerio de Energía y Minería.",
+							group: 'energia'
+						}
 						/*
 						cdiwms: {
 							url: "http://sig.gobierno.gba.gov.ar:8080/geoserver/cdi/wms",
@@ -243,13 +249,7 @@ Heron.layout = {
 							version: "1.3.0",
 							title: "Transporte",
 							group: 'ideba'
-						},*/
-						urbasigwms: {
-							url: "http://sig.gobierno.gba.gov.ar/geoserver/urbasig/wms",
-							version: "1.3.0",
-							title: "UrbaSig",
-							group: 'ideba'
-						}
+						},*/					
 						
 					}
 				},
@@ -344,7 +344,8 @@ Heron.layout = {
 							maxResolution:2445.984904688, 
 							//resolutions:[2445.984904688,1222.992452344,611.496226172,305.748113086,152.874056543,76.437028271,38.218514136,19.109257068,9.554628534,4.777314267,2.388657133,1.194328567],  //desactivados para imprimir OSM
 							numZoomLevels: 12,
-							maxExtent:new OpenLayers.Bounds(-7600000,-5100000,-5900000,-3600000), //pcia 900913
+							maxExtent:new OpenLayers.Bounds(-7822279.086949371,-5021408.575019243,-5346607.805595686,-3837573.972371518), //no cambiar se rompe tilecache
+							//maxExtent:new OpenLayers.Bounds(-7600000,-5100000,-5900000,-3600000), //pcia 900913
 							restrictedExtent: new OpenLayers.Bounds(-7600000,-5100000,-5900000,-3600000),
 							center: '-6700000, -4450000',			//maxResolution: 'auto',
 							xy_precision: 2,

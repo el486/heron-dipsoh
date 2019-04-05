@@ -49,8 +49,8 @@
     <script type="text/javascript" src="./js/jsts.js"></script>
     <script type="text/javascript" src="./js/attache.array.min.js"></script> -->
 
-	<!-- External lib: Google Maps -->
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&libraries=places"></script>
+	<!-- External lib: Google Maps >
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDb_Lb5J6UL8HC7Q9KFmK7PseG128ZQLhg&libraries=places"></script-->
 	
 	<!-- External lib: OpenLayers -->
 	<script type="text/javascript" src="./js/OpenLayers.js"></script>

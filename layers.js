@@ -29,21 +29,21 @@ var treeTheme = [
 		text:'Capas Base', expanded: true, children:
 			[
 				{nodeType: "gx_layer", layer: "Cartas IGN" },
-				{nodeType: "gx_layer", layer: "Google Hybrid" },
+				{nodeType: "gx_layer", layer: "Bing Hibrido"},
 				{nodeType: "gx_layer", layer: "OpenStreetsMap" },
 				{nodeType: "gx_layer", layer: "mdt_ign" , text:"Modelo digital IGN" },
 				{text:'Mas...', children:
 						[
-							{nodeType: "gx_layer", layer: "Google Streets" },
+							//{nodeType: "gx_layer", layer: "Google Streets" },
 							//{nodeType: "gx_layer", layer: "toner", text:"Stamen Toner" },
 							{nodeType: "gx_layer", layer: "ESRI Satelital" },
 							{nodeType: "gx_layer", layer: "ESRI Topografico"},
 							{nodeType: "gx_layer", layer: "Bing Aereo"},
 							{nodeType: "gx_layer", layer: "Bing Callejero"},
-							{nodeType: "gx_layer", layer: "Bing Hibrido"},
 							{nodeType: "gx_layer", layer: "Mapbox - High Contrast"},
 							{nodeType: "gx_layer", layer: "Mapbox - Dark"},
 							{nodeType: "gx_layer", layer: "Mapbox - Streets/Satellite"},
+							//{nodeType: "gx_layer", layer: "Google Hybrid" },
 							{nodeType: "gx_layer", layer: "Geo5000_Faja5",text:"Geodesia 1:5000 Faja5"},
 							{nodeType: "gx_layer", layer: "Geo5000_Faja6",text:"Geodesia 1:5000 Faja6"},
 							{nodeType: "gx_layer", layer: "Blanco"}
@@ -135,7 +135,7 @@ var layerItems=[
 		
 		/*
 		 * Basemap Google Maps
-		 */
+		
 		new OpenLayers.Layer.Google(
 			  "Google Streets", // the default
 			  {'sphericalMercator': true, numZoomLevels: 20,displayInLayerSwitcher:false}
@@ -145,7 +145,8 @@ var layerItems=[
 				"Google Hybrid",
 				{type: google.maps.MapTypeId.HYBRID, visibility: true,'sphericalMercator': true, numZoomLevels: 20,displayInLayerSwitcher:false}
 		),
-
+		 */
+		 
 		/*
 		 * Basemaps ESRI
 		 */

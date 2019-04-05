@@ -1677,7 +1677,7 @@ var toolBarItems=[
 
 		}},
 		//GObec.streetview.toolbar,
-		{
+		/*{
 		type: "any",
 		options: {
 			text: '',
@@ -1741,7 +1741,7 @@ var toolBarItems=[
 
 				}
 			}
-		},
+		},*/
 		{type: "-"},
 		{type: "printdialog", options: {
 			iconCls: 'bimp',
@@ -1759,8 +1759,8 @@ var toolBarItems=[
 			// , mapFooter: 'My Footer - Print Dialog'
 			// , mapFooterYAML: "mapFooter"	// MapFish - field name in config.yaml - default is: 'mapFooter'
 			// , showRotation: true
-			// , showLegend: true
-			, showLegendChecked: true
+			, showLegend: false
+			//, showLegendChecked: true
 			, showOutputFormats: true
 			// , mapLimitScales: false
 		  }
