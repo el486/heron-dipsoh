@@ -1,5 +1,5 @@
 ﻿function armarNomencla(){ //arma la nomenclatura para la busqueda por nomencla
-	var part = Ext.getCmp('form_part').getValue();
+
 	var circ = Ext.getCmp('form_circ').getValue();
 	var secc = Ext.getCmp('form_secc').getValue();
 	var chac = Ext.getCmp('form_chacra').getValue();
@@ -7,11 +7,7 @@
 	var frac = Ext.getCmp('form_fraccion').getValue();
 	var manz = Ext.getCmp('form_manzana').getValue();
 	var pnum = Ext.getCmp('form_pnum').getValue();
-	var plet = Ext.getCmp('form_plet').getValue();
-	var rejunte=chac+quin+frac+manz;
-	rejunte=rejunte.replace(/\s+/g,'');
-	rejunte=rejunte.split('').join('%');
-	Ext.getCmp('form_nomencla').setValue(part+circ+secc+"%"+rejunte+"%"+pnum+plet);
+	Ext.getCmp('form_nomencla').setValue(circ+secc+chac+quin+frac+manz+pnum);
 	
 }
 			
@@ -358,7 +354,18 @@ var gridCellRenderers=[
 		   },
 		   options : {}
    }
-}];
+},
+{
+   featureType: 'areas_ley_8912',
+   attrName: 'descripcio',
+   renderer: {
+			fn : function(value, metaData, record, rowIndex, colIndex, store) {
+				   return '<a href="http://www.urbasig.minfra.gba.gov.ar/ordenanzas/index.html" target="_blank">'+ value +'</a>';
+		     },
+		   options : {}
+   }
+}
+];
 
 var uploadFormats=[
 	 {name: 'Well-Known-Text (WKT)', fileExt: '.wkt', mimeType: 'text/plain', formatter: 'OpenLayers.Format.WKT'},
@@ -1322,8 +1329,9 @@ var toolBarItems=[
 											{	
 												xtype:'combo',
 												fieldLabel: '  Partido',
-												id:'form_part',
 												name: "partido",
+												id:'form_part',
+
 												typeAhead: true,
 												width: 150,
 												triggerAction: 'all',
@@ -1335,20 +1343,21 @@ var toolBarItems=[
 													fields: ['display',	'tip'],
 													data: partidos
 												}),
-												listeners: { 
-														'select': function(combo, record, index){ 
+												listeners: { 'select': function(combo, record, index){ 
+
+
 														combo.setValue(record.data['tip']);
-														label = Ext.getCmp('partidolabel');
+														label = Ext.getCmp('partido_label');
 														label.setText(record.data['display']);
-														},
-														'change': function(e){ 
-														var val=(e.getValue());
-														val=val.replace(/\s+/g,'');
-														val="00"+val;
-														val=val.substr(val.length - 3);
-														e.setValue(val);
-														armarNomencla();
-														}
+
+
+
+
+
+
+
+
+														}  
 												}
 											},
 											{
@@ -1368,9 +1377,10 @@ var toolBarItems=[
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
 														val=val.replace(/\s+/g,'');
-														val="00"+val;
-														if (val=="00"){ val="";}
-														val=val.substr(val.length - 2);
+														val="%Circ:"+val;
+
+
+
 														e.setValue(val);
 														armarNomencla();
 														}}
@@ -1384,9 +1394,10 @@ var toolBarItems=[
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
 														val=val.replace(/\s+/g,'');
-														val="00"+val;
-														if (val=="00"){ val="";}
-														val=val.substr(val.length - 2);
+														val="%Secc:"+val;
+
+
+
 														e.setValue(val);
 														armarNomencla();
 														}}
@@ -1398,6 +1409,10 @@ var toolBarItems=[
 												id:'form_chacra',
 												fieldLabel: "  Chacra",
 												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
+														val="%Ch:"+val;
+														e.setValue(val);
 														armarNomencla();
 														}}
 											},
@@ -1408,6 +1423,10 @@ var toolBarItems=[
 												id:'form_quinta',
 												fieldLabel: "  Quinta",
 												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
+														val="%Qt:"+val;
+														e.setValue(val);
 														armarNomencla();
 														}}
 											},
@@ -1418,6 +1437,10 @@ var toolBarItems=[
 												id:'form_fraccion',
 												fieldLabel: "  Fraccion",
 												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
+														val="%Fr:"+val;
+														e.setValue(val);
 														armarNomencla();
 														}}
 											},
@@ -1428,6 +1451,10 @@ var toolBarItems=[
 												id:'form_manzana',
 												fieldLabel: "  Manzana",
 												listeners: { 'change': function(e){ 
+														var val=(e.getValue());
+														val=val.replace(/\s+/g,'');
+														val="%Mz:"+val;
+														e.setValue(val);
 														armarNomencla();
 														}}
 											},/*
@@ -1445,29 +1472,30 @@ var toolBarItems=[
 												name: "rural__ne",
 												value: '',
 												id:'form_pnum',
-												fieldLabel: "  Parcela Numero",
+												fieldLabel: "  Parcela",
 												listeners: { 'change': function(e){ 
 														var val=(e.getValue());
 														val=val.replace(/\s+/g,'');
-														val="000"+val;
-														if (val=="000"){ val="";}
-														val=val.substr(val.length - 4);
-														e.setValue(val);
-														armarNomencla();
-														}}
-											},
-											{
-												xtype: "textfield",
-												name: "rural__ne",
-												value: '',
-												id:'form_plet',
-												fieldLabel: "  Parcela Letra",
-												listeners: { 'change': function(e){ 
-														var val=(e.getValue());
-														val=val.replace(/\s+/g,'');
-														val="00"+val;
-														if (val=="00"){ val="";}
-														val=val.substr(val.length - 3);
+														val="%Pc:"+val;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 														e.setValue(val);
 														armarNomencla();
 														}}
@@ -1486,14 +1514,14 @@ var toolBarItems=[
 														Ext.getCmp('form_fraccion').setValue('');
 														Ext.getCmp('form_manzana').setValue('');
 														Ext.getCmp('form_pnum').setValue('');
-														Ext.getCmp('form_plet').setValue('');
+
 														Ext.getCmp('form_nomencla').setValue('');
 													}
 												}
 											},
 											{
 												xtype: "textfield",
-												name: "nomencla__like",
+												name: "nomcat__like",
 												value: '',
 												id:'form_nomencla',
 												hidden:true,
