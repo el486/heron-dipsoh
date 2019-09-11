@@ -10,8 +10,26 @@ defObras = new OpenLayers.Style({},
 					rules : [
 						new OpenLayers.Rule({
 							name: "Obras_Sigos", // <--- this is what will display in legend panel
-							symbolizer: {fillColor: 'yellow',fillOpacity: 0.05,strokeColor:'darkViolet'}							
-						})
+							symbolizer: {fillColor: 'yellow',fillOpacity: 0.05,strokeColor:'darkViolet', pointRadius:1}							
+						}),
+						
+						new OpenLayers.Rule({
+						filter: new OpenLayers.Filter.Comparison({
+                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                        property: "geom",
+                        value: "LINE"
+						}),
+							symbolizer: {strokeColor:'blue'}							
+						}),
+						
+						new OpenLayers.Rule({
+						filter: new OpenLayers.Filter.Comparison({
+                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                        property: "geom",
+                        value: "POINT"
+						}),
+							symbolizer: {fillColor: 'yellow',fillOpacity: 1 ,strokeColor:'red', pointRadius:2}							
+						}),
 					]
 				});
 				
@@ -30,10 +48,10 @@ layerwfs = new OpenLayers.Layer.Vector("Obras Seleccionadas",{
 									,srsName: "EPSG:900913"
 									,url: "http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/wfs"
 									,featureNS :  "http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/dipsoh_postgis"
-									,featureType: "dipsoh_obras_sigos_total"
-									,featurePrefix: "dipsoh"
+									,featureType: "obras_dph"
+									,featurePrefix: "obras"
 									,geometryName: "the_geom"
-									,schema: "http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/wfs/DescribeFeatureType?typename=dipsoh.public:dipsoh_obras_sigos_total"
+									,schema: "http://www.mosp.gba.gov.ar/sig_hidraulica/ms/geoserver/wfs/DescribeFeatureType?typename=dipsoh.obras:obras_dph"
 									,filter: new OpenLayers.Filter.Comparison({
 										type: OpenLayers.Filter.Comparison.EQUAL_TO,
 										property: "id_obra",
@@ -48,21 +66,33 @@ var selectCtrl = new OpenLayers.Control.SelectFeature(layerwfs);
 var popup
     // define "createPopup" function
     function createPopup(feature) {
-        popup = new GeoExt.Popup({
-            title: 'Informacion',
-            location: feature,
-            width:300,
+        popup = new Ext.Window({
+            title: 'Información',
+            layout:'fit',
+            x: 100,
+            y: 300,
+            width:400,
+            closeAction:'hide',
+            plain: true,
+            shadow: true,            
+            /*location: feature,
 			anchored: true,
-			anchorPosition: 'auto',
-            html: "<div style='font-size:.9em'>Feature: " + feature.id 
-									 +"<br>ID: " + feature.attributes.id_obra +'<a href="javascript:void(0)" onclick="popupObras(\''+feature.attributes.id_obra+'\');">' + '<b>+info</b>' + '</a>'
-									 +"<br>Nombre: "+ feature.attributes.nombre
-									 +"<br>Etapa: "+ feature.attributes.etapa
-									 +"<br>Reparticion: "+ feature.attributes.reparticion
-									 +"<br>Geometria: "+ feature.attributes.geom
-									 +"</div>",
-            maximizable: false,
-            collapsible: true
+			anchorPosition: 'top-left',*/
+            html: "<div>"
+             +"<table class='info'>"
+             +"<tr><th>Feature</th><td>" +feature.id +"</td></tr>"
+             +"<tr><th>ID</th><td>" + feature.attributes.id_obra +'<a href="javascript:void(0)" onclick="popupObras(\''+feature.attributes.id_obra+'\');">' + '<b> +info</b>' + '</a>'+"</td></tr>"
+             +"<tr><th>Nombre</th><td>" + feature.attributes.nombre+"</td></tr>"
+             +"<tr><th>Etapa</th><td>" + feature.attributes.etapa+"</td></tr>"
+             +"<tr><th>Repartición</th><td>" + feature.attributes.reparticion+"</td></tr>"
+             +"<tr><th>Geometría</th><td>" + feature.attributes.geom+"</td></tr>"
+             +"</table>"
+             +"</div>",
+            /*unpinnable: false,
+            anchored: false,*/
+            
+            /*maximizable: false,
+            collapsible: true*/
         });
         // unselect feature when the popup
         // is closed

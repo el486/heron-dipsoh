@@ -213,7 +213,7 @@ var gridCellRenderers=[
    attrName: 'ultimo_plano',
    renderer: {
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
-				   return '<a href="http://www.mosp.gba.gov.ar/sistemas/geodesia/ugeodesia/Geodesia/'+value+'(PA).dwf" target="_blank">'+ value +'</a>';
+				   return '<a href="http://www.geoinfra.minfra.gba.gov.ar/lista_lamina.php?plano='+value+' " target="_blank">'+ value +'</a>';
 		   },
    }
 },
@@ -222,7 +222,7 @@ var gridCellRenderers=[
    attrName: 'plano',
    renderer: {
 		   fn : function(value, metaData, record, rowIndex, colIndex, store) {
-				   return '<a href="http://www.mosp.gba.gov.ar/sistemas/geodesia/ugeodesia/Geodesia/'+value+'(PA).dwf" target="_blank">'+ value +'</a>';
+				   return '<a href="http://www.geoinfra.minfra.gba.gov.ar/lista_lamina.php?plano='+value+' " target="_blank">'+ value +'</a>';
 		   }
    }
 },

@@ -183,7 +183,9 @@ Heron.layout = {
 					// wms layer sources
 					defaultSourceType: "gxp_wmssource",
 					sources: {
-						ignwms: {
+						/* NO FUNCIONA AL 10-09-19 (RAUL) */
+                        /*
+                        ignwms: {
 							url: "http://wms.ign.gob.ar/geoserver/wfs",
 							version: "2.0.0",
 							title: "IGN",
@@ -206,19 +208,21 @@ Heron.layout = {
 							version: "1.3.0",
 							title: "Mapa Escolar",
 							group: 'escuelas'
-						},						
+						},
+                        energiawms: {
+							url:"http://sig.se.gob.ar/wmsenergia",
+							version: "1.1.1",
+							title: "Ministerio de Energía y Minería.",
+							group: 'energia'
+						}
+                        */						
 						geodesiawms: {
 							url:"http://www.geoinfra.minfra.gba.gov.ar/geoserver/Geoinfra/wms",
 							version: "1.3.0",
 							title: "GeoInfra",
 							group: 'geoinfra'
 						},
-						energiawms: {
-							url:"http://sig.se.gob.ar/wmsenergia",
-							version: "1.1.1",
-							title: "Ministerio de Energía y Minería.",
-							group: 'energia'
-						}
+						
 						/*
 						cdiwms: {
 							url: "http://sig.gobierno.gba.gov.ar:8080/geoserver/cdi/wms",

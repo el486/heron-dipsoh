@@ -418,7 +418,7 @@ obras=[
 			}
 		),
 		layerTrazas = new OpenLayers.Layer.WMS("Trazas+Obras_SIGOS",wmsURL,
-			{layers: ['dipsoh:dipsoh_obras_sigos_total'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+			{layers: ['dipsoh:dipsoh_obras_sigos_total_local'],transparent: true, format:'image/png', singleTile: true },{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
 					wfs: {
 						protocol: 'fromWMSLayer',
 						downloadFormats:Heron.options.wfs.downloadFormats
@@ -433,8 +433,8 @@ treeTheme[1].children.push({
 						[
 							{nodeType: "gx_layer", layer: "Obras con planilla" , text:"Antecedentes en PDF",legend:true },
 							{nodeType: "gx_layer", layer: "Trazas DiPSOH" , text:"Obras DPH",legend:true },
-							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  }//,
-							//{nodeType: "gx_layer", layer: "Trazas+Obras_SIGOS" ,text:"Obras Sigos - Trazas",legend:true }
+							{nodeType: "gx_layer", layer: "Obras_SIGOS", text:"Obras Sigos - Referencia",legend:true  },
+							{nodeType: "gx_layer", layer: "Trazas+Obras_SIGOS" ,text:"Obras Sigos - Trazas",legend:true }
 						]
 				});
 
@@ -526,6 +526,16 @@ relevamiento=[
 						}
 					}
 			}
+		),
+		new OpenLayers.Layer.WMS("Vuelos drone",wmsURL,
+			{layers: 'dipsoh:vuelos',transparent: true, format:'image/png', singleTile: true },
+			{visibility: false, displayInLayerSwitcher:false, featureInfoFormat: 'application/vnd.ogc.gml',metadata: {
+					wfs: {
+						protocol: 'fromWMSLayer',
+						downloadFormats:Heron.options.wfs.downloadFormats
+						}
+					}
+			}
 		)
 	]
 layerItems=layerItems.concat(relevamiento);
@@ -540,7 +550,8 @@ treeTheme[1].children.push({
 							{nodeType: "gx_layer", layer: "Curvas_de_nivel",legend:true  },
 							{nodeType: "gx_layer", layer: "puntosGeodesia5000",legend:true,text:"Puntos fijos Geodesia 5000"},
 							{nodeType: "gx_layer", layer: "Cartas_Geodesia_1:5000",legend:true  },
-							{nodeType: "gx_layer", layer: "Red de nivelacion IGN",legend:true  }
+							{nodeType: "gx_layer", layer: "Red de nivelacion IGN",legend:true  },
+							{nodeType: "gx_layer", layer: "Vuelos drone",legend:true  }
 						]
 				});
  		/*
